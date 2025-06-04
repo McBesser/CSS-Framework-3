@@ -768,7 +768,9 @@ class CSSF {
         const suffixMap = {
             px: `${num}px`,
             p: `${num}%`,
-            pxrem: `${parseFloat(num) / 16}rem`
+            pxrem: `${parseFloat(num) / 16}rem`,
+            div10: `${parseFloat(num) / 10}`,
+            div100: `${parseFloat(num) / 100}`
         };
         
         return suffixMap[suffix] || `${num}${suffix}`;

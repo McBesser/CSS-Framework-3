@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSSF Framework</title>
+    <script src="cssf.js" defer></script>
+    
+    <script defer>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+        // Hilfsfunktionen für das Interface
+        function updateClasses() {
+            const input = document.getElementById('classInput').value;
+            const testDiv = document.getElementById('testDiv');
+            
+            // Lösche vorherige CSS
+            cssf.clearGeneratedCSS();
+            
+            // Extrahiere Klassen aus dem Input
+            const classes = input.split('\n')
+                .map(line => line.trim())
+                .filter(line => line && line.startsWith('cssf--'));
+            
+            // Setze Klassen auf das Test-Div
+            testDiv.className = classes.join(' ');
+            
+            // Warte kurz und aktualisiere dann das Output
+            setTimeout(() => {
+                updateOutput();
+            }, 100);
+        }
+
+        function updateOutput() {
+            const css = cssf.getAllGeneratedCSS();
+            const output = document.getElementById('output');
+            
+            // Formatiere CSS für bessere Lesbarkeit
+            const formattedCSS = css
+                .split('\n')
+                .filter(line => line.trim())
+                .map(line => {
+                    if (line.trim().startsWith('}')) return line;
+                    if (line.trim().endsWith('{')) return line;
+                    if (line.trim().startsWith('@media')) return line;
+                    return line;
+                })
+                .join('\n');
+            
+            output.textContent = formattedCSS || '/* Noch kein CSS generiert */';
+        }
+
+        function clearAll() {
+            document.getElementById('classInput').value = '';
+            cssf.clearGeneratedCSS();
+            document.getElementById('testDiv').className = '';
+            updateOutput();
+        }
+   // Event Listener
+        document.getElementById('classInput').addEventListener('input', () => {
+            setTimeout(updateClasses, 300);
+        });
+
+        // Initiale Aktualisierung
+        updateClasses();
+});
+
+     
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        #output {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #testDiv {
+            display: none;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSSF Framework - CSS Class Generator</h1>
+        
+        <div class="info">
+            Geben Sie CSS-Klassen mit dem Präfix "cssf--" ein. Diese werden automatisch in CSS umgewandelt.
+        </div>
+
+        <div class="section">
+            <h2>Test Classes</h2>
+            <textarea id="classInput" placeholder="Geben Sie hier Ihre cssf-- Klassen ein...">cssf--m16
+cssf--tpl-msg
+cssf--tpl-center
+cssf--bd_hex-000_solid_2pxrem
+cssf--m16vw
+cssf--m16px
+cssf--m16p
+cssf--border-radius_15px
+cssf--m_n16px
+cssf--m-16px
+cssf--m_16pxrem
+cssf--m_n16pxrem
+cssf--m_n16p
+cssf--flex_1
+cssf--flex_1_1_auto
+cssf--c_var-test
+cssf--val-test_16px
+cssf--rval-test_16px
+cssf--color_hex-ff0000
+cssf--content_str-chr-star
+cssf--content_str-uni-ff0
+cssf--color_fn-rgb_255-255-255
+cssf--border_fn-rgb_255-255-255_close_solid_16pxrem
+cssf--content_cfn-date-now
+cssf--color_tpl-rgb_0_0_0
+cssf--tar-next-tag-img--m32
+cssf--tar-tag-img--m32
+cssf--mq768--m20--p30
+cssf--mq768max--m20
+cssf--tar-parent-class-test--m16
+cssf--width_fn-calc_2px_chr-plus_1px
+cssf--tar-pseudo-class-hover--m20
+cssf--c_red--tar-parent-tag-img
+cssf--c_fn-rgb_0-0-0
+cssf--fs_cfn-clamp_16_20_768
+cssf--width_cfn-clamp_100_50_1200
+cssf--tpl-center
+cssf--tpl-hide
+cssf--color_fn-rgb_255-128-0
+cssf--margin_fn-calc_10px_chr-plus_5px
+cssf--width_fn-calc_100p_chr-minus_20px
+cssf--transform_fn-translate_50p-50p
+cssf--tpl-center-flex
+cssf--tpl-hide-visual
+cssf--p_cfn-clamp_8_24_1024
+cssf--bg_fn-linear-gradient_45deg-hex-ff0000-hex-0000ff</textarea>
+            <br><br>
+            <button class="btn" onclick="updateClasses()">CSS Aktualisieren</button>
+            <button class="btn" onclick="clearAll()">Alles Löschen</button>
+        </div>
+
+        <div class="section">
+            <h2>Generiertes CSS</h2>
+            <div id="output">/* Hier erscheint das generierte CSS */</div>
+        </div>
+
+        <div id="testDiv"></div>
+    </div>
+
+</body>
+</html>

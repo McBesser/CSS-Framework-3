@@ -134,7 +134,105 @@ class CSSF {
             }),
             
             templates: this.createMap({
-                // test
+               // cssf V2
+
+            'test-color': 'val-color-1_hex-000000--val-color-2_hex-ffffff--val-color-3_hex-ffaaaa--val-color-4_hex-aaaaff--val-color-5_hex-ffffaa--val-color-6_hex-ffaaff--val-color-7_hex-aaffaa--val-color-8_hex-aaffff',
+            'test-set1': 'br1_solid--color_black--px20--py10',
+            'test-set2': 'br1_solid--color_white--px20--py10',
+            'test-br1': 'br1_solid--color_black',
+            'test-br2': 'br1_solid--color_white',
+            /* -------------------------------------------------------------------------------------- */
+            'teaser-lc': 'lc_§0--bo_vertical--text-overflow_ellipsis--d_-webkit-box--overflow_hidden',
+            /* -------------------------------------------------------------------------------------- */
+            'c-var': 'c_var-color-§0',
+            'bg-var': 'bg_var-color-§0',
+            /* -------------------------------------------------------------------------------------- */
+            /* con_1200 = max-width: 1200 */
+            'con': 'max-width§0px--m_auto--box-sizing_border-box--container-type_inline-size',
+            /* -------------------------------------------------------------------------------------- */
+            'flex-layout': 'd_flex--fd_row--fw_wrap--jc_start--ac_stretch--ai_stretch--container-type_inline-size',
+            /* -------------------------------------------------------------------------------------- */
+            'fcol25': 'f_1_1--flex-basis100p_cd4int--max-width100p_cd4int--box-sizing_border-box',
+            'fcol33': 'f_1_1--flex-basis100p_cd3int--max-width100p_cd3int--box-sizing_border-box',
+            'fcol50': 'f_1_1--flex-basis100p_cd2int--max-width100p_cd2int--box-sizing_border-box',
+            'fcol66': 'f_1_1--flex-basis100p_cd3int_cm2int--max-width100p_cd2int--box-sizing_border-box',
+            'fcol75': 'f_1_1--flex-basis100p_cd4int_cm3int--max-width100p_cd2int--box-sizing_border-box',
+            /* -------------------------------------------------------------------------------------- */
+            /* fcol25gx1_20 = gap 20px */
+            'fcol25gx1': 'f_1_1--flex-basis100p_cd4int_cs§0--max-width100p_cd4int_cs§0_cd2int_cm1int--box-sizing_border-box',
+            'fcol25gx3': 'f_1_1--flex-basis100p_cd4int_cs§0--max-width100p_cd4int_cs§0_cd4int_cm3int--box-sizing_border-box',
+            'fcol33gx2': 'f_1_1--flex-basis100p_cd3int_cs§0--max-width100p_cd3int_cs§0_cd3int_cm2int--box-sizing_border-box',
+            'fcol50gx1': 'f_1_1--flex-basis100p_cd2int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
+            'fcol66gx1': 'f_1_1--flex-basis100p_cd3int_cm2int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
+            'fcol75gx1': 'f_1_1--flex-basis100p_cd4int_cm3int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
+            /* -------------------------------------------------------------------------------------- */
+            'fcol100': 'f_1_1_100p--box-sizing_border-box',
+            'fcolauto': 'f_1_1_auto--box-sizing_border-box',
+            /* -------------------------------------------------------------------------------------- */            
+               'grid-layout': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_var-layout-gap_var-layout-content_var-layout-outside--grid-template-rows_tpl-grid-layout-rows-standard_var-layout-gap--val-grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2--container-type_inline-size',
+               'grid-layout-val': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_§0_§1_§2--grid-template-rows_tpl-grid-layout-rows-standard_§0--container-type_inline-size',
+               'grid-layout-main-gap': 'cssf--grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2',
+               'layout-gap': 'cssf--gap_var-layout-gap',
+               
+               'grid-layout-cols-standard': '[full-start] minmax(§0, 1fr) [outside-start] minmax(0, calc((§2 - §1) / 2)) [content-start] min(100% - (§0 * 2), §1) [content-end] minmax(0, calc((§2 - §1) / 2)) [outside-end] minmax(§0, 1fr) [full-end]',
+               'test-grid-layout-rows-standard': '[full-start] minmax(§0, 1fr) [outside-start] [content-start] [content-end] [outside-end] minmax(§0, 1fr) [full-end]',
+               'grid-layout-rows-standard': 'auto',
+               'clamp-size-standard': 'clamp(1rem, 1rem + calc((§0 - 1rem) / (§1 - 0rem) * 100)vw, §0)',
+            /* -------------------------------------------------------------------------------------- */
+            /* -------------------------------------------------------------------------------------- */
+            'grid-brick-layout': 'cssf--d_grid--gtc_tpl-repeat_12_1fr--gap_var-layout-gap--container-type_inline-size--ai_stretch',
+            'gcolx1': 'gc_span_1',
+            'gcolx2': 'gc_span_2',
+            'gcolx3': 'gc_span_3',
+            'gcolx4': 'gc_span_4',
+            'gcolx5': 'gc_span_5',
+            'gcolx6': 'gc_span_6',
+            'gcolx7': 'gc_span_7',
+            'gcolx8': 'gc_span_8',
+            'gcolx9': 'gc_span_9',
+            'gcolx10': 'gc_span_10',
+            'gcolx11': 'gc_span_11',
+            'gcolx12': 'gc_span_12',
+            'gcol25': 'gc_span_3',
+            'gcol33': 'gc_span_4',
+            'gcol50': 'gc_span_6',
+            'gcol66': 'gc_span_8',
+            'gcol75': 'gc_span_9',
+            'gcol100': 'gc_span_12',
+            'growx1': 'gr_span_1',
+            'growx2': 'gr_span_2',
+            'growx3': 'gr_span_3',
+            'growx4': 'gr_span_4',
+            'growx5': 'gr_span_5',
+            'growx6': 'gr_span_6',
+            'growx7': 'gr_span_7',
+            'growx8': 'gr_span_8',
+            'growx9': 'gr_span_9',
+            'growx10': 'gr_span_10',
+            'growx11': 'gr_span_11',
+            'growx12': 'gr_span_12',
+            /* -------------------------------------------------------------------------------------- */
+            'clamp-font-size': 'tpl-clamp-size-standard_font-size_var-cfs-font-size_var-cfs-width',
+            'btn': 'px15--py10--cursor_pointer--br3_solid_var-btn-br-color',
+            'hide': 'pos_absolute--h1px--w1px--of_hidden--tpl-rect_clip_1px_1px_1px_1px--ws_nowrap',
+            'show': 'd_initial--pos_static--h_auto--w_auto--of_visible--clip_auto--ws_normal',
+            'focus': 'target-pseudo-class-focus',
+            'before': 'target-pseudo-element-before--content_sq-str',
+            'after': 'target-pseudo-element-after--content_sq-str',
+            'overlay-background': 'pos_fixed--w100dvw--h100dvh--tpl-rgba_bg_0_0_0_50c--z_-2',
+            'overlay-foreground': 'pos_absolute--tpl-rgba_bg_255_255_255_100c--z_-1--py40--fn-calc_w_100p_op-add_op-op_40pxrem_op-mul_2int_op-cp',
+            'overlay-wrapper': 'pos_fixed--t50p--l50p--d_flex--tpl-translate_transform_-50p_-50p--jc_center--ai_center',
+            'center': 'pos_absolute--t50p--l50p--fn-translate_transform_-50p_op-c_-50p',
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                // msg
                 msg: 'cssf--bgc_hex-§0--p10--bl_4pxrem_solid_hex-§1--mb20', 'msg-alert': 'cssf--tpl-msg_fff4e5_ffa500',
                 'msg-info': 'cssf--tpl-msg_e7f3ff_007bff', 'msg-error': 'cssf--tpl-msg_f8d7da_d93025', 'msg-success': 'cssf--tpl-msg_d4edda_28a745',
                 'sans-sarif': 'cssf--ff_sans-serif', 'sarif': 'cssf--ff_serif',
@@ -243,7 +341,10 @@ class CSSF {
                 'container-query': 'container-type: inline-size',
                 'scroll-snap-x': 'scroll-snap-type: x mandatory',
                 'scroll-snap-y': 'scroll-snap-type: y mandatory',
-                'scroll-smooth': 'scroll-behavior: smooth'
+                'scroll-smooth': 'scroll-behavior: smooth',
+                
+                // Misc
+                'var': 'var(§0, §1)'
             }),
             
             customFunctions: this.createMap({
@@ -281,22 +382,22 @@ class CSSF {
         };
     }
 
-    setupPrefixHandlers() {
-        this.prefixHandlers = {
-            'hex-': value => `#${value.substring(4)}`,
-            'var-': value => `var(--${value.substring(4)})`,
-            'val-': value => this.handleValue(value),
-            'rval-': value => this.handleRootValue(value),
-            'tpl-': value => this.handleTemplate(value),
-            'chr-': value => this.config.chars.get(value.substring(4)) || value.substring(4),
-            'uni-': value => `\\${value.substring(4)}`,
-            'str-': value => `"${this.processNestedPrefixes(value.substring(4))}"`,
-            'group-': value => `(${value.substring(6)}),`,
-            'tar-': value => this.handleTarget(value),
-            'fn-': value => this.handleFunction(value),
-            'cfn-': value => this.handleCustomFunction(value)
-        };
-    }
+   setupPrefixHandlers() {
+       this.prefixHandlers = {
+           'hex-': value => `#${value.substring(4)}`,
+           'var-': value => `var(--${value.substring(4)})`,
+           'val-': value => `--${value.substring(4)}`,
+           'rval-': value => this.handleRootValue(value),
+           'tpl-': value => this.handleTemplate(value),
+           'chr-': value => this.config.chars.get(value.substring(4)) || value.substring(4),
+           'uni-': value => `\\${value.substring(4)}`,
+           'str-': value => `"${this.processNestedPrefixes(value.substring(4))}"`,
+           'group-': value => `(${value.substring(6)}),`,
+           'tar-': value => this.handleTarget(value),
+           'fn-': value => this.handleFunction(value),
+           'cfn-': value => this.handleCustomFunction(value)
+       };
+   }
 
     init() {
         this.setupMutationObserver();
@@ -340,32 +441,46 @@ class CSSF {
         });
     }
 
-    generateCSS(className) {
-        try {
-            const css = this.parseClass(className);
-            if (css) this.addToStylesheet(css);
-        } catch (error) {
-            console.error(`Fehler beim Verarbeiten der Klasse ${className}:`, error);
-        }
-    }
+   generateCSS(className) {
+       try {
+           const css = this.parseClass(className);
+           if (css) this.addToStylesheet(css);
+       } catch (error) {
+           console.error(`Fehler beim Verarbeiten der Klasse ${className}:`, error);
+       }
+   }
+   
+   parseClass(className) {
+       const cleanClass = className.substring(6);
+       const parts = cleanClass.split('--');
+       
+       const context = {
+           selector: `.${className}`,
+           properties: [],
+           mediaQuery: null,
+           rootRule: null  // Hinzufügen
+       };
 
-    parseClass(className) {
-        const cleanClass = className.substring(6);
-        const parts = cleanClass.split('--');
-        
-        const context = {
-            selector: `.${className}`,
-            properties: [],
-            mediaQuery: null
-        };
-
-        parts.forEach(part => this.processPart(part, context, className));
-        
-        if (context.properties.length === 0) return null;
-        
-        const rule = this.buildCSSRule(context.selector, context.properties);
-        return context.mediaQuery ? this.wrapInMediaQuery(rule, context.mediaQuery) : rule;
-    }
+       parts.forEach(part => this.processPart(part, context, className));
+       
+       // CSS-Regeln generieren
+       let cssRules = [];
+       
+       // Root-Regel hinzufügen falls vorhanden
+       if (context.rootRule) {
+           cssRules.push(context.rootRule);
+       }
+       
+       // Normale Regel hinzufügen falls Properties vorhanden
+       if (context.properties.length > 0) {
+           const rule = this.buildCSSRule(context.selector, context.properties);
+           const finalRule = context.mediaQuery ? this.wrapInMediaQuery(rule, context.mediaQuery) : rule;
+           cssRules.push(finalRule);
+       }
+       
+       // Alle Regeln zurückgeben (oder null falls keine)
+       return cssRules.length > 0 ? cssRules.join('\r\n\r\n') : null;
+   }
 
     processPart(part, context, className) {
         const processors = [
@@ -400,21 +515,21 @@ class CSSF {
        
        if (!template) return;
        
-       // 1. Prüfen ob das Template eine CSSF-Klasse ist
-       if (template.startsWith('cssf--')) {
-           // 2. Platzhalter ersetzen
-           let processedTemplate = template;
-           if (value) {
-               const params = value.split('_');
-               processedTemplate = params.reduce((result, param, index) => 
-                   result.replace(new RegExp(`§${index}`, 'g'), param), template);
-           }
-           
-           // 3. CSSF-Präfix entfernen und Teile extrahieren
+       // 1. Platzhalterersetzung (immer ausführen)
+       let processedTemplate = template;
+       if (value) {
+           const params = value.split('_');
+           processedTemplate = params.reduce((result, param, index) => 
+               result.replace(new RegExp(`§${index}`, 'g'), param), template);
+       }
+       
+       // 2. Prüfen ob das Template eine CSSF-Klasse ist
+       if (processedTemplate.startsWith('cssf--')) {
+           // CSSF-Präfix entfernen und Teile extrahieren
            const cleanClass = processedTemplate.substring(6);
            const parts = cleanClass.split('--');
            
-           // 4. Jeden Teil rekursiv verarbeiten
+           // Jeden Teil rekursiv verarbeiten
            parts.forEach(templatePart => {
                this.processPart(templatePart, context, className);
            });
@@ -422,14 +537,14 @@ class CSSF {
        }
        
        // Normale Template-Verarbeitung
-       if (template.includes(';')) {
-           template.split(';')
+       if (processedTemplate.includes(';')) {
+           processedTemplate.split(';')
                .map(p => p.trim())
                .filter(Boolean)
                .forEach(tprop => context.properties.push(tprop));
        } else {
-           const processedTemplate = this.processTemplate(template, value ? value.split('-') : []);
-           context.properties.push(processedTemplate);
+           const finalProcessed = this.processTemplate(processedTemplate, []);
+           context.properties.push(finalProcessed);
        }
    }
 
@@ -461,10 +576,10 @@ class CSSF {
             child: () => selector += ' > ',
             parent: i => this.handleParentSelector(parts, i, prefix => parentPrefix = prefix),
             self: i => this.handleSelfSelector(parts, i, originalClass, newSelector => selector = newSelector),
-            class: i => this.handleClassSelector(parts, i, selector),
-            tag: i => this.handleTagSelector(parts, i, selector),
-            id: i => this.handleIdSelector(parts, i, selector),
-            pseudo: i => this.handlePseudoSelector(parts, i, selector)
+            // class: i => this.handleClassSelector(parts, i, selector),
+            // tag: i => this.handleTagSelector(parts, i, selector),
+            // id: i => this.handleIdSelector(parts, i, selector),
+            // pseudo: i => this.handlePseudoSelector(parts, i, selector)
         };
 
         for (let i = 0; i < parts.length; i++) {
@@ -473,7 +588,7 @@ class CSSF {
                 const result = handler(i);
                 if (typeof result === 'number') i = result;
             } else {
-                this.handleDefaultSelectorPart(parts, i, selector);
+               // this.handleDefaultSelectorPart(parts, i, selector);
             }
         }
         
@@ -481,41 +596,67 @@ class CSSF {
     }
 
     handleParentSelector(parts, i, callback) {
-        if (i + 1 < parts.length) {
-            const nextPart = parts[++i];
-            const prefixMap = {
-                class: i + 1 < parts.length ? `.${parts[++i]} ` : '',
-                tag: i + 1 < parts.length ? `${parts[++i]} ` : '',
-                id: i + 1 < parts.length ? `#${parts[++i]} ` : ''
-            };
-            if (prefixMap[nextPart]) callback(prefixMap[nextPart]);
-        }
-        return i;
-    }
+       if (i + 1 < parts.length) {
+           const nextPart = parts[++i]; // i einmal erhöhen für nextPart
+           
+           // Prüfe ob noch ein weiterer Teil vorhanden ist für den Selektor-Namen
+           if (i + 1 < parts.length) {
+               const selectorName = parts[++i]; // i nochmals erhöhen für selectorName
+               
+               const prefixMap = {
+                   class: `.${selectorName} `,
+                   tag: `${selectorName} `,
+                   id: `#${selectorName} `
+               };
+               
+               if (prefixMap[nextPart]) {
+                   callback(prefixMap[nextPart]);
+               }
+           }
+       }
+       return i;
+   }
 
-    handleSelfSelector(parts, i, originalClass, callback) {
-        if (i + 1 < parts.length) {
-            const nextPart = parts[++i];
-            const selectorMap = {
-                class: i + 1 < parts.length ? `.${parts[++i]}.${originalClass}` : null,
-                tag: i + 1 < parts.length ? `${parts[++i]}.${originalClass}` : null,
-                id: i + 1 < parts.length ? `#${parts[++i]}.${originalClass}` : null
-            };
-            if (selectorMap[nextPart]) callback(selectorMap[nextPart]);
-        }
-        return i;
-    }
+   handleSelfSelector(parts, i, originalClass, callback) {
+       if (i + 1 < parts.length) {
+           const nextPart = parts[++i]; // i einmal erhöhen für nextPart
+           
+           // Prüfe ob noch ein weiterer Teil vorhanden ist für den Selektor-Namen
+           if (i + 1 < parts.length) {
+               const selectorName = parts[++i]; // i nochmals erhöhen für selectorName
+               
+               const selectorMap = {
+                   class: `.${selectorName}.${originalClass}`,
+                   tag: `${selectorName}.${originalClass}`,
+                   id: `#${selectorName}.${originalClass}`
+               };
+               
+               if (selectorMap[nextPart]) {
+                   callback(selectorMap[nextPart]);
+               }
+           }
+       }
+       return i;
+   }
 
-    processValue(value) {
-        if (!value) return '';
-        
-        const prefixHandler = Object.entries(this.prefixHandlers)
-            .find(([prefix]) => value.startsWith(prefix));
-        
-        if (prefixHandler) return prefixHandler[1](value);
-        
-        return this.isNumericValue(value) ? this.handleNumericValue(value) : value;
-    }
+   processValue(value) {
+       if (!value) return '';
+       
+       // Prüfe alle Prefixes und verwende den längsten Match
+       let bestMatch = { handler: null, prefix: '' };
+       
+       for (const [prefix, handler] of Object.entries(this.prefixHandlers)) {
+           if (value.startsWith(prefix) && prefix.length > bestMatch.prefix.length) {
+               bestMatch = { handler, prefix };
+           }
+       }
+       
+       if (bestMatch.handler) {
+           return bestMatch.handler(value);
+       }
+       
+       return this.isNumericValue(value) ? this.handleNumericValue(value) : value;
+   }
 
     isNumericValue = value => /^-?\d+/.test(value) || /^n\d+/.test(value);
 
@@ -644,21 +785,24 @@ class CSSF {
         return handler ? handler[1](value) : value;
     }
 
-    handleFunction(value) {
-        const fnMatch = value.match(/^fn-([^_]+)_(.+)$/);
-        if (!fnMatch) return value;
+   handleFunction(value) {
+       const fnMatch = value.match(/^fn-([^_]+)_(.+)$/);
+       if (!fnMatch) return value;
 
-        const [, fnName, params] = fnMatch;
-        const { processedParams, foundClose } = this.processFunctionParams(params.split('_'));
-        
-        if (foundClose) {
-            const fnPart = processedParams.filter(p => !p.startsWith(' ')).join(' ');
-            const additionalParts = processedParams.filter(p => p.startsWith(' ')).join('');
-            return `${fnName}(${fnPart})${additionalParts}`;
-        }
-        
-        return `${fnName}(${processedParams.join(' ')})`;
-    }
+       const [, fnName, params] = fnMatch;
+       
+       // Splitte Parameter und verarbeite sie einzeln
+       const paramParts = params.split('_');
+       const { processedParams, foundClose } = this.processFunctionParams(paramParts);
+       
+       if (foundClose) {
+           const fnPart = processedParams.filter(p => !p.startsWith(' ')).join(' ');
+           const additionalParts = processedParams.filter(p => p.startsWith(' ')).join('');
+           return `${fnName}(${fnPart})${additionalParts}`;
+       }
+       
+       return `${fnName}(${processedParams.join(' ')})`;
+   }
 
     processFunctionParams(paramParts) {
         let processedParams = [];
@@ -677,22 +821,32 @@ class CSSF {
         return { processedParams, foundClose };
     }
 
-    processFunctionParameter(param) {
-        const parts = param.split('-');
-        const processedParts = [];
-        
-        for (let i = 0; i < parts.length; i++) {
-            const prefixMatch = this.findPrefixMatch(parts, i);
-            if (prefixMatch) {
-                processedParts.push(this.processValue(`${parts[i]}-${parts[i + 1]}`));
-                i++; // Skip next part
-            } else {
-                processedParts.push(this.processValue(parts[i]));
-            }
-        }
-        
-        return processedParts.join(', ');
-    }
+   processFunctionParameter(param) {
+       // Prüfe zuerst auf komplette Prefixes bevor gesplittet wird
+       const prefixHandler = Object.entries(this.prefixHandlers)
+           .find(([prefix]) => param.startsWith(prefix));
+       
+       if (prefixHandler) {
+           // Wenn ein Prefix gefunden wird, verarbeite den gesamten Parameter als Ganzes
+           return this.processValue(param);
+       }
+       
+       // Nur wenn kein Prefix gefunden wird, dann normale Dash-zu-Komma Behandlung
+       const parts = param.split('-');
+       const processedParts = [];
+       
+       for (let i = 0; i < parts.length; i++) {
+           const prefixMatch = this.findPrefixMatch(parts, i);
+           if (prefixMatch) {
+               processedParts.push(this.processValue(`${parts[i]}-${parts[i + 1]}`));
+               i++; // Skip next part
+           } else {
+               processedParts.push(this.processValue(parts[i]));
+           }
+       }
+       
+       return processedParts.join(', ');
+   }
 
     findPrefixMatch(parts, index) {
         if (index + 1 >= parts.length) return false;

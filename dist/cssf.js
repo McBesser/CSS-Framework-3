@@ -566,36 +566,47 @@ class CSSF {
         return match ? `@media (${match[2] ? 'max' : 'min'}-width: ${match[1]}px)` : null;
     }
 
-    handleTargetSelector(tarPart, originalClass) {
-        const parts = tarPart.substring(4).split('-');
-        let selector = `.${originalClass}`;
-        let parentPrefix = '';
-        
-        const selectorHandlers = {
-            all: () => selector += ' * ',
-            next: () => selector += ' + ',
-            child: () => selector += ' > ',
-            parent: i => this.handleParentSelector(parts, i, prefix => parentPrefix = prefix),
-            self: i => this.handleSelfSelector(parts, i, originalClass, newSelector => selector = newSelector),
-            // class: i => this.handleClassSelector(parts, i, selector),
-            // tag: i => this.handleTagSelector(parts, i, selector),
-            // id: i => this.handleIdSelector(parts, i, selector),
-            // pseudo: i => this.handlePseudoSelector(parts, i, selector)
-        };
+   handleTargetSelector(tarPart, originalClass) {
+       const parts = tarPart.substring(4).split('-');
+       let selector = `.${originalClass}`;
+       let parentPrefix = '';
+       
+       const selectorHandlers = {
+           all: () => selector += ' * ',
+           next: () => selector += ' + ',
+           child: () => selector += ' > ',
+           'pc': i => this.handlePseudoClass(parts, i, pseudoClass => selector += `:${pseudoClass}`),
+           'pe': i => this.handlePseudoElement(parts, i, pseudoElement => selector += `::${pseudoElement}`),
+           parent: i => this.handleParentSelector(parts, i, prefix => parentPrefix = prefix),
+           self: i => this.handleSelfSelector(parts, i, originalClass, newSelector => selector = newSelector),
+       };
 
-        for (let i = 0; i < parts.length; i++) {
-            const handler = selectorHandlers[parts[i]];
-            if (handler) {
-                const result = handler(i);
-                if (typeof result === 'number') i = result;
-            } else {
-               // this.handleDefaultSelectorPart(parts, i, selector);
-            }
-        }
-        
-        return parentPrefix + selector;
-    }
+       for (let i = 0; i < parts.length; i++) {
+           const handler = selectorHandlers[parts[i]];
+           if (handler) {
+               const result = handler(i);
+               if (typeof result === 'number') i = result;
+           }
+       }
+       
+       return parentPrefix + selector;
+   }
 
+   handlePseudoClass(parts, i, callback) {
+       if (i + 1 < parts.length) {
+           const pseudoClass = parts[++i];
+           callback(pseudoClass);
+       }
+       return i;
+   }
+
+   handlePseudoElement(parts, i, callback) {
+       if (i + 1 < parts.length) {
+           const pseudoElement = parts[++i];
+           callback(pseudoElement);
+       }
+       return i;
+   }
     handleParentSelector(parts, i, callback) {
        if (i + 1 < parts.length) {
            const nextPart = parts[++i]; // i einmal erhöhen für nextPart

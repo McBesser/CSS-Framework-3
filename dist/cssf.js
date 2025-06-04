@@ -233,7 +233,7 @@ class CSSF {
                
                
                 // msg
-                msg: 'cssf--bgc_hex-§0--p10--bl_4pxrem_solid_hex-§1--mb20', 'msg-alert': 'cssf--tpl-msg_fff4e5_ffa500',
+                msg: 'cssf--bgc_hex-§0--p10--bl_4pxrem_solid_hex-§1--mb20--d_block', 'msg-alert': 'cssf--tpl-msg_fff4e5_ffa500',
                 'msg-info': 'cssf--tpl-msg_e7f3ff_007bff', 'msg-error': 'cssf--tpl-msg_f8d7da_d93025', 'msg-success': 'cssf--tpl-msg_d4edda_28a745',
                 'sans-sarif': 'cssf--ff_sans-serif', 'sarif': 'cssf--ff_serif',
                 // Color Functions
@@ -572,6 +572,7 @@ class CSSF {
         let parentPrefix = '';
         
         const selectorHandlers = {
+            all: () => selector += ' * ',
             next: () => selector += ' + ',
             child: () => selector += ' > ',
             parent: i => this.handleParentSelector(parts, i, prefix => parentPrefix = prefix),

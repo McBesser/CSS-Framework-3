@@ -152,19 +152,19 @@ class CSSF {
             /* -------------------------------------------------------------------------------------- */
             'flex-layout': 'cssf--d_flex--fd_row--fw_wrap--jc_start--ac_stretch--ai_stretch--container-type_inline-size',
             /* -------------------------------------------------------------------------------------- */
-            'fcol25': 'cssf--f_1_1--flex-basis100p_cd4int--max-width100p_cd4int--box-sizing_border-box',
-            'fcol33': 'cssf--f_1_1--flex-basis100p_cd3int--max-width100p_cd3int--box-sizing_border-box',
-            'fcol50': 'cssf--f_1_1--flex-basis100p_cd2int--max-width100p_cd2int--box-sizing_border-box',
-            'fcol66': 'cssf--f_1_1--flex-basis100p_cd3int_cm2int--max-width100p_cd2int--box-sizing_border-box',
-            'fcol75': 'cssf--f_1_1--flex-basis100p_cd4int_cm3int--max-width100p_cd2int--box-sizing_border-box',
+            'fcol25': 'cssf--f_1_1--flex-basis_100p_chr-slash_4--max-width_100p_chr-slash_4--box-sizing_border-box',
+            'fcol33': 'cssf--f_1_1--flex-basis_100p_chr-slash_3--max-width_100p_chr-slash_3--box-sizing_border-box',
+            'fcol50': 'cssf--f_1_1--flex-basis_100p_chr-slash_2--max-width_100p_chr-slash_2--box-sizing_border-box',
+            'fcol66': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-star_2--max-width_100p_chr-slash_2--box-sizing_border-box',
+            'fcol75': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-star_3--max-width_100p_chr-slash_2--box-sizing_border-box',
             /* -------------------------------------------------------------------------------------- */
             /* fcol25gx1_20 = gap 20px */
-            'fcol25gx1': 'cssf--f_1_1--flex-basis100p_cd4int_cs§0--max-width100p_cd4int_cs§0_cd2int_cm1int--box-sizing_border-box',
-            'fcol25gx3': 'cssf--f_1_1--flex-basis100p_cd4int_cs§0--max-width100p_cd4int_cs§0_cd4int_cm3int--box-sizing_border-box',
-            'fcol33gx2': 'cssf--f_1_1--flex-basis100p_cd3int_cs§0--max-width100p_cd3int_cs§0_cd3int_cm2int--box-sizing_border-box',
-            'fcol50gx1': 'cssf--f_1_1--flex-basis100p_cd2int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
-            'fcol66gx1': 'cssf--f_1_1--flex-basis100p_cd3int_cm2int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
-            'fcol75gx1': 'cssf--f_1_1--flex-basis100p_cd4int_cm3int_cs§0--max-width100p_cd2int_cs§0_cd2int_cm1int--box-sizing_border-box',
+            'fcol25gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-dash§0--max-width_100p_chr-slash_4_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol25gx3': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-dash§0--max-width_100p_chr-slash_4_chr-dash§0_chr-slash_4_chr-star_3--box-sizing_border-box',
+            'fcol33gx2': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-dash§0--max-width_100p_chr-slash_3_chr-dash§0_chr-slash_3_chr-star_2--box-sizing_border-box',
+            'fcol50gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_2_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol66gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-star_2_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol75gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-star_3_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
             /* -------------------------------------------------------------------------------------- */
             'fcol100': 'cssf--f_1_1_100p--box-sizing_border-box',
             'fcolauto': 'cssf--f_1_1_auto--box-sizing_border-box',
@@ -213,7 +213,7 @@ class CSSF {
             'growx12': 'cssf--gr_span_12',
             /* -------------------------------------------------------------------------------------- */
             'clamp-font-size': 'cssf--tpl-clamp-size-standard_font-size_var-cfs-font-size_var-cfs-width',
-            'btn': 'cssf--px15--py10--cursor_pointer--br3_solid_var-btn-br-color',
+            'btn': 'cssf--px15--py10--cursor_pointer--brad_3pxrem_solid_var-btn-br-color',
             'hide': 'cssf--pos_absolute--h1px--w1px--of_hidden--tpl-rect_clip_1px_1px_1px_1px--ws_nowrap',
             'show': 'cssf--d_initial--pos_static--h_auto--w_auto--of_visible--clip_auto--ws_normal',
             'focus': 'cssf--target-pseudo-class-focus',

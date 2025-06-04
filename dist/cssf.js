@@ -23,7 +23,7 @@ class CSSF {
                 // Dimensions
                 w: 'width', h: 'height', mw: 'max-width', mh: 'max-height',
                 minw: 'min-width', minh: 'min-height',
-                bw: 'block-size', iw: 'inline-size',
+                bw: 'block-size', iw: 'inline-size', // bw = block-size (logical property)
                 mbw: 'max-block-size', miw: 'max-inline-size',
                 minbw: 'min-block-size', miniw: 'min-inline-size',
 
@@ -34,8 +34,9 @@ class CSSF {
                 c: 'color', ac: 'accent-color', cc: 'caret-color',
 
                 // Typography
-                fs: 'font-size', fw: 'font-weight', ff: 'font-family', fst: 'font-style',
-                fv: 'font-variant', fs: 'font-stretch', lh: 'line-height', ls: 'letter-spacing',
+                fs: 'font-size', fstr: 'font-stretch', // fs = font-size (fstr für stretch)
+                fw: 'font-weight', ff: 'font-family', fst: 'font-style',
+                fv: 'font-variant', lh: 'line-height', ls: 'letter-spacing',
                 ws: 'word-spacing', wb: 'word-break', ww: 'word-wrap', hy: 'hyphens',
                 ta: 'text-align', td: 'text-decoration', tt: 'text-transform',
                 ti: 'text-indent', ts: 'text-shadow', to: 'text-overflow',
@@ -48,9 +49,10 @@ class CSSF {
                 clip: 'clip-path', rs: 'resize', cur: 'cursor',
 
                 // Flexbox
-                flex: 'flex', fd: 'flex-direction', fw: 'flex-wrap', ff: 'flex-flow',
+                flex: 'flex', fd: 'flex-direction', fwrap: 'flex-wrap', // fwrap statt fw
+                fflow: 'flex-flow', // fflow statt ff
                 fg: 'flex-grow', fsh: 'flex-shrink', fb: 'flex-basis',
-                jc: 'justify-content', ai: 'align-items', ac: 'align-content',
+                jc: 'justify-content', ai: 'align-items', acont: 'align-content', // acont statt ac
                 as: 'align-self', ji: 'justify-items', js: 'justify-self',
                 pi: 'place-items', ps: 'place-self', pc: 'place-content',
                 gap: 'gap', rg: 'row-gap', cg: 'column-gap',
@@ -65,35 +67,42 @@ class CSSF {
 
                 // Border & Outline
                 bd: 'border', bt: 'border-top', br: 'border-right', bb: 'border-bottom', bl: 'border-left',
-                bw: 'border-width', btw: 'border-top-width', brw: 'border-right-width',
+                bdw: 'border-width', // bdw statt bw (bw ist block-size)
+                btw: 'border-top-width', brw: 'border-right-width',
                 bbw: 'border-bottom-width', blw: 'border-left-width',
-                bs: 'border-style', bts: 'border-top-style', brs: 'border-right-style',
+                bs: 'border-style', // bs = border-style (original)
+                bts: 'border-top-style', brs: 'border-right-style',
                 bbs: 'border-bottom-style', bls: 'border-left-style',
-                bc: 'border-color', btc: 'border-top-color', brc: 'border-right-color',
+                bc: 'border-color', // bc = border-color (original)
+                btc: 'border-top-color', brc: 'border-right-color',
                 bbc: 'border-bottom-color', blc: 'border-left-color',
-                br: 'border-radius', brtl: 'border-top-left-radius', brtr: 'border-top-right-radius',
+                brad: 'border-radius', // brad statt br (br ist border-right)
+                brtl: 'border-top-left-radius', brtr: 'border-top-right-radius',
                 brbl: 'border-bottom-left-radius', brbr: 'border-bottom-right-radius',
-                bi: 'border-image', bis: 'border-image-source', bisl: 'border-image-slice',
-                biw: 'border-image-width', bio: 'border-image-outset', bir: 'border-image-repeat',
+                bi: 'border-image', bimgsrc: 'border-image-source', // bimgsrc statt bis
+                bisl: 'border-image-slice', biw: 'border-image-width', 
+                bio: 'border-image-outset', bir: 'border-image-repeat',
                 ol: 'outline', olw: 'outline-width', ols: 'outline-style', olc: 'outline-color',
                 olo: 'outline-offset',
 
                 // Effects & Transforms
-                op: 'opacity', vis: 'visibility', bs: 'box-shadow', ts: 'text-shadow',
+                op: 'opacity', vis: 'visibility', bxsh: 'box-shadow', // bxsh statt bs
                 filter: 'filter', backdrop: 'backdrop-filter',
                 tf: 'transform', tfo: 'transform-origin', tfs: 'transform-style',
                 pers: 'perspective', perso: 'perspective-origin',
-                ani: 'animation', and: 'animation-duration', anf: 'animation-fill-mode',
-                ann: 'animation-name', anr: 'animation-iteration-count',
-                ans: 'animation-timing-function', and: 'animation-delay',
+                ani: 'animation', andur: 'animation-duration', // andur statt and
+                anf: 'animation-fill-mode', ann: 'animation-name', 
+                anr: 'animation-iteration-count', ans: 'animation-timing-function', 
+                andel: 'animation-delay', // andel statt and
                 andir: 'animation-direction', anps: 'animation-play-state',
                 tr: 'transition', trd: 'transition-duration', trp: 'transition-property',
                 trf: 'transition-timing-function', trdl: 'transition-delay',
 
                 // Lists & Tables
-                ls: 'list-style', lst: 'list-style-type', lsp: 'list-style-position',
-                lsi: 'list-style-image',
-                tl: 'table-layout', bc: 'border-collapse', bs: 'border-spacing',
+                lstyle: 'list-style', // lstyle statt ls
+                lst: 'list-style-type', lsp: 'list-style-position', lsi: 'list-style-image',
+                tl: 'table-layout', bcol: 'border-collapse', // bcol statt bc (bc ist border-color)
+                bspac: 'border-spacing', // bspac statt bs
                 cs: 'caption-side', es: 'empty-cells',
 
                 // User Interface
@@ -102,10 +111,10 @@ class CSSF {
                 mix: 'mix-blend-mode', obj: 'object-fit', objp: 'object-position',
 
                 // Multi-column
-                cols: 'columns', colc: 'column-count', colw: 'column-width',
-                colg: 'column-gap', colr: 'column-rule', colrc: 'column-rule-color',
-                colrs: 'column-rule-style', colrw: 'column-rule-width',
-                colf: 'column-fill', cols: 'column-span', cb: 'column-break',
+                cols: 'columns', cspan: 'column-span', // cspan statt cols
+                colc: 'column-count', colw: 'column-width', colg: 'column-gap', 
+                colr: 'column-rule', colrc: 'column-rule-color', colrs: 'column-rule-style', 
+                colrw: 'column-rule-width', colf: 'column-fill', cb: 'column-break',
 
                 // CSS Variables & Functions
                 var: 'var', calc: 'calc', attr: 'attr',
@@ -126,8 +135,9 @@ class CSSF {
             
             templates: this.createMap({
                 // test
-                msg: 'cssf--bgc_hex-afa--bd_hex-0a0_solid_2pxrem', 'msg-alert': 'cssf--bgc_hex-ffa--bd_hex-aa0_solid_2pxrem',
-                
+                msg: 'cssf--bgc_hex-§0--p10--bl_4pxrem_solid_hex-§1--mb20', 'msg-alert': 'cssf--tpl-msg_fff4e5_ffa500',
+                'msg-info': 'cssf--tpl-msg_e7f3ff_007bff', 'msg-error': 'cssf--tpl-msg_f8d7da_d93025', 'msg-success': 'cssf--tpl-msg_d4edda_28a745',
+                'sans-sarif': 'cssf--ff_sans-serif', 'sarif': 'cssf--ff_serif',
                 // Color Functions
                 rgb: 'rgb(§0, §1, §2)', rgba: 'rgba(§0, §1, §2, §3)',
                 hsl: 'hsl(§0, §1%, §2%)', hsla: 'hsla(§0, §1%, §2%, §3)',
@@ -383,22 +393,30 @@ class CSSF {
         context.rootRule = this.createRootRule(prop.substring(5), this.processValue(value), className);
     }
 
-   processTemplatePart(part, context) {
+   processTemplatePart(part, context, className) {
        const [prop, ...valueParts] = part.split('_');
        const value = valueParts.join('_');
        const template = this.config.templates.get(prop.substring(4));
        
        if (!template) return;
        
-       // Prüfe ob das Template eine CSSF-Klasse enthält
+       // 1. Prüfen ob das Template eine CSSF-Klasse ist
        if (template.startsWith('cssf--')) {
-           // Verarbeite die CSSF-Klasse direkt durch Parsing der Teile
-           const cleanClass = template.substring(6); // Entferne 'cssf--'
+           // 2. Platzhalter ersetzen
+           let processedTemplate = template;
+           if (value) {
+               const params = value.split('_');
+               processedTemplate = params.reduce((result, param, index) => 
+                   result.replace(new RegExp(`§${index}`, 'g'), param), template);
+           }
+           
+           // 3. CSSF-Präfix entfernen und Teile extrahieren
+           const cleanClass = processedTemplate.substring(6);
            const parts = cleanClass.split('--');
            
-           // Verarbeite jeden Teil der Template-CSSF-Klasse
+           // 4. Jeden Teil rekursiv verarbeiten
            parts.forEach(templatePart => {
-               this.processDefaultPart(templatePart, context);
+               this.processPart(templatePart, context, className);
            });
            return;
        }

@@ -31,7 +31,7 @@ class CSSF {
                 bg: 'background', bgc: 'background-color', bgi: 'background-image',
                 bgp: 'background-position', bgr: 'background-repeat', bgs: 'background-size',
                 bga: 'background-attachment', bgo: 'background-origin', bgcl: 'background-clip',
-                c: 'color', ac: 'accent-color', cc: 'caret-color',
+                c: 'color', atc: 'accent-color', ctc: 'caret-color',
 
                 // Typography
                 fs: 'font-size', fstr: 'font-stretch', // fs = font-size (fstr für stretch)
@@ -52,7 +52,7 @@ class CSSF {
                 f: 'flex', fd: 'flex-direction', fwrap: 'flex-wrap', // fwrap statt fw
                 fflow: 'flex-flow', // fflow statt ff
                 fg: 'flex-grow', fsh: 'flex-shrink', fb: 'flex-basis',
-                jc: 'justify-content', ai: 'align-items', acont: 'align-content', // acont statt ac
+                jc: 'justify-content', ai: 'align-items', ac: 'align-content', // acont statt ac
                 as: 'align-self', ji: 'justify-items', js: 'justify-self',
                 pi: 'place-items', ps: 'place-self', pc: 'place-content',
                 gap: 'gap', rg: 'row-gap', cg: 'column-gap',

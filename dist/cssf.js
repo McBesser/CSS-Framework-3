@@ -49,7 +49,7 @@ class CSSF {
                 clip: 'clip-path', rs: 'resize', cur: 'cursor',
 
                 // Flexbox
-                flex: 'flex', fd: 'flex-direction', fwrap: 'flex-wrap', // fwrap statt fw
+                f: 'flex', fd: 'flex-direction', fwrap: 'flex-wrap', // fwrap statt fw
                 fflow: 'flex-flow', // fflow statt ff
                 fg: 'flex-grow', fsh: 'flex-shrink', fb: 'flex-basis',
                 jc: 'justify-content', ai: 'align-items', acont: 'align-content', // acont statt ac

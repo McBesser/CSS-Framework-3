@@ -750,7 +750,7 @@ class CSSF {
     createPropertyValue(property, processedValue) {
         return {
             property,
-            value: /^\d+$/.test(processedValue) ? `${parseFloat(processedValue) / 16}rem` : processedValue
+            value: /^-?\d+$/.test(processedValue) ? `${parseFloat(processedValue) / 16}rem` : processedValue
         };
     }
 

@@ -21,10 +21,10 @@ class CSSF {
                 pis: 'padding-inline-start', pie: 'padding-inline-end',
 
                 // Dimensions
-                w: 'width', h: 'height', mw: 'max-width', mh: 'max-height',
+                w: 'width', h: 'height', maxw: 'max-width', mmaxh: 'max-height',
                 minw: 'min-width', minh: 'min-height',
                 bw: 'block-size', iw: 'inline-size', // bw = block-size (logical property)
-                mbw: 'max-block-size', miw: 'max-inline-size',
+                mmaxbw: 'max-block-size', maxiw: 'max-inline-size',
                 minbw: 'min-block-size', miniw: 'min-inline-size',
 
                 // Colors & Background

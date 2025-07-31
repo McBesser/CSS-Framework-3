@@ -1,6 +1,12 @@
 class CSSF {
     constructor() {
         this.processedClasses = new Set();
+        
+        // Performance & Safety enhancements
+        this.cssQueue = [];
+        this.updateScheduled = false;
+        this.MAX_RECURSION_DEPTH = 15;
+
         this.initializeConfig();
         this.setupPrefixHandlers();
         this.init();
@@ -401,7 +407,12 @@ class CSSF {
 
     init() {
         this.setupMutationObserver();
-        this.processElementAndChildren(document.body);
+        // Defer initial processing to prevent blocking the main thread during page load.
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => this.processElementAndChildren(document.body));
+        } else {
+            setTimeout(() => this.processElementAndChildren(document.body), 100);
+        }
     }
 
     setupMutationObserver() {
@@ -447,48 +458,60 @@ class CSSF {
            if (css) this.addToStylesheet(css);
        } catch (error) {
            console.error(`Fehler beim Verarbeiten der Klasse ${className}:`, error);
+           // Add error comment to stylesheet for easier debugging
+           this.addToStylesheet(`\r\n/* CSSF Error: Invalid class '${className}'. See console for details. */\r\n`);
        }
    }
    
    parseClass(className) {
        const cleanClass = className.substring(6);
-       const parts = cleanClass.split('--');
+       let parts = cleanClass.split('--');
        
+       // Handle '!important' override with '--ni'
+       const noImportantIndex = parts.indexOf('ni');
+       const isImportant = noImportantIndex === -1;
+       if (!isImportant) {
+           parts.splice(noImportantIndex, 1); // Remove 'ni' part
+       }
+
        const context = {
            selector: `.${className}`,
            properties: [],
            mediaQuery: null,
-           rootRule: null  // Hinzufügen
+           rootRule: null,
+           isImportant: isImportant
        };
-
-       parts.forEach(part => this.processPart(part, context, className));
        
-       // CSS-Regeln generieren
+       // Pass initial recursion depth of 0
+       parts.forEach(part => this.processPart(part, context, className, 0));
+       
        let cssRules = [];
        
-       // Root-Regel hinzufügen falls vorhanden
        if (context.rootRule) {
            cssRules.push(context.rootRule);
        }
        
-       // Normale Regel hinzufügen falls Properties vorhanden
        if (context.properties.length > 0) {
-           const rule = this.buildCSSRule(context.selector, context.properties);
+           const rule = this.buildCSSRule(context.selector, context.properties, context.isImportant);
            const finalRule = context.mediaQuery ? this.wrapInMediaQuery(rule, context.mediaQuery) : rule;
            cssRules.push(finalRule);
        }
        
-       // Alle Regeln zurückgeben (oder null falls keine)
        return cssRules.length > 0 ? cssRules.join('\r\n\r\n') : null;
    }
 
-    processPart(part, context, className) {
+    processPart(part, context, className, depth) {
+        if (depth > this.MAX_RECURSION_DEPTH) {
+            console.warn(`CSSF: Max template recursion depth (${this.MAX_RECURSION_DEPTH}) exceeded for class "${className}". Aborting template expansion.`);
+            return;
+        }
+
         const processors = [
             { condition: p => p.startsWith('mq'), handler: p => context.mediaQuery = this.handleMediaQuery(p) },
             { condition: p => p.startsWith('tar-'), handler: p => context.selector = this.handleTargetSelector(p, className) },
             { condition: p => p.startsWith('val-'), handler: p => this.processValuePart(p, context) },
             { condition: p => p.startsWith('rval-'), handler: p => this.processRootValuePart(p, className, context) },
-            { condition: p => p.startsWith('tpl-'), handler: p => this.processTemplatePart(p, context) },
+            { condition: p => p.startsWith('tpl-'), handler: p => this.processTemplatePart(p, context, className, depth) },
             { condition: () => true, handler: p => this.processDefaultPart(p, context) }
         ];
 
@@ -508,14 +531,13 @@ class CSSF {
         context.rootRule = this.createRootRule(prop.substring(5), this.processValue(value), className);
     }
 
-   processTemplatePart(part, context, className) {
+   processTemplatePart(part, context, className, depth) {
        const [prop, ...valueParts] = part.split('_');
        const value = valueParts.join('_');
        const template = this.config.templates.get(prop.substring(4));
        
        if (!template) return;
        
-       // 1. Platzhalterersetzung (immer ausführen)
        let processedTemplate = template;
        if (value) {
            const params = value.split('_');
@@ -523,20 +545,17 @@ class CSSF {
                result.replace(new RegExp(`§${index}`, 'g'), param), template);
        }
        
-       // 2. Prüfen ob das Template eine CSSF-Klasse ist
        if (processedTemplate.startsWith('cssf--')) {
-           // CSSF-Präfix entfernen und Teile extrahieren
            const cleanClass = processedTemplate.substring(6);
            const parts = cleanClass.split('--');
            
-           // Jeden Teil rekursiv verarbeiten
+           // Process template parts with incremented depth for recursion
            parts.forEach(templatePart => {
-               this.processPart(templatePart, context, className);
+               this.processPart(templatePart, context, className, depth + 1);
            });
            return;
        }
        
-       // Normale Template-Verarbeitung
        if (processedTemplate.includes(';')) {
            processedTemplate.split(';')
                .map(p => p.trim())
@@ -553,8 +572,9 @@ class CSSF {
         context.properties.push(`${result.property}: ${result.value}`);
     }
 
-    buildCSSRule(selector, properties) {
-        return `${selector} {\r\n  ${properties.join(' !important;\r\n  ')} !important;\r\n}`;
+    buildCSSRule(selector, properties, isImportant) {
+        const importantSuffix = isImportant ? ' !important' : '';
+        return `${selector} {\r\n  ${properties.join(`${importantSuffix};\r\n  `)}${importantSuffix};\r\n}`;
     }
 
     wrapInMediaQuery(rule, mediaQuery) {
@@ -908,9 +928,32 @@ class CSSF {
         return `:root {\r\n  --${varName}: ${value}; /* ${className} */\r\n}`;
     }
 
+    // Performance: Batch CSS updates using requestAnimationFrame
     addToStylesheet(css) {
+        if (!css) return;
+        this.cssQueue.push(css);
+        this.scheduleStyleUpdate();
+    }
+
+    scheduleStyleUpdate() {
+        if (this.updateScheduled) return;
+        this.updateScheduled = true;
+        requestAnimationFrame(() => this.flushCSSQueue());
+    }
+
+    flushCSSQueue() {
+        if (this.cssQueue.length === 0) {
+            this.updateScheduled = false;
+            return;
+        }
+        
         const styleElement = this.getOrCreateStyleElement();
-        styleElement.textContent += '\r\n' + css;
+        const cssToAdd = this.cssQueue.join('\r\n');
+        // Appending is faster than replacing textContent for large stylesheets
+        styleElement.appendChild(document.createTextNode(cssToAdd));
+
+        this.cssQueue = [];
+        this.updateScheduled = false;
     }
 
     getOrCreateStyleElement() {
@@ -934,6 +977,11 @@ class CSSF {
         const styleElement = document.getElementById('cssf-main');
         if (styleElement) styleElement.textContent = '';
         this.processedClasses.clear();
+        // Clear any pending CSS rules
+        this.cssQueue = [];
+        if(this.updateScheduled) {
+            this.updateScheduled = false;
+        }
     }
 }
 

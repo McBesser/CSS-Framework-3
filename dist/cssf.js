@@ -590,22 +590,56 @@ class CSSF {
        const parts = tarPart.substring(4).split('-');
        let selector = `.${originalClass}`;
        let parentPrefix = '';
-       
-       const selectorHandlers = {
-           all: () => selector += ' * ',
-           next: () => selector += ' + ',
-           child: () => selector += ' > ',
-           'pc': i => this.handlePseudoClass(parts, i, pseudoClass => selector += `:${pseudoClass}`),
-           'pe': i => this.handlePseudoElement(parts, i, pseudoElement => selector += `::${pseudoElement}`),
-           parent: i => this.handleParentSelector(parts, i, prefix => parentPrefix = prefix),
-           self: i => this.handleSelfSelector(parts, i, originalClass, newSelector => selector = newSelector),
-       };
 
+       const buildSelectorPart = (type, name) => {
+           if (type === 'class') return `.${name}`;
+           if (type === 'tag') return name;
+           if (type === 'id') return `#${name}`;
+           return '';
+       };
+       
        for (let i = 0; i < parts.length; i++) {
-           const handler = selectorHandlers[parts[i]];
-           if (handler) {
-               const result = handler(i);
-               if (typeof result === 'number') i = result;
+           const part = parts[i];
+           
+           // Keep special handlers that modify the current selector or context
+           if (part === 'pc') { // pseudo-class
+               i = this.handlePseudoClass(parts, i, pseudoClass => selector += `:${pseudoClass}`);
+               continue;
+           }
+           if (part === 'pe') { // pseudo-element
+               i = this.handlePseudoElement(parts, i, pseudoElement => selector += `::${pseudoElement}`);
+               continue;
+           }
+           if (part === 'parent') {
+               i = this.handleParentSelector(parts, i, prefix => parentPrefix = prefix);
+               continue;
+           }
+           if (part === 'self') {
+               i = this.handleSelfSelector(parts, i, originalClass, newSelector => selector = newSelector);
+               continue;
+           }
+
+           // Handle combinators and simple selectors
+           const combinatorMap = {
+               next: ' + ',
+               child: ' > ',
+           };
+
+           if (combinatorMap[part]) { // For next, child
+               if (i + 2 < parts.length) {
+                   const type = parts[i + 1];
+                   const name = parts[i + 2];
+                   selector += combinatorMap[part] + buildSelectorPart(type, name);
+                   i += 2; // Move index past type and name
+               }
+           } else if (part === 'all') {
+               selector += ' *';
+           } else if (['tag', 'class', 'id'].includes(part)) { // For descendant
+               if (i + 1 < parts.length) {
+                   const name = parts[i + 1];
+                   selector += ' ' + buildSelectorPart(part, name);
+                   i += 1; // Move index past name
+               }
            }
        }
        

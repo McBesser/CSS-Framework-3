@@ -3,13 +3,36 @@ class CSSF {
         this.processedClasses = new Set();
         
         // Performance & Safety enhancements
-        this.cssQueue = [];
-        this.updateScheduled = false;
+        this.styleSheetContent = {
+            root: [],
+            base: new Map(), // selector -> { properties: [], isImportant: true }
+            media: new Map()  // media condition -> Map(selector -> { properties: [], isImportant: true })
+        };
+        this.updateFrameId = null;
         this.MAX_RECURSION_DEPTH = 15;
 
         this.initializeConfig();
         this.setupPrefixHandlers();
         this.init();
+    }
+
+    _clampBuilder(minWidthPx, maxWidthPx, minFontSizePx, maxFontSizePx) {
+        const pixelsPerRem = 16; // Assuming root font-size is 16px for consistency.
+
+        const minFontSize = minFontSizePx / pixelsPerRem;
+        const maxFontSize = maxFontSizePx / pixelsPerRem;
+
+        const minWidth = minWidthPx / pixelsPerRem;
+        const maxWidth = maxWidthPx / pixelsPerRem;
+
+        if (maxWidth <= minWidth) {
+            return `clamp(${minFontSize.toFixed(4)}rem, ${((minFontSize + maxFontSize) / 2).toFixed(4)}rem, ${maxFontSize.toFixed(4)}rem)`;
+        }
+
+        const slope = (maxFontSize - minFontSize) / (maxWidth - minWidth);
+        const yAxisIntersection = -minWidth * slope + minFontSize;
+
+        return `clamp(${minFontSize.toFixed(4)}rem, ${yAxisIntersection.toFixed(4)}rem + ${(slope * 100).toFixed(4)}vw, ${maxFontSize.toFixed(4)}rem)`;
     }
 
     initializeConfig() {
@@ -156,21 +179,23 @@ class CSSF {
             /* con_1200 = max-width: 1200 */
             'con': 'cssf--max-width§0px--m_auto--box-sizing_border-box--container-type_inline-size',
             /* -------------------------------------------------------------------------------------- */
-            'flex-layout': 'cssf--d_flex--fd_row--fw_wrap--jc_start--ac_stretch--ai_stretch--container-type_inline-size',
+            'flex-layout': 'cssf--d_flex--fd_row--fwrap_wrap--jc_start--ac_stretch--ai_stretch--container-type_inline-size',
             /* -------------------------------------------------------------------------------------- */
-            'fcol25': 'cssf--f_1_1--flex-basis_100p_chr-slash_4--max-width_100p_chr-slash_4--box-sizing_border-box',
-            'fcol33': 'cssf--f_1_1--flex-basis_100p_chr-slash_3--max-width_100p_chr-slash_3--box-sizing_border-box',
-            'fcol50': 'cssf--f_1_1--flex-basis_100p_chr-slash_2--max-width_100p_chr-slash_2--box-sizing_border-box',
-            'fcol66': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-star_2--max-width_100p_chr-slash_2--box-sizing_border-box',
-            'fcol75': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-star_3--max-width_100p_chr-slash_2--box-sizing_border-box',
+            'fcol20': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_5--max-width_fn-calc_100p_chr-slash_4--box-sizing_border-box',
+            'fcol25': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_4--max-width_fn-calc_100p_chr-slash_4--box-sizing_border-box',
+            'fcol33': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_3--max-width_fn-calc_100p_chr-slash_3--box-sizing_border-box',
+            'fcol50': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_2--max-width_fn-calc_100p_chr-slash_2--box-sizing_border-box',
+            'fcol66': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_3_chr-star_2--max-width_fn-calc_100p_chr-slash_2--box-sizing_border-box',
+            'fcol75': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_4_chr-star_3--max-width_fn-calc_100p_chr-slash_2--box-sizing_border-box',
             /* -------------------------------------------------------------------------------------- */
             /* fcol25gx1_20 = gap 20px */
-            'fcol25gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-dash§0--max-width_100p_chr-slash_4_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
-            'fcol25gx3': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-dash§0--max-width_100p_chr-slash_4_chr-dash§0_chr-slash_4_chr-star_3--box-sizing_border-box',
-            'fcol33gx2': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-dash§0--max-width_100p_chr-slash_3_chr-dash§0_chr-slash_3_chr-star_2--box-sizing_border-box',
-            'fcol50gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_2_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
-            'fcol66gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_3_chr-star_2_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
-            'fcol75gx1': 'cssf--f_1_1--flex-basis_100p_chr-slash_4_chr-star_3_chr-dash§0--max-width_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol20gx4': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_5_chr-dash§0--max-width_fn-calc_100p_chr-slash_5_chr-dash§0_chr-slash_5_chr-star_4--box-sizing_border-box',
+            'fcol25gx1': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_4_chr-dash§0--max-width_fn-calc_100p_chr-slash_4_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol25gx3': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_4_chr-dash§0--max-width_fn-calc_100p_chr-slash_4_chr-dash§0_chr-slash_4_chr-star_3--box-sizing_border-box',
+            'fcol33gx2': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_3_chr-dash§0--max-width_fn-calc_100p_chr-slash_3_chr-dash§0_chr-slash_3_chr-star_2--box-sizing_border-box',
+            'fcol50gx1': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_2_chr-dash§0--max-width_fn-calc_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol66gx1': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_3_chr-star_2_chr-dash§0--max-width_fn-calc_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
+            'fcol75gx1': 'cssf--f_1_1--flex-basis_fn-calc_100p_chr-slash_4_chr-star_3_chr-dash§0--max-width_fn-calc_100p_chr-slash_2_chr-dash§0_chr-slash_2_chr-star_1--box-sizing_border-box',
             /* -------------------------------------------------------------------------------------- */
             'fcol100': 'cssf--f_1_1_100p--box-sizing_border-box',
             'fcolauto': 'cssf--f_1_1_auto--box-sizing_border-box',
@@ -361,7 +386,19 @@ class CSSF {
                 year: () => new Date().getFullYear().toString(),
                 month: () => (new Date().getMonth() + 1).toString(),
                 day: () => new Date().getDate().toString(),
-                clamp: this.createClampFunction(),
+                clamp: (min, max, viewport) => {
+                    const minFontSizePx = parseFloat(min);
+                    const maxFontSizePx = parseFloat(max);
+                    const maxWidthPx = parseFloat(viewport);
+                    // Assuming a common mobile viewport as the minimum width, as it's not provided.
+                    const minWidthPx = 320; 
+
+                    if ([minFontSizePx, maxFontSizePx, maxWidthPx].some(isNaN)) {
+                        return `clamp(${min}, ${max}, ${viewport})`;
+                    }
+                    
+                    return this._clampBuilder(minWidthPx, maxWidthPx, minFontSizePx, maxFontSizePx);
+                },
                 
                 // Additional utility functions
                 'viewport-width': () => window.innerWidth + 'px',
@@ -374,19 +411,6 @@ class CSSF {
     }
 
     createMap = obj => new Map(Object.entries(obj));
-
-    createClampFunction() {
-        return (min, max, viewport) => {
-            const [minVal, maxVal, vwVal] = [min, max, viewport].map(parseFloat);
-            if ([minVal, maxVal, vwVal].some(isNaN)) return `clamp(${min}, ${max}, ${viewport})`;
-            
-            const [minRem, maxRem] = [minVal / 16, maxVal / 16];
-            const vwPercent = (maxVal - minVal) / vwVal * 100;
-            const baseVw = minVal / vwVal * 100;
-            
-            return `clamp(${minRem}rem, ${baseVw}vw + ${vwPercent}vw, ${maxRem}rem)`;
-        };
-    }
 
    setupPrefixHandlers() {
        this.prefixHandlers = {
@@ -454,12 +478,13 @@ class CSSF {
 
    generateCSS(className) {
        try {
-           const css = this.parseClass(className);
-           if (css) this.addToStylesheet(css);
+           const context = this.parseClass(className);
+           if (context) {
+               this.storeRule(context);
+               this.scheduleStyleUpdate();
+           }
        } catch (error) {
            console.error(`Fehler beim Verarbeiten der Klasse ${className}:`, error);
-           // Add error comment to stylesheet for easier debugging
-           this.addToStylesheet(`\r\n/* CSSF Error: Invalid class '${className}'. See console for details. */\r\n`);
        }
    }
    
@@ -467,11 +492,10 @@ class CSSF {
        const cleanClass = className.substring(6);
        let parts = cleanClass.split('--');
        
-       // Handle '!important' override with '--ni'
        const noImportantIndex = parts.indexOf('ni');
        const isImportant = noImportantIndex === -1;
        if (!isImportant) {
-           parts.splice(noImportantIndex, 1); // Remove 'ni' part
+           parts.splice(noImportantIndex, 1);
        }
 
        const context = {
@@ -482,22 +506,12 @@ class CSSF {
            isImportant: isImportant
        };
        
-       // Pass initial recursion depth of 0
        parts.forEach(part => this.processPart(part, context, className, 0));
        
-       let cssRules = [];
-       
-       if (context.rootRule) {
-           cssRules.push(context.rootRule);
+       if (context.properties.length > 0 || context.rootRule) {
+           return context;
        }
-       
-       if (context.properties.length > 0) {
-           const rule = this.buildCSSRule(context.selector, context.properties, context.isImportant);
-           const finalRule = context.mediaQuery ? this.wrapInMediaQuery(rule, context.mediaQuery) : rule;
-           cssRules.push(finalRule);
-       }
-       
-       return cssRules.length > 0 ? cssRules.join('\r\n\r\n') : null;
+       return null;
    }
 
     processPart(part, context, className, depth) {
@@ -549,7 +563,6 @@ class CSSF {
            const cleanClass = processedTemplate.substring(6);
            const parts = cleanClass.split('--');
            
-           // Process template parts with incremented depth for recursion
            parts.forEach(templatePart => {
                this.processPart(templatePart, context, className, depth + 1);
            });
@@ -577,10 +590,6 @@ class CSSF {
         return `${selector} {\r\n  ${properties.join(`${importantSuffix};\r\n  `)}${importantSuffix};\r\n}`;
     }
 
-    wrapInMediaQuery(rule, mediaQuery) {
-        return `${mediaQuery} {\r\n  ${rule}\r\n}`;
-    }
-
     handleMediaQuery(mqPart) {
         const match = mqPart.match(/^mq(\d+)(max)?$/);
         return match ? `@media (${match[2] ? 'max' : 'min'}-width: ${match[1]}px)` : null;
@@ -601,7 +610,6 @@ class CSSF {
        for (let i = 0; i < parts.length; i++) {
            const part = parts[i];
            
-           // Keep special handlers that modify the current selector or context
            if (part === 'pc') { // pseudo-class
                i = this.handlePseudoClass(parts, i, pseudoClass => selector += `:${pseudoClass}`);
                continue;
@@ -619,7 +627,6 @@ class CSSF {
                continue;
            }
 
-           // Handle combinators and simple selectors
            const combinatorMap = {
                next: ' + ',
                child: ' > ',
@@ -630,7 +637,7 @@ class CSSF {
                    const type = parts[i + 1];
                    const name = parts[i + 2];
                    selector += combinatorMap[part] + buildSelectorPart(type, name);
-                   i += 2; // Move index past type and name
+                   i += 2;
                }
            } else if (part === 'all') {
                selector += ' *';
@@ -638,7 +645,7 @@ class CSSF {
                if (i + 1 < parts.length) {
                    const name = parts[i + 1];
                    selector += ' ' + buildSelectorPart(part, name);
-                   i += 1; // Move index past name
+                   i += 1;
                }
            }
        }
@@ -663,11 +670,10 @@ class CSSF {
    }
     handleParentSelector(parts, i, callback) {
        if (i + 1 < parts.length) {
-           const nextPart = parts[++i]; // i einmal erhöhen für nextPart
+           const nextPart = parts[++i];
            
-           // Prüfe ob noch ein weiterer Teil vorhanden ist für den Selektor-Namen
            if (i + 1 < parts.length) {
-               const selectorName = parts[++i]; // i nochmals erhöhen für selectorName
+               const selectorName = parts[++i];
                
                const prefixMap = {
                    class: `.${selectorName} `,
@@ -685,11 +691,10 @@ class CSSF {
 
    handleSelfSelector(parts, i, originalClass, callback) {
        if (i + 1 < parts.length) {
-           const nextPart = parts[++i]; // i einmal erhöhen für nextPart
+           const nextPart = parts[++i];
            
-           // Prüfe ob noch ein weiterer Teil vorhanden ist für den Selektor-Namen
            if (i + 1 < parts.length) {
-               const selectorName = parts[++i]; // i nochmals erhöhen für selectorName
+               const selectorName = parts[++i];
                
                const selectorMap = {
                    class: `.${selectorName}.${originalClass}`,
@@ -708,7 +713,6 @@ class CSSF {
    processValue(value) {
        if (!value) return '';
        
-       // Prüfe alle Prefixes und verwende den längsten Match
        let bestMatch = { handler: null, prefix: '' };
        
        for (const [prefix, handler] of Object.entries(this.prefixHandlers)) {
@@ -727,15 +731,12 @@ class CSSF {
     isNumericValue = value => /^-?\d+/.test(value) || /^n\d+/.test(value);
 
     extractPropertyAndValue(part) {
-        // Prüfe Alias + direkter Wert
         const aliasMatch = this.findAliasMatch(part);
         if (aliasMatch) return aliasMatch;
         
-        // Prüfe CSS-Property + direkter Wert
         const propertyMatch = this.findPropertyMatch(part);
         if (propertyMatch) return propertyMatch;
         
-        // Standard Underscore-Behandlung
         return this.parseStandardProperty(part);
     }
 
@@ -776,7 +777,6 @@ class CSSF {
        const value = valueParts.join('_');
        const cssProperty = this.config.aliases.get(prop) || prop;
        
-       // Prüfe zuerst, ob der gesamte Wert eine komplexe Funktion enthält die als Ganzes verarbeitet werden muss
        const hasComplexFunction = valueParts.some(part => 
            part.startsWith('fn-') || 
            part.startsWith('cfn-') || 
@@ -786,11 +786,9 @@ class CSSF {
        let processedValue;
        
        if (hasComplexFunction) {
-           // Wenn komplexe Funktionen vorhanden sind, verarbeite den gesamten Wert als Ganzes
            processedValue = value ? this.processValue(value) : '';
            processedValue = processedValue.replaceAll('_', ' ');
        } else {
-           // Andernfalls verarbeite jeden Teil einzeln (für pxrem, hex-, var-, etc.)
            const processedParts = valueParts.map(valuePart => this.processValue(valuePart));
            processedValue = processedParts.join(' ');
        }
@@ -859,7 +857,6 @@ class CSSF {
 
        const [, fnName, params] = fnMatch;
        
-       // Splitte Parameter und verarbeite sie einzeln
        const paramParts = params.split('_');
        const { processedParams, foundClose } = this.processFunctionParams(paramParts);
        
@@ -890,16 +887,13 @@ class CSSF {
     }
 
    processFunctionParameter(param) {
-       // Prüfe zuerst auf komplette Prefixes bevor gesplittet wird
        const prefixHandler = Object.entries(this.prefixHandlers)
            .find(([prefix]) => param.startsWith(prefix));
        
        if (prefixHandler) {
-           // Wenn ein Prefix gefunden wird, verarbeite den gesamten Parameter als Ganzes
            return this.processValue(param);
        }
        
-       // Nur wenn kein Prefix gefunden wird, dann normale Dash-zu-Komma Behandlung
        const parts = param.split('-');
        const processedParts = [];
        
@@ -907,7 +901,7 @@ class CSSF {
            const prefixMatch = this.findPrefixMatch(parts, i);
            if (prefixMatch) {
                processedParts.push(this.processValue(`${parts[i]}-${parts[i + 1]}`));
-               i++; // Skip next part
+               i++;
            } else {
                processedParts.push(this.processValue(parts[i]));
            }
@@ -962,32 +956,78 @@ class CSSF {
         return `:root {\r\n  --${varName}: ${value}; /* ${className} */\r\n}`;
     }
 
-    // Performance: Batch CSS updates using requestAnimationFrame
-    addToStylesheet(css) {
-        if (!css) return;
-        this.cssQueue.push(css);
-        this.scheduleStyleUpdate();
+    storeRule(context) {
+        if (context.rootRule) {
+            if (!this.styleSheetContent.root.includes(context.rootRule)) {
+                this.styleSheetContent.root.push(context.rootRule);
+            }
+        }
+    
+        if (context.properties.length > 0) {
+            const ruleData = {
+                properties: context.properties,
+                isImportant: context.isImportant
+            };
+            if (context.mediaQuery) {
+                if (!this.styleSheetContent.media.has(context.mediaQuery)) {
+                    this.styleSheetContent.media.set(context.mediaQuery, new Map());
+                }
+                this.styleSheetContent.media.get(context.mediaQuery).set(context.selector, ruleData);
+            } else {
+                this.styleSheetContent.base.set(context.selector, ruleData);
+            }
+        }
     }
 
     scheduleStyleUpdate() {
-        if (this.updateScheduled) return;
-        this.updateScheduled = true;
-        requestAnimationFrame(() => this.flushCSSQueue());
+        if (this.updateFrameId) return;
+        this.updateFrameId = requestAnimationFrame(() => this.rebuildStylesheet());
     }
-
-    flushCSSQueue() {
-        if (this.cssQueue.length === 0) {
-            this.updateScheduled = false;
-            return;
+    
+    rebuildStylesheet() {
+        const styleElement = this.getOrCreateStyleElement();
+        let cssChunks = [];
+    
+        if (this.styleSheetContent.root.length > 0) {
+            cssChunks.push(...this.styleSheetContent.root);
+        }
+    
+        for (const [selector, ruleData] of this.styleSheetContent.base.entries()) {
+            cssChunks.push(this.buildCSSRule(selector, ruleData.properties, ruleData.isImportant));
+        }
+    
+        const sortedMediaQueries = this.sortMediaQueries(Array.from(this.styleSheetContent.media.keys()));
+        
+        for (const mediaQuery of sortedMediaQueries) {
+            const rulesMap = this.styleSheetContent.media.get(mediaQuery);
+            const mediaRules = [];
+            for (const [selector, ruleData] of rulesMap.entries()) {
+                mediaRules.push(this.buildCSSRule(selector, ruleData.properties, ruleData.isImportant));
+            }
+            if (mediaRules.length > 0) {
+                const indentedRules = mediaRules.join('\r\n').replace(/^/gm, '  ');
+                cssChunks.push(`${mediaQuery} {\r\n${indentedRules}\r\n}`);
+            }
         }
         
-        const styleElement = this.getOrCreateStyleElement();
-        const cssToAdd = this.cssQueue.join('\r\n');
-        // Appending is faster than replacing textContent for large stylesheets
-        styleElement.appendChild(document.createTextNode(cssToAdd));
+        styleElement.textContent = cssChunks.join('\r\n\r\n');
+        this.updateFrameId = null;
+    }
 
-        this.cssQueue = [];
-        this.updateScheduled = false;
+    sortMediaQueries(mediaQueries) {
+        const extractWidth = (mq) => {
+            const match = mq.match(/\(min-width: (\d+)px\)/);
+            return match ? parseInt(match[1], 10) : Infinity;
+        };
+    
+        return mediaQueries.sort((a, b) => {
+            const widthA = extractWidth(a);
+            const widthB = extractWidth(b);
+            if (widthA !== widthB) {
+                return widthA - widthB;
+            }
+            return a.localeCompare(b);
+        });
     }
 
     getOrCreateStyleElement() {
@@ -1011,10 +1051,14 @@ class CSSF {
         const styleElement = document.getElementById('cssf-main');
         if (styleElement) styleElement.textContent = '';
         this.processedClasses.clear();
-        // Clear any pending CSS rules
-        this.cssQueue = [];
-        if(this.updateScheduled) {
-            this.updateScheduled = false;
+        this.styleSheetContent = {
+            root: [],
+            base: new Map(),
+            media: new Map()
+        };
+        if (this.updateFrameId) {
+            cancelAnimationFrame(this.updateFrameId);
+            this.updateFrameId = null;
         }
     }
 }

@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+   
+* {
+   margin: 0;
+   padding: 0;
+   font: inherit;
+}
+   
+:root {
+   color-scheme: dark light;
+}
+html {
+   hanging-punctuation: first last;
+}
+
+body {
+   min-height: 100dvh;
+   margin: 0rem;
+   line-height: 1.5; /* Lesbarkeit verbessern */
+   -webkit-font-smoothing: antialiased; /* Schriftglättung für Chrome/Safari */
+}
+
+picture {
+   display: flex;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   text-wrap: balance;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+p,
+li {
+   text-wrap: pretty;
+}
+
+a[href^="mailto:"],
+a[href^="http://"],
+a[href^="https://"],
+a[href^="//"] {
+   word-wrap: break-word;
+   word-break: break-word;
+}
+   
+figure {
+   display: inline-block;
+   margin: 0rem;
+   padding: 0rem;
+}
+   
+iframe {
+   border-width: 0rem;
+   border-style: solid;
+} 
+   
+hr {
+   border-style: solid;
+   border-width: 0rem;
+   border-color: transparent;
+   border-bottom-color: black;
+   border-bottom-width: 0.1875rem;
+   margin: 0rem;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+}  
+   
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

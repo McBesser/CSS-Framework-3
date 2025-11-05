@@ -1,0 +1,988 @@
+:root {
+   --hr-margin: var(--default-text-margin, 0);
+   --hr-border-bottom: 1px solid black;
+
+   --p-margin: var(--default-text-margin, 0);
+   --p-font-family: sans-serif;
+   --p-font-style: normal;
+   --p-font-variant: normal;
+   --p-font-weight: normal;
+   --p-color: var(--color-3);
+   --p-font-size: var(--size-16);
+   --p-line-height: 1.5;
+   --p-text-align: unset;
+   --p-letter-spacing: normal;
+
+   --h1-font-family: sans-serif;
+   --h1-font-style: normal;
+   --h1-font-weight: bold;
+   --h1-color: var(--color-4);
+   --h1-margin: var(--default-text-margin, 0);
+   --h1-font-size: var(--size-32);
+   --h1-line-height: 1.2;
+   --h1-letter-spacing: normal;
+   --h1-text-transform: none;
+   --h1-text-align: unset;
+
+   --h2-font-family: sans-serif;
+   --h2-font-style: normal;
+   --h2-font-weight: bold;
+   --h2-color: var(--color-4);
+   --h2-margin: var(--default-text-margin, 0);
+   --h2-font-size: var(--size-24);
+   --h2-line-height: 1.2;
+   --h2-letter-spacing: normal;
+   --h2-text-transform: none;
+   --h2-text-align: unset;
+
+   --h3-font-family: sans-serif;
+   --h3-font-style: normal;
+   --h3-font-weight: bold;
+   --h3-color: var(--color-4);
+   --h3-margin: var(--default-text-margin, 0);
+   --h3-font-size: var(--size-20);
+   --h3-line-height: 1.2;
+   --h3-letter-spacing: normal;
+   --h3-text-transform: none;
+   --h3-text-align: unset;
+
+   --h4-font-family: sans-serif;
+   --h4-font-style: normal;
+   --h4-font-weight: bold;
+   --h4-color: var(--color-4);
+   --h4-margin: var(--default-text-margin, 0);
+   --h4-font-size: var(--size-18);
+   --h4-line-height: 1.2;
+   --h4-letter-spacing: normal;
+   --h4-text-transform: none;
+   --h4-text-align: unset;
+
+   --h5-font-family: sans-serif;
+   --h5-font-style: normal;
+   --h5-font-weight: bold;
+   --h5-color: var(--color-4);
+   --h5-margin: var(--default-text-margin, 0);
+   --h5-font-size: var(--size-16);
+   --h5-line-height: 1.2;
+   --h5-letter-spacing: normal;
+   --h5-text-transform: none;
+   --h5-text-align: unset;
+
+   --h6-font-family: sans-serif;
+   --h6-font-style: normal;
+   --h6-font-weight: bold;
+   --h6-color: var(--color-4);
+   --h6-margin: var(--default-text-margin, 0);
+   --h6-font-size: var(--size-14);
+   --h6-line-height: 1.2;
+   --h6-letter-spacing: normal;
+   --h6-text-transform: none;
+   --h6-text-align: unset;
+
+   --strong-font-family: sans-serif;
+   --strong-font-style: normal;
+   --strong-font-weight: bold;
+   --strong-font-size: inherit;
+   --strong-line-height: inherit;
+   --strong-color: inherit;
+
+   --em-font-family: sans-serif;
+   --em-font-style: italic;
+   --em-font-weight: normal;
+   --em-font-size: inherit;
+   --em-line-height: inherit;
+   --em-color: inherit;
+   
+   --u-display: inline;
+   --u-text-decoration: underline;
+   --u-background: none;
+   --u-text-underline-position: under;
+   --u-text-decoration-thickness: var(--size-2, 2px);
+
+   --blockquote-position: relative;
+   --blockquote-margin: var(--default-text-margin, 0);
+   --blockquote-padding: 0;
+   --blockquote-background: none;
+   --blockquote-font-family: sans-serif;
+   --blockquote-font-style: normal;
+   --blockquote-font-weight: normal;
+   --blockquote-font-size: inherit;
+   --blockquote-line-height: inherit;
+   --blockquote-text-align: left;
+   --blockquote-letter-spacing: unset;
+   --blockquote-color: inherit;
+
+   --blockquote-before-content: ""; /* open-quote */
+   --blockquote-before-width: auto;
+   --blockquote-before-height: auto;
+   --blockquote-before-top: auto;
+   --blockquote-before-right: auto;
+   --blockquote-before-bottom: auto;
+   --blockquote-before-left: auto;
+   --blockquote-before-transform: none;
+   --blockquote-before-background: none;
+   --blockquote-before-font-family: inherit;
+   --blockquote-before-font-style: inherit;
+   --blockquote-before-font-weight: inherit;
+   --blockquote-before-font-variant: inherit;
+   --blockquote-before-font-size: inherit;
+   --blockquote-before-color: var(--color-1, #000);
+   --blockquote-before-z-index: unset;
+
+   --blockquote-after-content: ""; /* close-quote */
+   --blockquote-after-width: auto;
+   --blockquote-after-height: auto;
+   --blockquote-after-top: auto;
+   --blockquote-after-right: auto;
+   --blockquote-after-bottom: auto;
+   --blockquote-after-left: auto;
+   --blockquote-after-transform: none;
+   --blockquote-after-background: none;
+   --blockquote-after-font-family: inherit;
+   --blockquote-after-font-style: inherit;
+   --blockquote-after-font-weight: inherit;
+   --blockquote-after-font-variant: inherit;
+   --blockquote-after-font-size: inherit;
+   --blockquote-after-color: var(--color-1, #000);
+   --blockquote-after-z-index: unset;
+
+   --blockquote-cite-font-family: sans-serif;
+   --blockquote-cite-font-style: normal;
+   --blockquote-cite-font-weight: normal;
+   --blockquote-cite-font-variant: normal;
+   --blockquote-cite-font-size: 1em;
+   --blockquote-cite-line-height: 1.2;
+   --blockquote-cite-text-align: right;
+   --blockquote-cite-letter-spacing: unset;
+   --blockquote-cite-color: var(--color-7);
+   --blockquote-cite-margin: 0 0 0 0;
+   --blockquote-cite-padding: 0 0 0 0;
+
+   --ul-margin: var(--default-text-margin, 0);
+   --ul-padding: 0;
+   --ul-li-margin: var(--default-item-margin, 0);
+   --ul-li-margin-left: var(--size-16, 16px);
+   --ul-li-padding: 0;
+   --ul-li-padding-left: var(--size-8, 8px);
+   --ul-li-font-family: var(--p-font-family);
+   --ul-li-font-style: var(--p-font-style);
+   --ul-li-font-variant: var(--p-font-variant);
+   --ul-li-font-weight: var(--p-font-weight);
+   --ul-li-color: var(--p-color);
+   --ul-li-font-size: var(--p-font-size);
+   --ul-li-line-height: var(--p-line-height);
+   --ul-li-letter-spacing: var(--p-letter-spacing);
+
+   --ul-li-marker-content: "▶";
+   --ul-li-marker-color: var(--ul-li-color);
+   --ul-li-marker-font-family: inherit;
+   --ul-li-marker-font-style: inherit;
+   --ul-li-marker-font-weight: inherit;
+   --ul-li-marker-font-variant: inherit;
+   --ul-li-marker-font-size: 1em;
+   --ul-li-marker-line-height: 1.2;
+
+   --ol-margin: var(--default-text-margin, 0);
+   --ol-padding: var(--default-text-margin, 0);
+   --ol-li-margin: var(--default-item-margin, 0);
+   --ol-li-margin-left: var(--size-16, 16px);
+   --ol-li-padding: 0;
+   --ol-li-padding-left: var(--size-8, 8px);   
+   --ol-li-font-family: var(--p-font-family);
+   --ol-li-font-style: var(--p-font-style);
+   --ol-li-font-variant: var(--p-font-variant);
+   --ol-li-font-weight: var(--p-font-weight);
+   --ol-li-color: var(--p-color);
+   --ol-li-font-size: var(--p-font-size);
+   --ol-li-line-height: var(--p-line-height);
+   --ol-li-letter-spacing: var(--p-letter-spacing);
+
+   --ol-li-marker-color: var(--ol-li-color);
+   --ol-li-marker-font-family: inherit;
+   --ol-li-marker-font-style: inherit;
+   --ol-li-marker-font-weight: inherit;
+   --ol-li-marker-font-variant: inherit;
+   --ol-li-marker-font-size: 1em;
+   --ol-li-marker-line-height: 1.2;
+
+   --a-display: inline-block;
+   --a-width: unset;
+   --a-height: unset;
+   --a-min-height: unset;
+   --a-justify-content: unset;
+   --a-align-items: unset;
+   --a-align-content: unset;
+   --a-font-family: sans-serif;
+   --a-font-style: normal;
+   --a-font-weight: normal;
+   --a-font-size: inherit;
+   --a-line-height: inherit;
+   --a-color: var(--color-5);
+   --a-text-decoration: underline;
+   --a-background: none;
+   --a-border: none;
+   --a-border-radius: 0;
+   --a-border-bottom: none;
+   --a-text-underline-position: under;
+   --a-text-decoration-thickness: auto;
+   --a-padding: 0;
+   --a-margin: 0;
+   --a-transition: 1s ease;
+   --a-text-transform: none;
+   --a-transform: none;
+   --a-letter-spacing: normal;
+
+   --a-hover-text-decoration: underline;
+   --a-hover-text-underline-position: under;
+   --a-hover-text-decoration-thickness: auto;
+   --a-hover-color: var(--color-6);
+   --a-hover-background: none;
+   --a-hover-border: none;
+   --a-hover-border-radius: 0;
+   --a-hover-border-bottom: none;
+   --a-hover-text-transform: none;
+   --a-hover-transform: none;
+
+   --a-focus-text-decoration: var(--a-hover-text-decoration);
+   --a-focus-text-underline-position: var(--a-hover-text-underline-position);
+   --a-focus-text-decoration-thickness: var(--a-hover-text-decoration-thickness);
+   --a-focus-color: var(--a-hover-color);
+   --a-focus-background: var(--a-hover-background);
+   --a-focus-border: var(--a-hover-border);
+   --a-focus-border-radius: var(--a-hover-border-radius);
+   --a-focus-border-bottom: var(--a-hover-border-bottom);
+   --a-focus-text-transform: var(--a-hover-text-transform);
+   --a-focus-transform: var(--a-hover-transform);
+
+   --a-target-blank-before-content: "";
+   --a-target-blank-before-font-family: sans-serif;
+   --a-target-blank-before-font-style: normal;
+   --a-target-blank-before-font-weight: normal;
+   --a-target-blank-before-font-variant: normal;
+
+   --a-target-blank-after-content: "";
+   --a-target-blank-after-font-family: sans-serif;
+   --a-target-blank-after-font-style: normal;
+   --a-target-blank-after-font-weight: normal;
+   --a-target-blank-after-font-variant: normal;
+
+   --a-file-before-font-family: sans-serif;
+   --a-file-before-font-style: normal;
+   --a-file-before-font-weight: normal;
+   --a-file-before-font-variant: normal;
+   --a-file-before-border: none;
+   --a-file-before-border-radius: 0;
+   --a-file-before-background: none;
+   --a-file-before-padding: 0;
+   --a-file-before-margin: 0;
+
+   --a-file-pdf-before-content: "PDF";
+   --a-file-doc-before-content: "DOC";
+   --a-file-docx-before-content: "DOCX";
+   --a-file-xls-before-content: "XLS";
+   --a-file-xlsx-before-content: "XLSX";
+   --a-file-ppt-before-content: "PPT";
+   --a-file-pptx-before-content: "PPTX";
+   --a-file-zip-before-content: "ZIP";
+   --a-file-rar-before-content: "RAR";
+   --a-file-jpg-before-content: "JPG";
+   --a-file-jpeg-before-content: "JPEG";
+   --a-file-png-before-content: "PNG";
+   --a-file-gif-before-content: "GIF";
+   --a-file-svg-before-content: "SVG";
+
+   --a-file-after-font-family: sans-serif;
+   --a-file-after-font-style: normal;
+   --a-file-after-font-weight: normal;
+   --a-file-after-font-variant: normal;
+   --a-file-after-border: none;
+   --a-file-after-border-radius: 0;
+   --a-file-after-background: none;
+   --a-file-after-padding: 0;
+   --a-file-after-margin: 0;
+
+   --a-file-pdf-after-content: "";
+   --a-file-doc-after-content: "";
+   --a-file-docx-after-content: "";
+   --a-file-xls-after-content: "";
+   --a-file-xlsx-after-content: "";
+   --a-file-ppt-after-content: "";
+   --a-file-pptx-after-content: "";
+   --a-file-zip-after-content: "";
+   --a-file-rar-after-content: "";
+   --a-file-jpg-after-content: "";
+   --a-file-jpeg-after-content: "";
+   --a-file-png-after-content: "";
+   --a-file-gif-after-content: "";
+   --a-file-svg-after-content: "";
+
+   --table-background: none;
+   --table-margin: var(--default-text-margin, 0);
+   --table-border: none;
+   --table-border-radius: 0;
+   --table-border-spacing: 0;
+   --table-thead-background: none;
+   --table-tbody-background: none;
+   --table-tfoot-background: none;
+   --table-tr-odd-background: none;
+   --table-tr-even-background: none;
+   --table-th-background: none;
+   --table-th-font-family: sans-serif;
+   --table-th-font-style: normal;
+   --table-th-font-weight: bold;
+   --table-th-font-variant: normal;
+   --table-th-font-size: var(--size-16);
+   --table-th-line-height: 1.2;
+   --table-th-color: var(--color-1);
+   --table-th-vertical-align: top;
+   --table-th-text-align: left;
+   --table-td-background: none;
+   --table-td-font-family: sans-serif;
+   --table-td-font-style: normal;
+   --table-td-font-weight: normal;
+   --table-td-font-variant: normal;
+   --table-td-font-size: var(--size-16);
+   --table-td-line-height: 1.2;
+   --table-td-color: var(--color-1);
+   --table-td-vertical-align: top;
+   --table-td-text-align: left;
+   --table-cell-padding: var(--size-8);
+   --table-cell-border-bottom: var(--size-1) solid var(--color-1);
+   --table-cell-border-right: var(--size-1) solid var(--color-1);
+   --table-cell-border-bottom-left-radius: 0;
+   --table-cell-border-bottom-right-radius: 0;
+   --table-cell-border-left: var(--size-1) solid var(--color-1);
+   --table-cell-border-top: var(--size-1) solid var(--color-1);
+   --table-cell-border-top-left-radius: 0;
+   --table-cell-border-top-right-radius: 0;
+}
+
+
+/* ********************************************************** */
+/* ********************************************************** */
+/* ********************************************************** */
+.cssf hr {
+   border: 0;
+   margin: var(--hr-margin);
+   border-bottom: var(--hr-border-bottom)
+}
+.cssf p {
+   margin: var(--p-margin);
+   font-family: var(--p-font-family);
+   font-style: var(--p-font-style);
+   font-variant: var(--p-font-variant);
+   font-weight: var(--p-font-weight);
+   color: var(--p-color);
+   font-size: var(--p-font-size);
+   line-height: var(--p-line-height);
+   text-align: var(--p-text-align);
+   letter-spacing: var(--p-letter-spacing);
+}
+.cssf h1 {
+   font-family: var(--h1-font-family);
+   font-style: var(--h1-font-style);
+   font-weight: var(--h1-font-weight);
+   color: var(--h1-color);
+   margin: var(--h1-margin);
+   font-size: var(--h1-font-size);
+   line-height: var(--h1-line-height);
+   letter-spacing: var(--h1-letter-spacing);
+   text-transform: var(--h1-text-transform);
+   text-align: var(--h1-text-align);
+}
+.cssf h2 {
+   font-family: var(--h2-font-family);
+   font-style: var(--h2-font-style);
+   font-weight: var(--h2-font-weight);
+   color: var(--h2-color);
+   margin: var(--h2-margin);
+   font-size: var(--h2-font-size);
+   line-height: var(--h2-line-height);
+   letter-spacing: var(--h2-letter-spacing);
+   text-transform: var(--h2-text-transform);
+   text-align: var(--h2-text-align);
+}
+.cssf h3 {
+   font-family: var(--h3-font-family);
+   font-style: var(--h3-font-style);
+   font-weight: var(--h3-font-weight);
+   color: var(--h3-color);
+   margin: var(--h3-margin);
+   font-size: var(--h3-font-size);
+   line-height: var(--h3-line-height);
+   letter-spacing: var(--h3-letter-spacing);
+   text-transform: var(--h3-text-transform);
+   text-align: var(--h3-text-align);
+}
+.cssf h4 {
+   font-family: var(--h4-font-family);
+   font-style: var(--h4-font-style);
+   font-weight: var(--h4-font-weight);
+   color: var(--h4-color);
+   margin: var(--h4-margin);
+   font-size: var(--h4-font-size);
+   line-height: var(--h4-line-height);
+   letter-spacing: var(--h4-letter-spacing);
+   text-transform: var(--h4-text-transform);
+   text-align: var(--h4-text-align);
+}
+.cssf h5 {
+   font-family: var(--h5-font-family);
+   font-style: var(--h5-font-style);
+   font-weight: var(--h5-font-weight);
+   color: var(--h5-color);
+   margin: var(--h5-margin);
+   font-size: var(--h5-font-size);
+   line-height: var(--h5-line-height);
+   letter-spacing: var(--h5-letter-spacing);
+   text-transform: var(--h5-text-transform);
+   text-align: var(--h5-text-align);
+}
+.cssf h6 {
+   font-family: var(--h6-font-family);
+   font-style: var(--h6-font-style);
+   font-weight: var(--h6-font-weight);
+   color: var(--h6-color);
+   margin: var(--h6-margin);
+   font-size: var(--h6-font-size);
+   line-height: var(--h6-line-height);
+   letter-spacing: var(--h6-letter-spacing);
+   text-transform: var(--h6-text-transform);
+   text-align: var(--h6-text-align);
+}
+.cssf strong { 
+   font-family: var(--strong-font-family);
+   font-style: var(--strong-font-style);
+   font-weight: var(--strong-font-weight);
+   font-size: var(--strong-font-size); 
+   line-height: var(--strong-line-height); 
+   color: var(--strong-color);
+}
+.cssf em {
+   font-family: var(--em-font-family);
+   font-style: var(--em-font-style);
+   font-weight: var(--em-font-weight);
+   font-size: var(--em-font-size); 
+   line-height: var(--em-line-height); 
+   color: var(--em-color);
+}
+.cssf u {
+   display: var(--u-display);
+   text-decoration: var(--u-text-decoration);
+   background: var(--u-background);
+   text-underline-position: var(--u-text-underline-position);
+   text-decoration-thickness: var(--u-text-decoration-thickness);
+}
+.cssf blockquote {
+   position: var(--blockquote-position);
+   margin: var(--blockquote-margin);
+   padding: var(--blockquote-padding);
+   background: var(--blockquote-background);
+}
+.cssf blockquote,
+.cssf blockquote p {
+   font-family: var(--blockquote-font-family);
+   font-style: var(--blockquote-font-style);
+   font-weight: var(--blockquote-font-weight);
+   font-size: var(--blockquote-font-size); 
+   line-height: var(--blockquote-line-height);    
+   text-align: var(--blockquote-text-align);
+   letter-spacing: var(--blockquote-letter-spacing);
+   color: var(--blockquote-color);
+}
+.cssf blockquote::before {
+   position: absolute;
+   display: inline-block;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   line-height: 1;
+   content: var(--blockquote-before-content);
+   width: var(--blockquote-before-width);
+   height: var(--blockquote-before-height);
+   top: var(--blockquote-before-top);
+   right: var(--blockquote-before-right);
+   bottom: var(--blockquote-before-bottom);
+   left: var(--blockquote-before-left);
+   transform: var(--blockquote-before-transform);
+   background: var(--blockquote-before-background);
+   font-family: var(--blockquote-before-font-family);
+   font-style: var(--blockquote-before-font-style);
+   font-weight: var(--blockquote-before-font-weight);
+   font-variant: var(--blockquote-before-font-variant);
+   font-size: var(--blockquote-before-font-size);
+   color: var(--blockquote-before-color);
+   z-index: var(--blockquote-before-z-index);
+}
+.cssf blockquote::after {
+   position: absolute;
+   display: inline-block;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   line-height: 1;
+   content: var(--blockquote-after-content);
+   width: var(--blockquote-after-width);
+   height: var(--blockquote-after-height);
+   top: var(--blockquote-after-top);
+   right: var(--blockquote-after-right);
+   bottom: var(--blockquote-after-bottom);
+   left: var(--blockquote-after-left);
+   transform: var(--blockquote-after-transform);
+   background: var(--blockquote-after-background);
+   font-family: var(--blockquote-after-font-family);
+   font-style: var(--blockquote-after-font-style);
+   font-weight: var(--blockquote-after-font-weight);
+   font-variant: var(--blockquote-after-font-variant);
+   font-size: var(--blockquote-after-font-size);
+   color: var(--blockquote-after-color);
+   z-index: var(--blockquote-after-z-index);
+}
+.cssf blockquote cite,
+.cssf blockquote div:last-child {
+   margin: var(--blockquote-cite-margin);
+   padding: var(--blockquote-cite-padding);
+   font-family: var(--blockquote-cite-font-family);
+   font-style: var(--blockquote-cite-font-style);
+   font-weight: var(--blockquote-cite-font-weight);
+   font-variant: var(--blockquote-cite-font-variant);
+   font-size: var(--blockquote-cite-font-size);
+   line-height: var(--blockquote-cite-line-height);
+   text-align: var(--blockquote-cite-text-align);
+   letter-spacing: var(--blockquote-cite-letter-spacing);
+   color: var(--blockquote-cite-color);
+}
+.cssf ul { 
+   list-style: none;
+   margin: var(--ul-margin);
+   padding: var(--ul-padding);
+}
+.cssf ul li {
+   position: relative;
+   margin: var(--ul-li-margin);
+   margin-left: var(--ul-li-margin-left);
+   padding: var(--ul-li-padding);
+   padding-left: var(--ul-li-padding-left);
+   font-family: var(--ul-li-font-family);
+   font-style: var(--ul-li-font-style);
+   font-variant: var(--ul-li-font-variant);
+   font-weight: var(--ul-li-font-weight);
+   color: var(--ul-li-color);
+   font-size: var(--ul-li-font-size);
+   line-height: var(--ul-li-line-height);
+   letter-spacing: var(--ul-li-letter-spacing);
+}
+.cssf ul li::marker {  
+   display: list-item; 
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   content: var(--ul-li-marker-content);
+   color: var(--ul-li-marker-color);
+   font-family: var(--ul-li-marker-font-family);
+   font-style: var(--ul-li-marker-font-style);
+   font-weight: var(--ul-li-marker-font-weight); 
+   font-variant: var(--ul-li-marker-font-variant);
+   font-size: var(--ul-li-marker-font-size);
+   line-height: var(--ul-li-marker-line-height);
+} 
+.cssf ol {
+   margin: var(--ol-margin);
+   padding: var(--ol-padding);
+}
+.cssf ol li {
+   position: relative;
+   margin: var(--ol-li-margin);
+   margin-left: var(--ol-li-margin-left);
+   padding: var(--ol-li-padding);
+   padding-left: var(--ol-li-padding-left);
+   font-family: var(--ol-li-font-family);
+   font-style: var(--ol-li-font-style);
+   font-weight: var(--ol-li-font-weight);
+   font-variant: var(--ol-li-font-variant);
+   color: var(--ol-li-color);
+   font-size: var(--ol-li-font-size);
+   line-height: var(--ol-li-line-height);
+   letter-spacing: var(--ol-li-letter-spacing);
+}
+.cssf ol li::marker {  
+   display: list-item; 
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   color: var(--ol-li-marker-color);
+   font-family: var(--ol-li-marker-font-family);
+   font-style: var(--ol-li-marker-font-style);
+   font-variant: var(--ol-li-marker-font-variant);
+   font-size: var(--ol-li-marker-font-size);
+   line-height: var(--ol-li-marker-line-height);
+   font-weight: var(--ol-li-marker-font-weight); 
+} 
+
+
+
+
+/* ********************************************************** */
+/* link */
+
+.cssf a {
+   z-index: 1;
+   display: var(--a-display);
+   width: var(--a-width);
+   height: var(--a-height);
+   min-height: var(--a-min-height);
+   justify-content: var(--a-justify-content);
+   align-items: var(--a-align-items);
+   align-content: var(--a-align-content);
+   font-family: var(--a-font-family);
+   font-style: var(--a-font-style);
+   font-weight: var(--a-font-weight);
+   font-size: var(--a-font-size);
+   line-height: var(--a-line-height);
+   color: var(--a-color);
+   text-decoration: var(--a-text-decoration);
+   background: var(--a-background);
+   border: var(--a-border);
+   border-radius: var(--a-border-radius);
+   border-bottom: var(--a-border-bottom);
+   text-underline-position: var(--a-text-underline-position);
+   text-decoration-thickness: var(--a-text-decoration-thickness);
+   padding: var(--a-padding);
+   margin: var(--a-margin);
+   transition: var(--a-transition);
+   transform: var(--a-transform);
+   text-transform: var(--a-text-transform);
+   letter-spacing: var(--a-letter-spacing);
+}
+
+.cssf a:hover {
+   text-decoration: var(--a-hover-text-decoration);
+   text-underline-position: var(--a-hover-text-underline-position);
+   text-decoration-thickness: var(--a-hover-text-decoration-thickness);
+   color: var(--a-hover-color);
+   background: var(--a-hover-background);
+   border: var(--a-hover-border);
+   border-radius: var(--a-hover-border-radius);
+   border-bottom: var(--a-hover-border-bottom);
+   text-transform: var(--a-hover-text-transform);
+   transform: var(--a-hover-transform);
+}
+
+.cssf a:focus {
+   text-decoration: var(--a-focus-text-decoration);
+   text-underline-position: var(--a-focus-text-underline-position);
+   text-decoration-thickness: var(--a-focus-text-decoration-thickness);
+   color: var(--a-focus-color);
+   background: var(--a-focus-background);
+   border: var(--a-focus-border);
+   border-radius: var(--a-focus-border-radius);
+   border-bottom: var(--a-focus-border-bottom);
+   transform: var(--a-focus-transform);
+   text-transform: var(--a-focus-text-transform);
+}
+
+.cssf a[href^="http://"],
+.cssf a[href^="https://"],
+.cssf a[href^="//"],
+.cssf a[href^="mailto:"],
+.cssf a[href^="tel:"] {
+   word-wrap: break-word;
+   word-break: break-word;
+}
+
+
+.cssf a[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"]):not([href^="/"])::before,
+.cssf a[target="_blank"][href^="//"]::before {
+   content: var(--a-target-blank-before-content);   
+   font-family: var(--a-target-blank-before-font-family);
+   font-style: var(--a-target-blank-before-font-style);
+   font-weight: var(--a-target-blank-before-font-weight);
+   font-variant: var(--a-target-blank-before-font-variant);
+}
+.cssf a[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"])::after,
+.cssf a[target="_blank"][href^="//"]::after {
+   content: var(--a-target-blank-after-content);
+   font-family: var(--a-target-blank-after-font-family);
+   font-style: var(--a-target-blank-after-font-style);
+   font-weight: var(--a-target-blank-after-font-weight);
+   font-variant: var(--a-target-blank-after-font-variant);
+}
+/*
+.cssf a[href$=".pdf"],
+.cssf a[href$=".doc"],
+.cssf a[href$=".docx"],
+.cssf a[href$=".xls"],
+.cssf a[href$=".xlsx"],
+.cssf a[href$=".ppt"],
+.cssf a[href$=".pptx"],
+.cssf a[href$=".zip"],
+.cssf a[href$=".rar"],
+.cssf a[href$=".jpg"],
+.cssf a[href$=".jpeg"],
+.cssf a[href$=".png"],
+.cssf a[href$=".gif"],
+.cssf a[href$=".svg"] {
+    padding: var(--a-href-file);
+}
+*/
+.cssf a[href$=".pdf"]::before,
+.cssf a[href$=".doc"]::before,
+.cssf a[href$=".docx"]::before,
+.cssf a[href$=".xls"]::before,
+.cssf a[href$=".xlsx"]::before,
+.cssf a[href$=".ppt"]::before,
+.cssf a[href$=".pptx"]::before,
+.cssf a[href$=".zip"]::before,
+.cssf a[href$=".rar"]::before,
+.cssf a[href$=".jpg"]::before,
+.cssf a[href$=".jpeg"]::before,
+.cssf a[href$=".png"]::before,
+.cssf a[href$=".gif"]::before,
+.cssf a[href$=".svg"]::before {
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   line-height: 1;
+   display: inline-block;
+   font-family: var(--a-file-before-font-family);
+   font-style: var(--a-file-before-font-style);
+   font-weight: var(--a-file-before-font-weight);
+   font-variant: var(--a-file-before-font-variant);
+   border: var(--a-file-before-border);
+   border-radius: var(--a-file-before-border-radius);
+   background: var(--a-file-before-background);
+   padding: var(--a-file-before-padding);
+   margin: var(--a-file-before-margin);
+}
+.cssf a[href$=".pdf"]::before {
+   content: var(--a-file-pdf-before-content);
+}
+.cssf a[href$=".doc"]::before{
+   content: var(--a-file-doc-before-content);
+}
+.cssf a[href$=".docx"]::before {
+   content: var(--a-file-docx-before-content);
+}
+.cssf a[href$=".xls"]::before {
+   content: var(--a-file-xls-before-content);
+}
+.cssf a[href$=".xlsx"]::before {
+   content: var(--a-file-xlsx-before-content);
+}
+.cssf a[href$=".ppt"]::before {
+   content: var(--a-file-ppt-before-content);
+}
+.cssf a[href$=".pptx"]::before {
+   content: var(--a-file-pptx-before-content);
+}
+.cssf a[href$=".zip"]::before {
+   content: var(--a-file-zip-before-content);
+}
+.cssf a[href$=".rar"]::before {
+   content: var(--a-file-rar-before-content);
+}
+.cssf a[href$=".jpg"]::before {
+   content: var(--a-file-jpg-before-content);
+}
+.cssf a[href$=".jpeg"]::before {
+   content: var(--a-file-jpeg-before-content);
+}
+.cssf a[href$=".png"]::before {
+   content: var(--a-file-png-before-content);
+}
+.cssf a[href$=".gif"]::before {
+   content: var(--a-file-gif-before-content);
+}
+.cssf a[href$=".svg"]::before {
+   content: var(--a-file-svg-before-content);
+}
+
+.cssf a[href$=".pdf"]::after,
+.cssf a[href$=".doc"]::after,
+.cssf a[href$=".docx"]::after,
+.cssf a[href$=".xls"]::after,
+.cssf a[href$=".xlsx"]::after,
+.cssf a[href$=".ppt"]::after,
+.cssf a[href$=".pptx"]::after,
+.cssf a[href$=".zip"]::after,
+.cssf a[href$=".rar"]::after,
+.cssf a[href$=".jpg"]::after,
+.cssf a[href$=".jpeg"]::after,
+.cssf a[href$=".png"]::after,
+.cssf a[href$=".gif"]::after,
+.cssf a[href$=".svg"]::after {
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: auto;
+   line-height: 1;
+   display: inline-block;
+   font-family: var(--a-file-after-font-family);
+   font-style: var(--a-file-after-font-style);
+   font-weight: var(--a-file-after-font-weight);
+   font-variant: var(--a-file-after-font-variant);
+   border: var(--a-file-after-border);
+   border-radius: var(--a-file-after-border-radius);
+   background: var(--a-file-after-background);
+   padding: var(--a-file-after-padding);
+   margin: var(--a-file-after-margin);
+}
+.cssf a[href$=".pdf"]::after {
+   content: var(--a-file-pdf-after-content);
+}
+.cssf a[href$=".doc"]::after{
+   content: var(--a-file-doc-after-content);
+}
+.cssf a[href$=".docx"]::after {
+   content: var(--a-file-docx-after-content);
+}
+.cssf a[href$=".xls"]::after {
+   content: var(--a-file-xls-after-content);
+}
+.cssf a[href$=".xlsx"]::after {
+   content: var(--a-file-xlsx-after-content);
+}
+.cssf a[href$=".ppt"]::after {
+   content: var(--a-file-ppt-after-content);
+}
+.cssf a[href$=".pptx"]::after {
+   content: var(--a-file-pptx-after-content);
+}
+.cssf a[href$=".zip"]::after {
+   content: var(--a-file-zip-after-content);
+}
+.cssf a[href$=".rar"]::after {
+   content: var(--a-file-rar-after-content);
+}
+.cssf a[href$=".jpg"]::after {
+   content: var(--a-file-jpg-after-content);
+}
+.cssf a[href$=".jpeg"]::after {
+   content: var(--a-file-jpeg-after-content);
+}
+.cssf a[href$=".png"]::after {
+   content: var(--a-file-png-after-content);
+}
+.cssf a[href$=".gif"]::after {
+   content: var(--a-file-gif-after-content);
+}
+.cssf a[href$=".svg"]::after {
+   content: var(--a-file-svg-after-content);
+}
+
+/* ********************************************************** */
+/* table */
+
+.cssf table {
+   margin: var(--table-margin);
+   background: var(--table-background);
+   border: var(--table-border);
+}
+.cssf table thead {
+   background: var(--table-thead-background);
+}
+.cssf table tbody {
+   background: var(--table-tbody-background);
+}
+.cssf table tfoot {
+   background: var(--table-tfoot-background);
+}
+.cssf table tr:nth(odd) {
+   background: var(--table-tr-odd-background);
+}
+.cssf table tr:nth(even) {
+   background: var(--table-tr-even-background);
+}
+.cssf table th {
+   background: var(--table-th-background);
+   font-family: var(--table-th-font-family);
+   font-style: var(--table-th-font-style);
+   font-weight: var(--table-th-font-weight);
+   font-variant: var(--table-th-font-variant);
+   font-size: var(--table-th-font-size);
+   line-height: var(--table-th-line-height);
+   color: var(--table-th-color);
+   vertical-align: var(--table-th-vertical-align); 
+   text-align: var(--table-th-text-align); 
+}
+.cssf table td {
+   background: var(--table-td-background);
+   font-family: var(--table-td-font-family);
+   font-style: var(--table-td-font-style);
+   font-weight: var(--table-td-font-weight);
+   font-variant: var(--table-td-font-variant);
+   font-size: var(--table-td-font-size);
+   line-height: var(--table-td-line-height);
+   color: var(--table-td-color);
+   vertical-align: var(--table-td-vertical-align);
+   text-align: var(--table-td-text-align);
+}
+  
+.cssf table {  
+   border-spacing: var(--table-border-spacing, 0); 
+   border-collapse: separate;
+   border-radius: var(--table-border-radius);
+}
+.cssf table th,
+.cssf table td {  
+   padding: var(--table-cell-padding);
+   border-bottom: var(--table-cell-border-bottom); 
+   border-right: var(--table-cell-border-right); 
+}
+.cssf table th { 
+   background: var(--table-th-background); 
+   color: var(--table-th-color); 
+}
+.cssf table tr:last-child td:first-child {
+    border-bottom-left-radius: var(--table-cell-border-bottom-left-radius);
+}
+.cssf table tr:last-child td:last-child {
+    border-bottom-right-radius: var(--table-cell-border-bottom-right-radius);
+}
+.cssf table tr th:first-child,
+.cssf table tr td:first-child {
+   border-left: var(--table-cell-border-left);
+}
+.cssf table tr:first-child th,
+.cssf table tr:first-child td {
+   border-top: var(--table-cell-border-top);
+}
+.cssf table tr:first-child th:first-child,
+.cssf table tr:first-child td:first-child {
+    border-top-left-radius: var(--table-cell-border-top-left-radius)
+}
+.cssf table tr:first-child th:last-child,
+.cssf table tr:first-child td:last-child {
+    border-top-right-radius: var(--table-cell-border-top-right-radius)
+}   
+
+/* ************************************************************************ */
+
+
+.cssf h1:first-child,
+.cssf h2:first-child,
+.cssf h3:first-child,
+.cssf h4:first-child,
+.cssf h5:first-child,
+.cssf h6:first-child,
+.cssf p:first-child,
+.cssf ul:first-child,
+.cssf ol:first-child,
+.cssf li:first-child,
+.cssf table:first-child,
+.cssf blockquote:first-child {
+   margin-top: 0rem;
+}
+.cssf h1:last-child,
+.cssf h2:last-child,
+.cssf h3:last-child,
+.cssf h4:last-child,
+.cssf h5:last-child,
+.cssf h6:last-child,
+.cssf p:last-child,
+.cssf ul:last-child,
+.cssf ol:last-child,
+.cssf li:last-child,
+.cssf table:last-child,
+.cssf blockquote:last-child {
+   margin-bottom: 0rem;
+}

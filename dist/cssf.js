@@ -13,7 +13,13 @@ class CSSF {
 
         this.initializeConfig();
         this.setupPrefixHandlers();
-        this.init();
+
+        // Wait for the DOM to be ready before initializing
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     _clampBuilder(minWidthPx, maxWidthPx, minFontSizePx, maxFontSizePx) {

@@ -79,8 +79,8 @@ class CSSF {
 
                 // Display & Layout
                 d: 'display', pos: 'position', t: 'top', r: 'right', b: 'bottom', l: 'left',
-                z: 'z-index', fl: 'float', cl: 'clear', v: 'visibility', ov: 'overflow',
-                ovx: 'overflow-x', ovy: 'overflow-y', ovw: 'overflow-wrap',
+                z: 'z-index', fl: 'float', cl: 'clear', v: 'visibility', of: 'overflow',
+                ofx: 'overflow-x', ofy: 'overflow-y', ofw: 'overflow-wrap',
                 clip: 'clip-path', rs: 'resize', cur: 'cursor',
 
                 // Flexbox

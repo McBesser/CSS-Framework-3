@@ -288,6 +288,10 @@ class CSSF {
                 
                 // Transform & Functions
                 transform: 'transform(§0)', 
+                translate1: 'translate(§0)', 
+                translate: 'translate(§0 §1)', 
+                translate2: 'translate(§0 §1)', 
+                translate3: 'translate(§0 §1 §2)', 
                 calc: 'calc(§0 §1 §2)',
                 
                 // Centering Utilities

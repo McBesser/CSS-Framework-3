@@ -253,13 +253,13 @@ class CSSF {
             'btn': 'cssf--px15--py10--cursor_pointer--brad_3pxrem_solid_var-btn-br-color',
             'hide': 'cssf--pos_absolute--h1px--w1px--of_hidden--tpl-rect_clip_1px_1px_1px_1px--ws_nowrap',
             'show': 'cssf--d_initial--pos_static--h_auto--w_auto--of_visible--clip_auto--ws_normal',
-            'focus': 'cssf--tar-pseudo-class-focus',
-            'before': 'cssf--cssf--tar-pseudo-element-before--content_sq-str',
-            'after': 'cssf--tar-pseudo-element-after--content_sq-str',
-            'overlay-background': 'cssf--pos_fixed--w100dvw--h100dvh--tpl-rgba_bg_0_0_0_50c--z_-2',
-            'overlay-foreground': 'cssf--pos_absolute--tpl-rgba_bg_255_255_255_100c--z_-1--py40--fn-calc_w_100p_op-add_op-op_40pxrem_op-mul_2int_op-cp',
-            'overlay-wrapper': 'cssf--pos_fixed--t50p--l50p--d_flex--tpl-translate_transform_-50p_-50p--jc_center--ai_center',
-            'center': 'cssf--pos_absolute--t50p--l50p--fn-translate_transform_-50p_op-c_-50p',
+            'focus': 'cssf--tar-pc-focus',
+            'before': 'cssf--tar-pe-before--content_str-',
+            'after': 'cssf--tar-pe-after--content_str-',
+            'overlay-background': 'cssf--pos_fixed--w100dvw--h100dvh--bg_tpl-rgba_0_0_0_50div100--z_-2',
+            'overlay-foreground': 'cssf--pos_absolute--bg_tpl-rgba_255_255_255_100div100--z_-1--py40--w_fn-calc_100p_chr-plus_chr-lpar_40pxrem_chr-star_2_chr-rpar',
+            'overlay-wrapper': 'cssf--pos_fixed--t50p--l50p--d_flex--transform_tpl-translate_-50p_-50p--jc_center--ai_center',
+            'center': 'cssf--pos_absolute--t50p--l50p--transform_fn-translate_-50p_op-c_-50p',
                
                
                

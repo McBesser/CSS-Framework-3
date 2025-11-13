@@ -181,6 +181,7 @@ class CSSF {
             /* -------------------------------------------------------------------------------------- */
             'c-var': 'cssf--c_var-color-§0',
             'bg-var': 'cssf--bg_var-color-§0',
+            'bgc-var': 'cssf--bgc_var-color-§0',
             /* -------------------------------------------------------------------------------------- */
             /* con_1200 = max-width: 1200 */
             'con': 'cssf--max-width§0px--m_auto--box-sizing_border-box--container-type_inline-size',

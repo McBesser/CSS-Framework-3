@@ -57,6 +57,7 @@
       --form-button-outline: var(--size-0, 0rem) solid var(--color-x, transparent);    
       --form-button-transition: none;  
       --form-button-box-shadow: none; 
+      --form-button-transform: none; 
       
       --form-button-hover-font-family: var(--form-button-font-family);
       --form-button-hover-font-style: var(--form-button-font-style);
@@ -76,7 +77,8 @@
       --form-button-hover-clip-path: var(--form-button-clip-path);
       --form-button-hover-outline: var(--size-0, 0rem) solid var(--color-x, transparent);   
       --form-button-hover-transition:  var(--form-button-transition);  
-      --form-button-hover-box-shadow:  var(--form-button-box-shadow);      
+      --form-button-hover-box-shadow:  var(--form-button-box-shadow); 
+      --form-button-hover-transform: var(--form-button-box-shadow);      
       
       --form-button-focus-font-family: var(--form-button-hover-font-family);
       --form-button-focus-font-style: var(--form-button-hover-font-style);
@@ -96,7 +98,8 @@
       --form-button-focus-clip-path: var(--form-button-hover-clip-path);
       --form-button-focus-outline: var(--form-button-hover-outline);
       --form-button-focus-transition:  var(--form-button-hover-transition);  
-      --form-button-focus-box-shadow:  var(--form-button-hover-box-shadow);  
+      --form-button-focus-box-shadow:  var(--form-button-hover-box-shadow); 
+      --form-button-focus-transform: var(--form-button-hover-box-shadow); 
       
       --form-button-active-font-family: var(--form-button-hover-font-family);
       --form-button-active-font-style: var(--form-button-hover-font-style);
@@ -116,7 +119,8 @@
       --form-button-active-clip-path: var(--form-button-hover-clip-path);
       --form-button-active-outline: var(--form-button-hover-outline);
       --form-button-active-transition:  var(--form-button-hover-transition);  
-      --form-button-active-box-shadow:  var(--form-button-hover-box-shadow);  
+      --form-button-active-box-shadow:  var(--form-button-hover-box-shadow);
+      --form-button-active-transform: var(--form-button-hover-box-shadow);   
       
       /* ***************************************************************************************** */
       
@@ -411,6 +415,7 @@
       outline: var(--form-button-outline) !important;    
       transition: var(--form-button-transition) !important;
       box-shadow: var(--form-button-box-shadow) !important;    
+      transform: var(--form-button-transform) !important;    
    }
 .cssf form input[type="submit"]:hover,
 .cssf form input[type="button"]:hover,
@@ -439,7 +444,8 @@
       clip-path: var(--form-button-hover-clip-path) !important; 
       outline: var(--form-button-hover-outline) !important; 
       transition: var(--form-button-hover-transition) !important;
-      box-shadow: var(--form-button-hover-box-shadow) !important;  
+      box-shadow: var(--form-button-hover-box-shadow) !important; 
+      transform: var(--form-button-hover-transform) !important; 
    }
 .cssf form input[type="submit"]:focus,
 .cssf form input[type="button"]:focus,
@@ -468,7 +474,8 @@
       clip-path: var(--form-button-focus-clip-path) !important; 
       outline: var(--form-button-focus-outline) !important; 
       transition: var(--form-button-focus-transition) !important;
-      box-shadow: var(--form-button-focus-box-shadow) !important;  
+      box-shadow: var(--form-button-focus-box-shadow) !important;
+      transform: var(--form-button-focus-transform) !important;   
    }
 .cssf form input[type="submit"]:active,
 .cssf form input[type="button"]:active,
@@ -497,7 +504,8 @@
       clip-path: var(--form-button-active-clip-path) !important; 
       outline: var(--form-button-active-outline) !important; 
       transition: var(--form-button-active-transition) !important;
-      box-shadow: var(--form-button-active-box-shadow) !important;  
+      box-shadow: var(--form-button-active-box-shadow) !important; 
+      transform: var(--form-button-active-transform) !important;  
    }
 /* ***************************************************************************************** */
 

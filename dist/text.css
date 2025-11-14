@@ -231,6 +231,7 @@
    --a-text-transform: none;
    --a-transform: none;
    --a-letter-spacing: normal;
+   --a-vertical-align: top;
 
    --a-hover-text-decoration: underline;
    --a-hover-text-underline-position: under;
@@ -653,6 +654,7 @@
    transform: var(--a-transform);
    text-transform: var(--a-text-transform);
    letter-spacing: var(--a-letter-spacing);
+   vertical-align: var(--a-vertical-align);
 }
 
 .cssf a:hover {

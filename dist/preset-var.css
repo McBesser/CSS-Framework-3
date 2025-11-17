@@ -1,29 +1,28 @@
-:root
-   {
-      --default-text-transform: none;
-      --default-letter-spacing: normal;
-      --default-text-decoration: none;
-      --default-font-style: normal;
-      --default-font-family: sans-serif;
-      --default-clip-path: none;
-      
-      --default-font-family-a: sans-serif;
-      --default-font-family-0: inherit;
-      --default-font-family-1: sans-serif;
-      --default-font-family-2: serif;
-      
-      --font-weight-thin: 100;
-      --font-weight-extra-light: 200;
-      --font-weight-light: 300;
-      --font-weight-regular: 400;
-      --font-weight-medium: 500;
-      --font-weight-semi-bold: 600;
-      --font-weight-bold: 700;
-      --font-weight-extra-bold: 800;
-      --font-weight-black: 900;
-      
-      --color-x: transparent;
-      --color-0: transparent;
-      --color-1: #000000;
-      --color-2: #ffffff;
-   }
+:root {
+   --default-text-transform: none;
+   --default-letter-spacing: normal;
+   --default-text-decoration: none;
+   --default-font-style: normal;
+   --default-font-family: sans-serif;
+   --default-clip-path: none;
+
+   --default-font-family-a: sans-serif;
+   --default-font-family-0: inherit;
+   --default-font-family-1: sans-serif;
+   --default-font-family-2: serif;
+
+   --font-weight-thin: 100;
+   --font-weight-extra-light: 200;
+   --font-weight-light: 300;
+   --font-weight-regular: 400;
+   --font-weight-medium: 500;
+   --font-weight-semi-bold: 600;
+   --font-weight-bold: 700;
+   --font-weight-extra-bold: 800;
+   --font-weight-black: 900;
+
+   --color-x: transparent;
+   --color-0: transparent;
+   --color-1: #000000;
+   --color-2: #ffffff;
+}

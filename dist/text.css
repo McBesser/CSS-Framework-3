@@ -362,12 +362,14 @@
 /* ********************************************************** */
 /* ********************************************************** */
 /* ********************************************************** */
-.cssf hr {
+.cssf hr,
+hr.cssf {
    border: 0;
    margin: var(--hr-margin);
    border-bottom: var(--hr-border-bottom)
 }
-.cssf p {
+.cssf p,
+p.cssf {
    margin: var(--p-margin);
    font-family: var(--p-font-family);
    font-style: var(--p-font-style);
@@ -379,7 +381,8 @@
    text-align: var(--p-text-align);
    letter-spacing: var(--p-letter-spacing);
 }
-.cssf h1 {
+.cssf h1,
+h1.cssf {
    font-family: var(--h1-font-family);
    font-style: var(--h1-font-style);
    font-weight: var(--h1-font-weight);
@@ -391,7 +394,8 @@
    text-transform: var(--h1-text-transform);
    text-align: var(--h1-text-align);
 }
-.cssf h2 {
+.cssf h2,
+h2.cssf {
    font-family: var(--h2-font-family);
    font-style: var(--h2-font-style);
    font-weight: var(--h2-font-weight);
@@ -403,7 +407,8 @@
    text-transform: var(--h2-text-transform);
    text-align: var(--h2-text-align);
 }
-.cssf h3 {
+.cssf h3,
+h3.cssf {
    font-family: var(--h3-font-family);
    font-style: var(--h3-font-style);
    font-weight: var(--h3-font-weight);
@@ -415,7 +420,8 @@
    text-transform: var(--h3-text-transform);
    text-align: var(--h3-text-align);
 }
-.cssf h4 {
+.cssf h4,
+h4.cssf {
    font-family: var(--h4-font-family);
    font-style: var(--h4-font-style);
    font-weight: var(--h4-font-weight);
@@ -427,7 +433,8 @@
    text-transform: var(--h4-text-transform);
    text-align: var(--h4-text-align);
 }
-.cssf h5 {
+.cssf h5,
+h5.cssf {
    font-family: var(--h5-font-family);
    font-style: var(--h5-font-style);
    font-weight: var(--h5-font-weight);
@@ -439,7 +446,8 @@
    text-transform: var(--h5-text-transform);
    text-align: var(--h5-text-align);
 }
-.cssf h6 {
+.cssf h6,
+h6.cssf {
    font-family: var(--h6-font-family);
    font-style: var(--h6-font-style);
    font-weight: var(--h6-font-weight);
@@ -451,7 +459,8 @@
    text-transform: var(--h6-text-transform);
    text-align: var(--h6-text-align);
 }
-.cssf strong { 
+.cssf strong,
+strong.cssf { 
    font-family: var(--strong-font-family);
    font-style: var(--strong-font-style);
    font-weight: var(--strong-font-weight);
@@ -459,7 +468,8 @@
    line-height: var(--strong-line-height); 
    color: var(--strong-color);
 }
-.cssf em {
+.cssf em,
+em.cssf {
    font-family: var(--em-font-family);
    font-style: var(--em-font-style);
    font-weight: var(--em-font-weight);
@@ -467,21 +477,25 @@
    line-height: var(--em-line-height); 
    color: var(--em-color);
 }
-.cssf u {
+.cssf u,
+u.cssf {
    display: var(--u-display);
    text-decoration: var(--u-text-decoration);
    background: var(--u-background);
    text-underline-position: var(--u-text-underline-position);
    text-decoration-thickness: var(--u-text-decoration-thickness);
 }
-.cssf blockquote {
+.cssf blockquote,
+blockquote.cssf {
    position: var(--blockquote-position);
    margin: var(--blockquote-margin);
    padding: var(--blockquote-padding);
    background: var(--blockquote-background);
 }
 .cssf blockquote,
-.cssf blockquote p {
+.cssf blockquote p,
+blockquote.cssf,
+blockquote.cssf p {
    font-family: var(--blockquote-font-family);
    font-style: var(--blockquote-font-style);
    font-weight: var(--blockquote-font-weight);
@@ -491,7 +505,8 @@
    letter-spacing: var(--blockquote-letter-spacing);
    color: var(--blockquote-color);
 }
-.cssf blockquote::before {
+.cssf blockquote::before,
+blockquote.cssf::before {
    position: absolute;
    display: inline-block;
    -moz-osx-font-smoothing: grayscale;
@@ -515,7 +530,8 @@
    color: var(--blockquote-before-color);
    z-index: var(--blockquote-before-z-index);
 }
-.cssf blockquote::after {
+.cssf blockquote::after,
+blockquote.cssf::after {
    position: absolute;
    display: inline-block;
    -moz-osx-font-smoothing: grayscale;
@@ -540,7 +556,9 @@
    z-index: var(--blockquote-after-z-index);
 }
 .cssf blockquote cite,
-.cssf blockquote div:last-child {
+.cssf blockquote div:last-child,
+blockquote.cssf cite,
+blockquote.cssf div:last-child {
    margin: var(--blockquote-cite-margin);
    padding: var(--blockquote-cite-padding);
    font-family: var(--blockquote-cite-font-family);
@@ -553,12 +571,14 @@
    letter-spacing: var(--blockquote-cite-letter-spacing);
    color: var(--blockquote-cite-color);
 }
-.cssf ul { 
+.cssf ul,
+ul.cssf { 
    list-style: none;
    margin: var(--ul-margin);
    padding: var(--ul-padding);
 }
-.cssf ul li {
+.cssf ul li,
+ul.cssf li {
    position: relative;
    margin: var(--ul-li-margin);
    margin-left: var(--ul-li-margin-left);
@@ -573,7 +593,8 @@
    line-height: var(--ul-li-line-height);
    letter-spacing: var(--ul-li-letter-spacing);
 }
-.cssf ul li::marker {  
+.cssf ul li::marker,
+ul.cssf li::marker {  
    display: list-item; 
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
@@ -587,11 +608,13 @@
    font-size: var(--ul-li-marker-font-size);
    line-height: var(--ul-li-marker-line-height);
 } 
-.cssf ol {
+.cssf ol,
+ol.cssf {
    margin: var(--ol-margin);
    padding: var(--ol-padding);
 }
-.cssf ol li {
+.cssf ol li,
+ol.cssf li {
    position: relative;
    margin: var(--ol-li-margin);
    margin-left: var(--ol-li-margin-left);
@@ -606,7 +629,8 @@
    line-height: var(--ol-li-line-height);
    letter-spacing: var(--ol-li-letter-spacing);
 }
-.cssf ol li::marker {  
+.cssf ol li::marker,
+ol.cssf li::marker {  
    display: list-item; 
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
@@ -626,7 +650,8 @@
 /* ********************************************************** */
 /* link */
 
-.cssf a {
+.cssf a,
+a.cssf {
    z-index: 1;
    display: var(--a-display);
    width: var(--a-width);
@@ -657,7 +682,8 @@
    vertical-align: var(--a-vertical-align);
 }
 
-.cssf a:hover {
+.cssf a:hover,
+a.cssf:hover {
    text-decoration: var(--a-hover-text-decoration);
    text-underline-position: var(--a-hover-text-underline-position);
    text-decoration-thickness: var(--a-hover-text-decoration-thickness);
@@ -670,7 +696,8 @@
    transform: var(--a-hover-transform);
 }
 
-.cssf a:focus {
+.cssf a:focus,
+a.cssf:focus {
    text-decoration: var(--a-focus-text-decoration);
    text-underline-position: var(--a-focus-text-underline-position);
    text-decoration-thickness: var(--a-focus-text-decoration-thickness);
@@ -684,17 +711,24 @@
 }
 
 .cssf a[href^="http://"],
+a.cssf[href^="http://"],
 .cssf a[href^="https://"],
+a.cssf[href^="https://"],
 .cssf a[href^="//"],
+a.cssf[href^="//"],
 .cssf a[href^="mailto:"],
-.cssf a[href^="tel:"] {
+a.cssf[href^="mailto:"],
+.cssf a[href^="tel:"],
+a.cssf[href^="tel:"] {
    word-wrap: break-word;
    word-break: break-word;
 }
 
 
 .cssf a[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"]):not([href^="/"])::before,
-.cssf a[target="_blank"][href^="//"]::before {
+a.cssf[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"]):not([href^="/"])::before,
+.cssf a[target="_blank"][href^="//"]::before,
+a.cssf[target="_blank"][href^="//"]::before {
    content: var(--a-target-blank-before-content);   
    font-family: var(--a-target-blank-before-font-family);
    font-style: var(--a-target-blank-before-font-style);
@@ -702,7 +736,9 @@
    font-variant: var(--a-target-blank-before-font-variant);
 }
 .cssf a[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"])::after,
-.cssf a[target="_blank"][href^="//"]::after {
+a.cssf[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"])::after,
+.cssf a[target="_blank"][href^="//"]::after,
+a.cssf[target="_blank"][href^="//"]::after {
    content: var(--a-target-blank-after-content);
    font-family: var(--a-target-blank-after-font-family);
    font-style: var(--a-target-blank-after-font-style);
@@ -728,19 +764,33 @@
 }
 */
 .cssf a[href$=".pdf"]::before,
+a.cssf[href$=".pdf"]::before,
 .cssf a[href$=".doc"]::before,
+a.cssf[href$=".doc"]::before,
 .cssf a[href$=".docx"]::before,
+a.cssf[href$=".docx"]::before,
 .cssf a[href$=".xls"]::before,
+a.cssf[href$=".xls"]::before,
 .cssf a[href$=".xlsx"]::before,
+a.cssf[href$=".xlsx"]::before,
 .cssf a[href$=".ppt"]::before,
+a.cssf[href$=".ppt"]::before,
 .cssf a[href$=".pptx"]::before,
+a.cssf[href$=".pptx"]::before,
 .cssf a[href$=".zip"]::before,
+a.cssf[href$=".zip"]::before,
 .cssf a[href$=".rar"]::before,
+a.cssf[href$=".rar"]::before,
 .cssf a[href$=".jpg"]::before,
+a.cssf[href$=".jpg"]::before,
 .cssf a[href$=".jpeg"]::before,
+a.cssf[href$=".jpeg"]::before,
 .cssf a[href$=".png"]::before,
+a.cssf[href$=".png"]::before,
 .cssf a[href$=".gif"]::before,
-.cssf a[href$=".svg"]::before {
+a.cssf[href$=".gif"]::before,
+.cssf a[href$=".svg"]::before,
+a.cssf[href$=".svg"]::before {
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
@@ -756,63 +806,91 @@
    padding: var(--a-file-before-padding);
    margin: var(--a-file-before-margin);
 }
-.cssf a[href$=".pdf"]::before {
+.cssf a[href$=".pdf"]::before,
+a.cssf[href$=".pdf"]::before {
    content: var(--a-file-pdf-before-content);
 }
-.cssf a[href$=".doc"]::before{
+.cssf a[href$=".doc"]::before,
+a.cssf[href$=".doc"]::before{
    content: var(--a-file-doc-before-content);
 }
-.cssf a[href$=".docx"]::before {
+.cssf a[href$=".docx"]::before,
+a.cssf[href$=".docx"]::before {
    content: var(--a-file-docx-before-content);
 }
-.cssf a[href$=".xls"]::before {
+.cssf a[href$=".xls"]::before,
+a.cssf[href$=".xls"]::before {
    content: var(--a-file-xls-before-content);
 }
-.cssf a[href$=".xlsx"]::before {
+.cssf a[href$=".xlsx"]::before,
+a.cssf[href$=".xlsx"]::before {
    content: var(--a-file-xlsx-before-content);
 }
-.cssf a[href$=".ppt"]::before {
+.cssf a[href$=".ppt"]::before,
+a.cssf[href$=".ppt"]::before {
    content: var(--a-file-ppt-before-content);
 }
-.cssf a[href$=".pptx"]::before {
+.cssf a[href$=".pptx"]::before,
+a.cssf[href$=".pptx"]::before {
    content: var(--a-file-pptx-before-content);
 }
-.cssf a[href$=".zip"]::before {
+.cssf a[href$=".zip"]::before,
+a.cssf[href$=".zip"]::before {
    content: var(--a-file-zip-before-content);
 }
-.cssf a[href$=".rar"]::before {
+.cssf a[href$=".rar"]::before,
+a.cssf[href$=".rar"]::before {
    content: var(--a-file-rar-before-content);
 }
-.cssf a[href$=".jpg"]::before {
+.cssf a[href$=".jpg"]::before,
+a.cssf[href$=".jpg"]::before {
    content: var(--a-file-jpg-before-content);
 }
-.cssf a[href$=".jpeg"]::before {
+.cssf a[href$=".jpeg"]::before,
+a.cssf[href$=".jpeg"]::before {
    content: var(--a-file-jpeg-before-content);
 }
-.cssf a[href$=".png"]::before {
+.cssf a[href$=".png"]::before,
+a.cssf[href$=".png"]::before {
    content: var(--a-file-png-before-content);
 }
-.cssf a[href$=".gif"]::before {
+.cssf a[href$=".gif"]::before,
+a.cssf[href$=".gif"]::before {
    content: var(--a-file-gif-before-content);
 }
-.cssf a[href$=".svg"]::before {
+.cssf a[href$=".svg"]::before,
+a.cssf[href$=".svg"]::before {
    content: var(--a-file-svg-before-content);
 }
 
 .cssf a[href$=".pdf"]::after,
+a.cssf[href$=".pdf"]::after,
 .cssf a[href$=".doc"]::after,
+a.cssf[href$=".doc"]::after,
 .cssf a[href$=".docx"]::after,
+a.cssf[href$=".docx"]::after,
 .cssf a[href$=".xls"]::after,
+a.cssf[href$=".xls"]::after,
 .cssf a[href$=".xlsx"]::after,
+a.cssf[href$=".xlsx"]::after,
 .cssf a[href$=".ppt"]::after,
+a.cssf[href$=".ppt"]::after,
 .cssf a[href$=".pptx"]::after,
+a.cssf[href$=".pptx"]::after,
 .cssf a[href$=".zip"]::after,
+a.cssf[href$=".zip"]::after,
 .cssf a[href$=".rar"]::after,
+a.cssf[href$=".rar"]::after,
 .cssf a[href$=".jpg"]::after,
+a.cssf[href$=".jpg"]::after,
 .cssf a[href$=".jpeg"]::after,
+a.cssf[href$=".jpeg"]::after,
 .cssf a[href$=".png"]::after,
+a.cssf[href$=".png"]::after,
 .cssf a[href$=".gif"]::after,
-.cssf a[href$=".svg"]::after {
+a.cssf[href$=".gif"]::after,
+.cssf a[href$=".svg"]::after,
+a.cssf[href$=".svg"]::after {
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
@@ -828,73 +906,94 @@
    padding: var(--a-file-after-padding);
    margin: var(--a-file-after-margin);
 }
-.cssf a[href$=".pdf"]::after {
+.cssf a[href$=".pdf"]::after,
+a.cssf[href$=".pdf"]::after {
    content: var(--a-file-pdf-after-content);
 }
-.cssf a[href$=".doc"]::after{
+.cssf a[href$=".doc"]::after,
+a.cssf[href$=".doc"]::after{
    content: var(--a-file-doc-after-content);
 }
-.cssf a[href$=".docx"]::after {
+.cssf a[href$=".docx"]::after,
+a.cssf[href$=".docx"]::after {
    content: var(--a-file-docx-after-content);
 }
-.cssf a[href$=".xls"]::after {
+.cssf a[href$=".xls"]::after,
+a.cssf[href$=".xls"]::after {
    content: var(--a-file-xls-after-content);
 }
-.cssf a[href$=".xlsx"]::after {
+.cssf a[href$=".xlsx"]::after,
+a.cssf[href$=".xlsx"]::after {
    content: var(--a-file-xlsx-after-content);
 }
-.cssf a[href$=".ppt"]::after {
+.cssf a[href$=".ppt"]::after,
+a.cssf[href$=".ppt"]::after {
    content: var(--a-file-ppt-after-content);
 }
-.cssf a[href$=".pptx"]::after {
+.cssf a[href$=".pptx"]::after,
+a.cssf[href$=".pptx"]::after {
    content: var(--a-file-pptx-after-content);
 }
-.cssf a[href$=".zip"]::after {
+.cssf a[href$=".zip"]::after,
+a.cssf[href$=".zip"]::after {
    content: var(--a-file-zip-after-content);
 }
-.cssf a[href$=".rar"]::after {
+.cssf a[href$=".rar"]::after,
+a.cssf[href$=".rar"]::after {
    content: var(--a-file-rar-after-content);
 }
-.cssf a[href$=".jpg"]::after {
+.cssf a[href$=".jpg"]::after,
+a.cssf[href$=".jpg"]::after {
    content: var(--a-file-jpg-after-content);
 }
-.cssf a[href$=".jpeg"]::after {
+.cssf a[href$=".jpeg"]::after,
+a.cssf[href$=".jpeg"]::after {
    content: var(--a-file-jpeg-after-content);
 }
-.cssf a[href$=".png"]::after {
+.cssf a[href$=".png"]::after,
+a.cssf[href$=".png"]::after {
    content: var(--a-file-png-after-content);
 }
-.cssf a[href$=".gif"]::after {
+.cssf a[href$=".gif"]::after,
+a.cssf[href$=".gif"]::after {
    content: var(--a-file-gif-after-content);
 }
-.cssf a[href$=".svg"]::after {
+.cssf a[href$=".svg"]::after,
+a.cssf[href$=".svg"]::after {
    content: var(--a-file-svg-after-content);
 }
 
 /* ********************************************************** */
 /* table */
 
-.cssf table {
+.cssf table,
+table.cssf {
    margin: var(--table-margin);
    background: var(--table-background);
    border: var(--table-border);
 }
-.cssf table thead {
+.cssf table thead,
+table.cssf thead {
    background: var(--table-thead-background);
 }
-.cssf table tbody {
+.cssf table tbody,
+table.cssf tbody {
    background: var(--table-tbody-background);
 }
-.cssf table tfoot {
+.cssf table tfoot,
+table.cssf tfoot {
    background: var(--table-tfoot-background);
 }
-.cssf table tr:nth(odd) {
+.cssf table tr:nth(odd),
+table.cssf tr:nth(odd) {
    background: var(--table-tr-odd-background);
 }
-.cssf table tr:nth(even) {
+.cssf table tr:nth(even),
+table.cssf tr:nth(even) {
    background: var(--table-tr-even-background);
 }
-.cssf table th {
+.cssf table th,
+table.cssf th {
    background: var(--table-th-background);
    font-family: var(--table-th-font-family);
    font-style: var(--table-th-font-style);
@@ -906,7 +1005,8 @@
    vertical-align: var(--table-th-vertical-align); 
    text-align: var(--table-th-text-align); 
 }
-.cssf table td {
+.cssf table td,
+table.cssf td {
    background: var(--table-td-background);
    font-family: var(--table-td-font-family);
    font-style: var(--table-td-font-style);
@@ -919,41 +1019,55 @@
    text-align: var(--table-td-text-align);
 }
   
-.cssf table {  
+.cssf table,
+table.cssf {  
    border-spacing: var(--table-border-spacing, 0); 
    border-collapse: separate;
    border-radius: var(--table-border-radius);
 }
 .cssf table th,
-.cssf table td {  
+.cssf table td,
+table.cssf th,
+table.cssf td {  
    padding: var(--table-cell-padding);
    border-bottom: var(--table-cell-border-bottom); 
    border-right: var(--table-cell-border-right); 
 }
-.cssf table th { 
+.cssf table th,
+table.cssf th { 
    background: var(--table-th-background); 
    color: var(--table-th-color); 
 }
-.cssf table tr:last-child td:first-child {
+.cssf table tr:last-child td:first-child,
+table.cssf tr:last-child td:first-child {
     border-bottom-left-radius: var(--table-cell-border-bottom-left-radius);
 }
-.cssf table tr:last-child td:last-child {
+.cssf table tr:last-child td:last-child,
+table.cssf tr:last-child td:last-child {
     border-bottom-right-radius: var(--table-cell-border-bottom-right-radius);
 }
 .cssf table tr th:first-child,
-.cssf table tr td:first-child {
+.cssf table tr td:first-child,
+table.cssf tr th:first-child,
+table.cssf tr td:first-child {
    border-left: var(--table-cell-border-left);
 }
 .cssf table tr:first-child th,
-.cssf table tr:first-child td {
+.cssf table tr:first-child td,
+table.cssf tr:first-child th,
+table.cssf tr:first-child td {
    border-top: var(--table-cell-border-top);
 }
 .cssf table tr:first-child th:first-child,
-.cssf table tr:first-child td:first-child {
+.cssf table tr:first-child td:first-child,
+table.cssf tr:first-child th:first-child,
+table.cssf tr:first-child td:first-child {
     border-top-left-radius: var(--table-cell-border-top-left-radius)
 }
 .cssf table tr:first-child th:last-child,
-.cssf table tr:first-child td:last-child {
+.cssf table tr:first-child td:last-child,
+table.cssf tr:first-child th:last-child,
+table.cssf tr:first-child td:last-child {
     border-top-right-radius: var(--table-cell-border-top-right-radius)
 }   
 
@@ -961,30 +1075,54 @@
 
 
 .cssf h1:first-child,
+h1.cssf:first-child,
 .cssf h2:first-child,
+h2.cssf:first-child,
 .cssf h3:first-child,
+h3.cssf:first-child,
 .cssf h4:first-child,
+h4.cssf:first-child,
 .cssf h5:first-child,
+h5.cssf:first-child,
 .cssf h6:first-child,
+h6.cssf:first-child,
 .cssf p:first-child,
+p.cssf:first-child,
 .cssf ul:first-child,
+ul.cssf:first-child,
 .cssf ol:first-child,
+ol.cssf:first-child,
 .cssf li:first-child,
+li.cssf:first-child,
 .cssf table:first-child,
-.cssf blockquote:first-child {
+table.cssf:first-child,
+.cssf blockquote:first-child,
+blockquote.cssf:first-child {
    margin-top: 0rem;
 }
 .cssf h1:last-child,
+h1.cssf:last-child,
 .cssf h2:last-child,
+h2.cssf:last-child,
 .cssf h3:last-child,
+h3.cssf:last-child,
 .cssf h4:last-child,
+h4.cssf:last-child,
 .cssf h5:last-child,
+h5.cssf:last-child,
 .cssf h6:last-child,
+h6.cssf:last-child,
 .cssf p:last-child,
+p.cssf:last-child,
 .cssf ul:last-child,
+ul.cssf:last-child,
 .cssf ol:last-child,
+ol.cssf:last-child,
 .cssf li:last-child,
+li.cssf:last-child,
 .cssf table:last-child,
-.cssf blockquote:last-child {
+table.cssf:last-child,
+.cssf blockquote:last-child,
+blockquote.cssf:last-child {
    margin-bottom: 0rem;
 }

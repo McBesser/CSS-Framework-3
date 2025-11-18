@@ -618,6 +618,8 @@ class CSSF {
            return '';
        };
        
+       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
+
        for (let i = 0; i < parts.length; i++) {
            const part = parts[i];
            
@@ -646,17 +648,26 @@ class CSSF {
            if (combinatorMap[part]) { // For next, child
                if (i + 2 < parts.length) {
                    const type = parts[i + 1];
-                   const name = parts[i + 2];
+                   let nameEndIndex = i + 2;
+                   while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
+                       nameEndIndex++;
+                   }
+                   const name = parts.slice(i + 2, nameEndIndex).join('-');
                    selector += combinatorMap[part] + buildSelectorPart(type, name);
-                   i += 2;
+                   i = nameEndIndex - 1;
                }
            } else if (part === 'all') {
                selector += ' *';
            } else if (['tag', 'class', 'id'].includes(part)) { // For descendant
                if (i + 1 < parts.length) {
-                   const name = parts[i + 1];
-                   selector += ' ' + buildSelectorPart(part, name);
-                   i += 1;
+                   const type = part;
+                   let nameEndIndex = i + 1;
+                   while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
+                       nameEndIndex++;
+                   }
+                   const name = parts.slice(i + 1, nameEndIndex).join('-');
+                   selector += ' ' + buildSelectorPart(type, name);
+                   i = nameEndIndex - 1;
                }
            }
        }
@@ -680,11 +691,16 @@ class CSSF {
        return i;
    }
     handleParentSelector(parts, i, callback) {
+       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
        if (i + 1 < parts.length) {
-           const nextPart = parts[++i];
+           const type = parts[++i];
            
            if (i + 1 < parts.length) {
-               const selectorName = parts[++i];
+               let nameEndIndex = i + 1;
+               while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
+                   nameEndIndex++;
+               }
+               const selectorName = parts.slice(i + 1, nameEndIndex).join('-');
                
                const prefixMap = {
                    class: `.${selectorName} `,
@@ -692,20 +708,26 @@ class CSSF {
                    id: `#${selectorName} `
                };
                
-               if (prefixMap[nextPart]) {
-                   callback(prefixMap[nextPart]);
+               if (prefixMap[type]) {
+                   callback(prefixMap[type]);
                }
+               return nameEndIndex - 1;
            }
        }
        return i;
    }
 
    handleSelfSelector(parts, i, originalClass, callback) {
+       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
        if (i + 1 < parts.length) {
-           const nextPart = parts[++i];
+           const type = parts[++i];
            
            if (i + 1 < parts.length) {
-               const selectorName = parts[++i];
+               let nameEndIndex = i + 1;
+               while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
+                   nameEndIndex++;
+               }
+               const selectorName = parts.slice(i + 1, nameEndIndex).join('-');
                
                const selectorMap = {
                    class: `.${selectorName}.${originalClass}`,
@@ -713,9 +735,10 @@ class CSSF {
                    id: `#${selectorName}.${originalClass}`
                };
                
-               if (selectorMap[nextPart]) {
-                   callback(selectorMap[nextPart]);
+               if (selectorMap[type]) {
+                   callback(selectorMap[type]);
                }
+               return nameEndIndex - 1;
            }
        }
        return i;

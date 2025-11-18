@@ -184,6 +184,7 @@
 
    --ol-margin: var(--default-text-margin, 0);
    --ol-padding: var(--default-text-margin, 0);
+   --ol-list-style: decimal;
    --ol-li-margin: var(--default-item-margin, 0);
    --ol-li-margin-left: var(--size-16, 16px);
    --ol-li-padding: 0;
@@ -612,6 +613,7 @@ ul.cssf li::marker {
 ol.cssf {
    margin: var(--ol-margin);
    padding: var(--ol-padding);
+   list-style: var(--ol-list-style);
 }
 .cssf ol li,
 ol.cssf li {

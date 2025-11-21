@@ -478,6 +478,17 @@ em.cssf {
    line-height: var(--em-line-height); 
    color: var(--em-color);
 }
+.cssf em strong,
+.cssf strong em,
+em.cssf strong,
+strong.cssf em {
+   font-family: var(--strong-font-family);
+   font-style: var(--em-font-style);
+   font-weight: var(--strong-font-weight);
+   font-size: var(--strong-font-size); 
+   line-height: var(--strong-line-height); 
+   color: var(--strong-color);
+}
 .cssf u,
 u.cssf {
    display: var(--u-display);

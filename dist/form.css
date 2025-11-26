@@ -136,6 +136,7 @@
    --form-input-text-border-radius: 0rem;
    --form-input-text-width: 100%;
    --form-input-text-outline: var(--size-0, 0rem) solid var(--color-x, transparent);
+   --form-input-text-box-shadow: none;
    
    --form-input-text-hover-font-family: var(--form-input-text-font-family);
    --form-input-text-hover-font-style: var(--form-input-text-font-style);
@@ -150,6 +151,7 @@
    --form-input-text-hover-border-radius: var(--form-input-text-border-radius);
    --form-input-text-hover-width: var(--form-input-text-width);
    --form-input-text-hover-outline: var(--form-input-text-outline);
+   --form-input-text-hover-box-shadow: var(--form-input-text-box-shadow);
    
    --form-input-text-focus-font-family: var(--form-input-text-font-family);
    --form-input-text-focus-font-style: var(--form-input-text-font-style);
@@ -164,6 +166,7 @@
    --form-input-text-focus-border-radius: var(--form-input-text-border-radius);
    --form-input-text-focus-width: var(--form-input-text-width);
    --form-input-text-focus-outline: var(--form-input-text-outline);
+   --form-input-text-focus-box-shadow: var(--form-input-text-box-shadow);
    
    /* ***************************************************************************************** */
    
@@ -567,6 +570,7 @@ textarea.cssf {
    border-radius: var(--form-input-text-border-radius) !important;
    width: var(--form-input-text-width) !important;
    outline: var(--form-input-text-outline) !important;
+   box-shadow: var(--form-input-text-box-shadow) !important;
 }
 .cssf form input[type="date"],
 input[type="date"].cssf,
@@ -601,6 +605,7 @@ textarea.cssf:hover {
    border-radius: var(--form-input-text-hover-border-radius) !important;
    width: var(--form-input-text-hover-width) !important;
    outline: var(--form-input-text-hover-outline) !important;
+   box-shadow: var(--form-input-text-hover-box-shadow) !important;
 }
 .cssf form input[type="text"]:focus,
 input[type="text"].cssf:focus,
@@ -627,6 +632,7 @@ textarea.cssf:focus {
    border-radius: var(--form-input-text-focus-border-radius) !important;
    width: var(--form-input-text-focus-width) !important;
    outline: var(--form-input-text-focus-outline) !important;
+   box-shadow: var(--form-input-text-focus-box-shadow) !important;
 }
 .cssf form input[type="number"],
 input[type="number"].cssf,

@@ -402,7 +402,7 @@ class CSSF {
                     const maxFontSizePx = parseFloat(max);
                     const maxWidthPx = parseFloat(viewport);
                     // Assuming a common mobile viewport as the minimum width, as it's not provided.
-                    const minWidthPx = 320; 
+                    const minWidthPx = 0; // 320
 
                     if ([minFontSizePx, maxFontSizePx, maxWidthPx].some(isNaN)) {
                         return `clamp(${min}, ${max}, ${viewport})`;

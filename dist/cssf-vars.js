@@ -251,27 +251,22 @@ class CSSFVars {
         return null;
     }
 
-    createClampFunction(minRem, maxRem, minVw, maxVw) {
-        // This function's logic is updated to match the createClampFunction from cssf.js as requested.
-        if (maxVw <= minVw) {
+   createClampFunction(minRem, maxRem, minVw, maxVw) {
+        const pixelsPerRem = 16; // Assuming root font-size is 16px for consistency.
+
+        const minWidth = minVw / pixelsPerRem;
+        const maxWidth = maxVw / pixelsPerRem;
+
+        if (maxWidth <= minWidth) {
             return `clamp(${minRem.toFixed(4)}rem, ${((minRem + maxRem) / 2).toFixed(4)}rem, ${maxRem.toFixed(4)}rem)`;
         }
-        
-        const minPx = minRem * 16;
-        const maxPx = maxRem * 16;
-        // The logic from cssf.js assumes the viewport range starts at 0, so we use maxVw as the total width.
-        const viewportWidth = maxVw;
 
-        // Logic adapted from cssf.js's createClampFunction
-        const vwPercent = (maxPx - minPx) / viewportWidth * 100;
-        const baseVw = minPx / viewportWidth * 100;
-        
-        // In cssf.js, these two are added together to form a single vw-based value.
-        const preferredValue = `${(baseVw + vwPercent).toFixed(4)}vw`;
-        
-        return `clamp(${minRem.toFixed(4)}rem, ${preferredValue}, ${maxRem.toFixed(4)}rem)`;
+        const slope = (maxRem - minRem) / (maxWidth - minWidth);
+        const yAxisIntersection = -minWidth * slope + minRem;
+
+        return `clamp(${minRem.toFixed(4)}rem, ${yAxisIntersection.toFixed(4)}rem + ${(slope * 100).toFixed(4)}vw, ${maxRem.toFixed(4)}rem)`;
     }
-
+   
     updateStylesheet() {
         const outputEl = document.getElementById('cssf-vars-output');
 

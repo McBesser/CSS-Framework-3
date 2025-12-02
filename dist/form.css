@@ -399,7 +399,8 @@ button.cssf,
    cursor: pointer !important;   
    text-decoration: none !important;  
    display: inline-block !important;    
-   max-width: 100% !important;      
+   max-width: 100% !important;    
+   text-wrap: auto !important;  
    
    font-family: var(--form-button-font-family) !important;
    font-style: var(--form-button-font-style) !important;

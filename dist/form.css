@@ -181,6 +181,7 @@
    --form-input-checkbox-top: var(--size-2); /* 50% */
    --form-input-checkbox-content: '\00a0';
    --form-input-checkbox-checked-left: var(--size--24); /* -1.75rem */
+   --form-input-checkbox-checked-top: var(--form-input-checkbox-top);
    --form-input-checkbox-checked-color: var(--color-2); 
    --form-input-checkbox-checked-background: var(--color-4);
    --form-input-checkbox-checked-font-family: 'Font Awesome 5 Pro';
@@ -203,6 +204,7 @@
    --form-input-radio-top: var(--size-2); /* 50% */
    --form-input-radio-content: '\00a0';
    --form-input-radio-checked-left: -1.585rem;
+   --form-input-radio-checked-top: var(--form-input-radio-top);
    --form-input-radio-checked-color: var(--form-input-checkbox-checked-color);
    --form-input-radio-checked-background: var(--color-4);
    --form-input-radio-checked-font-family: 'Font Awesome 5 Pro';
@@ -695,7 +697,7 @@ input[type='checkbox'].cssf + label:after {
    color: var(--form-input-checkbox-checked-color);
    margin-right: 0.5rem;
    position: absolute;
-   top: var(--form-input-checkbox-top);
+   top: var(--form-input-checkbox-checked-top);
    transform: var(--form-input-checkbox-transform);
    left: var(--form-input-checkbox-checked-left);
 }
@@ -768,7 +770,7 @@ input[type='radio'].cssf + label:after {
    color: var(--form-input-radio-checked-color);
    margin-right: 0.5rem;
    position: absolute;
-   top: var(--form-input-radio-top);
+   top: var(--form-input-radio-checked-top);
    transform: var(--form-input-radio-transform);
    left: var(--form-input-radio-checked-left);
 }

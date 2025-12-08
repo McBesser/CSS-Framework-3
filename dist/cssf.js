@@ -809,28 +809,77 @@ class CSSF {
 
    parseStandardProperty(part) {
        const [prop, ...valueParts] = part.split('_');
-       const value = valueParts.join('_');
        const cssProperty = this.config.aliases.get(prop) || prop;
        
-       const hasComplexFunction = valueParts.some(part => 
-           part.startsWith('fn-') || 
-           part.startsWith('cfn-') || 
-           part.startsWith('tpl-')
-       );
+       const processedParts = [];
+       let i = 0;
        
-       let processedValue;
-       
-       if (hasComplexFunction) {
-           processedValue = value ? this.processValue(value) : '';
-           processedValue = processedValue.replaceAll('_', ' ');
-       } else {
-           const processedParts = valueParts.map(valuePart => this.processValue(valuePart));
-           processedValue = processedParts.join(' ');
+       while (i < valueParts.length) {
+           const currentPart = valueParts[i];
+           
+           if (currentPart.startsWith('tpl-')) {
+               const tplName = currentPart.substring(4);
+               const template = this.config.templates.get(tplName);
+               if (template) {
+                   // Calculate required arguments
+                   const matches = template.match(/§(\d+)/g);
+                   let maxIndex = -1;
+                   if (matches) {
+                       matches.forEach(m => {
+                           const idx = parseInt(m.substring(1));
+                           if (idx > maxIndex) maxIndex = idx;
+                       });
+                   }
+                   const argCount = maxIndex + 1;
+                   
+                   // Consume arguments if template requires them
+                   if (argCount > 0) {
+                       const availableArgs = valueParts.length - (i + 1);
+                       const consumeCount = Math.min(argCount, availableArgs);
+                       
+                       const args = valueParts.slice(i + 1, i + 1 + consumeCount);
+                       const fullTplString = `${currentPart}_${args.join('_')}`;
+                       processedParts.push(this.processValue(fullTplString));
+                       i += consumeCount;
+                   } else {
+                       processedParts.push(this.processValue(currentPart));
+                   }
+               } else {
+                   // Template not found, process as is
+                   processedParts.push(this.processValue(currentPart));
+               }
+           } else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
+               // For functions, scan for 'close' or consume remainder if nested
+               let closeIndex = -1;
+               for (let j = i + 1; j < valueParts.length; j++) {
+                   if (valueParts[j] === 'close') {
+                       closeIndex = j;
+                       break;
+                   }
+               }
+               
+               if (closeIndex !== -1) {
+                   const args = valueParts.slice(i + 1, closeIndex + 1);
+                   const fullFnString = `${currentPart}_${args.join('_')}`;
+                   processedParts.push(this.processValue(fullFnString));
+                   i = closeIndex;
+               } else {
+                   // No close found, consume remainder
+                   const rest = valueParts.slice(i);
+                   const fullString = rest.join('_');
+                   processedParts.push(this.processValue(fullString));
+                   i = valueParts.length; 
+               }
+           } else {
+               processedParts.push(this.processValue(currentPart));
+           }
+           
+           i++;
        }
        
        return {
            property: cssProperty,
-           value: processedValue
+           value: processedParts.join(' ')
        };
    }
 

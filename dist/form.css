@@ -172,6 +172,7 @@
    
    --form-input-checkbox-background-color: transparent;
    --form-input-checkbox-border: var(--size-1) solid var(--color-3);
+   --form-input-checkbox-border-radius: 0%;
    --form-input-checkbox-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* trbl *//* = radio *//* calc(spacing + size) */
    --form-input-checkbox-width: 1.5rem; /* = radio *//* size */
    --form-input-checkbox-height: 1.5rem; /* = radio *//* size */
@@ -193,6 +194,7 @@
    
    --form-input-radio-background-color: var(--form-input-checkbox-background-color);
    --form-input-radio-border: var(--form-input-checkbox-border);
+   --form-input-radio-border-radius: 100%;
    --form-input-radio-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* calc(spacing + size) */
    --form-input-radio-width: 1.5rem;
    --form-input-radio-height: 1.5rem;
@@ -672,6 +674,7 @@ input[type='checkbox'].cssf + label:before {
    background-color: var(--form-input-checkbox-background);
    transform: var(--form-input-checkbox-transform);
    border: var(--form-input-checkbox-border);
+   border-radius: var(--form-input-checkbox-border-radius);
    position: absolute;
    top: var(--form-input-checkbox-top);
    width: var(--form-input-checkbox-width);
@@ -681,10 +684,6 @@ input[type='checkbox'].cssf + label:before {
 .cssf form input[type='checkbox']:checked + label:before,
 input[type='checkbox'].cssf:checked + label:before { 
    background-color: var(--form-input-checkbox-checked-background);
-}
-.cssf form input[type='checkbox'] + label:before,
-input[type='checkbox'].cssf + label:before { 
-   border-radius: 0%;
 }
 .cssf form input[type='checkbox']:checked + label:after,
 input[type='checkbox'].cssf:checked + label:after,
@@ -743,6 +742,7 @@ input[type='radio'].cssf + label:before {
    background-color: var(--form-input-radio-background);
    transform: var(--form-input-radio-transform);
    border: var(--form-input-radio-border);
+   border-radius: var(--form-input-radio-border-radius);
    position: absolute;
    top: var(--form-input-radio-top);
    width: var(--form-input-radio-width);
@@ -757,10 +757,6 @@ input[type='radio'].cssf:checked + label:before {
 input[type='radio'].cssf + label:before { 
    background-color: var(--form-input-radio-background);
    border: var(--form-input-radio-border);
-}
-.cssf form input[type='radio'] + label:before,
-input[type='radio'].cssf + label:before { 
-   border-radius: 100%;
 }
 .cssf form input[type='radio']:checked + label:after,
 input[type='radio'].cssf:checked + label:after,

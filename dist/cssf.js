@@ -1,3 +1,5 @@
+if (typeof window.CSSF === 'undefined') {
+
 class CSSF {
     constructor() {
         this.processedClasses = new Set();
@@ -1097,5 +1099,10 @@ class CSSF {
     }
 }
 
+// Ensure the class is globally available
+window.CSSF = CSSF;
+
 // Initialisiere CSSF
-const cssf = new CSSF();
+window.cssf = new CSSF();
+
+}

@@ -1,3 +1,5 @@
+if (typeof window.CSSFVars === 'undefined') {
+
 class CSSFVars {
     constructor() {
         this.foundVars = new Set();
@@ -301,6 +303,9 @@ class CSSFVars {
     }
 }
 
+// Ensure the class is globally available to prevent re-declaration issues on reload/double-include check
+window.CSSFVars = CSSFVars;
+
 // Expose instance to window for manual debugging
 window.cssfVars = new CSSFVars();
 
@@ -309,4 +314,6 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => window.cssfVars.init());
 } else {
     window.cssfVars.init();
+}
+
 }

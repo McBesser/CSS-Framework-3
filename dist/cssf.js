@@ -608,6 +608,21 @@ class CSSF {
         return match ? `@media (${match[2] ? 'max' : 'min'}-width: ${match[1]}px)` : null;
     }
 
+   _isSelectorInstruction(part) {
+       return ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all', 'tag', 'class', 'id'].includes(part);
+   }
+
+   _findNameEnd(parts, startIndex) {
+       let index = startIndex;
+       while (index < parts.length) {
+           if (index > startIndex && this._isSelectorInstruction(parts[index])) {
+               break;
+           }
+           index++;
+       }
+       return index;
+   }
+
    handleTargetSelector(tarPart, originalClass) {
        const parts = tarPart.substring(4).split('-');
        let selector = `.${originalClass}`;
@@ -620,8 +635,6 @@ class CSSF {
            return '';
        };
        
-       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
-
        for (let i = 0; i < parts.length; i++) {
            const part = parts[i];
            
@@ -650,10 +663,7 @@ class CSSF {
            if (combinatorMap[part]) { // For next, child
                if (i + 2 < parts.length) {
                    const type = parts[i + 1];
-                   let nameEndIndex = i + 2;
-                   while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
-                       nameEndIndex++;
-                   }
+                   const nameEndIndex = this._findNameEnd(parts, i + 2);
                    const name = parts.slice(i + 2, nameEndIndex).join('-');
                    selector += combinatorMap[part] + buildSelectorPart(type, name);
                    i = nameEndIndex - 1;
@@ -663,10 +673,7 @@ class CSSF {
            } else if (['tag', 'class', 'id'].includes(part)) { // For descendant
                if (i + 1 < parts.length) {
                    const type = part;
-                   let nameEndIndex = i + 1;
-                   while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
-                       nameEndIndex++;
-                   }
+                   const nameEndIndex = this._findNameEnd(parts, i + 1);
                    const name = parts.slice(i + 1, nameEndIndex).join('-');
                    selector += ' ' + buildSelectorPart(type, name);
                    i = nameEndIndex - 1;
@@ -693,15 +700,11 @@ class CSSF {
        return i;
    }
     handleParentSelector(parts, i, callback) {
-       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
        if (i + 1 < parts.length) {
            const type = parts[++i];
            
            if (i + 1 < parts.length) {
-               let nameEndIndex = i + 1;
-               while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
-                   nameEndIndex++;
-               }
+               const nameEndIndex = this._findNameEnd(parts, i + 1);
                const selectorName = parts.slice(i + 1, nameEndIndex).join('-');
                
                const prefixMap = {
@@ -720,15 +723,11 @@ class CSSF {
    }
 
    handleSelfSelector(parts, i, originalClass, callback) {
-       const isInstruction = (part) => ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all'].includes(part);
        if (i + 1 < parts.length) {
            const type = parts[++i];
            
            if (i + 1 < parts.length) {
-               let nameEndIndex = i + 1;
-               while (nameEndIndex < parts.length && !isInstruction(parts[nameEndIndex])) {
-                   nameEndIndex++;
-               }
+               const nameEndIndex = this._findNameEnd(parts, i + 1);
                const selectorName = parts.slice(i + 1, nameEndIndex).join('-');
                
                const selectorMap = {

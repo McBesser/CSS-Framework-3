@@ -13,6 +13,7 @@
    --form-fieldset-padding: 0rem;
    --form-fieldset-border: var(--size-1, 0.0625rem) solid black;
    --form-fieldset-border-radius: 0rem;
+   --form-fieldset-legend-background: none;
    --form-fieldset-legend-font-family: var(--font-family-1, sans-serif);
    --form-fieldset-legend-font-style: var(--default-font-style, normal);
    --form-fieldset-legend-font-weight: var(--font-weight-bold, 700);
@@ -170,7 +171,7 @@
    
    /* ***************************************************************************************** */
    
-   --form-input-checkbox-background-color: transparent;
+   --form-input-checkbox-background: transparent;
    --form-input-checkbox-border: var(--size-1) solid var(--color-3);
    --form-input-checkbox-border-radius: 0%;
    --form-input-checkbox-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* trbl *//* = radio *//* calc(spacing + size) */
@@ -193,7 +194,7 @@
 
    /* ***************************************************************************************** */
    
-   --form-input-radio-background-color: var(--form-input-checkbox-background-color);
+   --form-input-radio-background: var(--form-input-checkbox-background);
    --form-input-radio-border: var(--form-input-checkbox-border);
    --form-input-radio-border-radius: 100%;
    --form-input-radio-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* calc(spacing + size) */
@@ -312,7 +313,7 @@ fieldset.cssf legend {
    font-style: var(--form-fieldset-legend-font-style) !important;
    font-weight: var(--form-fieldset-legend-font-weight) !important;
    color: var(--form-fieldset-legend-color) !important;      
-   background-color: var(--form-fieldset-legend-background-color) !important;      
+   background: var(--form-fieldset-legend-background) !important;      
    font-size: var(--form-fieldset-legend-font-size) !important;
    line-height: var(--form-fieldset-legend-line-height) !important;
    display: var(--form-fieldset-legend-display) !important;
@@ -673,7 +674,7 @@ input[type='checkbox'].cssf + label {
 input[type='checkbox'].cssf + label:before { 
    content:'\00a0';
    display: inline-block;
-   background-color: var(--form-input-checkbox-background);
+   background: var(--form-input-checkbox-background);
    transform: var(--form-input-checkbox-transform);
    border: var(--form-input-checkbox-border);
    border-radius: var(--form-input-checkbox-border-radius);
@@ -685,7 +686,7 @@ input[type='checkbox'].cssf + label:before {
 }
 .cssf form input[type='checkbox']:checked + label:before,
 input[type='checkbox'].cssf:checked + label:before { 
-   background-color: var(--form-input-checkbox-checked-background);
+   background: var(--form-input-checkbox-checked-background);
 }
 .cssf form input[type='checkbox']:checked + label:after,
 input[type='checkbox'].cssf:checked + label:after,
@@ -741,7 +742,7 @@ input[type='radio'].cssf + label {
 input[type='radio'].cssf + label:before { 
    content:'\00a0';
    display: inline-block;
-   background-color: var(--form-input-radio-background);
+   background: var(--form-input-radio-background);
    transform: var(--form-input-radio-transform);
    border: var(--form-input-radio-border);
    border-radius: var(--form-input-radio-border-radius);
@@ -753,11 +754,11 @@ input[type='radio'].cssf + label:before {
 }
 .cssf form input[type='radio']:checked + label:before,
 input[type='radio'].cssf:checked + label:before { 
-   background-color: var(--form-input-radio-checked-background);
+   background: var(--form-input-radio-checked-background);
 }
 .cssf form input[type='radio'] + label:before,
 input[type='radio'].cssf + label:before { 
-   background-color: var(--form-input-radio-background);
+   background: var(--form-input-radio-background);
    border: var(--form-input-radio-border);
 }
 .cssf form input[type='radio']:checked + label:after,

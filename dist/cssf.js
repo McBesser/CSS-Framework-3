@@ -263,6 +263,8 @@ class CSSF {
             'overlay-foreground': 'cssf--pos_absolute--bg_tpl-rgba_255_255_255_100div100--z_-1--py40--w_fn-calc_100p_chr-plus_chr-lpar_40pxrem_chr-star_2_chr-rpar',
             'overlay-wrapper': 'cssf--pos_fixed--t50p--l50p--d_flex--transform_tpl-translate_-50p_-50p--jc_center--ai_center',
             'center': 'cssf--pos_absolute--t50p--l50p--transform_fn-translate_-50p_op-c_-50p',
+            'center-x': 'cssf--pos_absolute--l50p--transform_fn-translateX_n50p',
+            'center-y': 'cssf--pos_absolute--t50p--transform_fn-translateY_n50p',
                
                
                

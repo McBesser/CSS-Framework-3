@@ -209,7 +209,8 @@ class CSSF {
             'fcol100': 'cssf--f_1_1_100p--box-sizing_border-box',
             'fcolauto': 'cssf--f_1_1_auto--box-sizing_border-box',
             /* -------------------------------------------------------------------------------------- */            
-               'grid-layout': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_var-layout-gap_var-layout-content_var-layout-outside--grid-template-rows_tpl-grid-layout-rows-standard_var-layout-gap--val-grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2--container-type_inline-size',
+               'grid-layout-old': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_var-layout-gap_var-layout-content_var-layout-outside--grid-template-rows_tpl-grid-layout-rows-standard_var-layout-gap--val-grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2--container-type_inline-size',
+               'grid-layout': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_var-layout-gap_var-layout-content_var-layout-outside--val-grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2--container-type_inline-size',
                'grid-layout-val': 'cssf--d_grid--grid-template-columns_tpl-grid-layout-cols-standard_§0_§1_§2--grid-template-rows_tpl-grid-layout-rows-standard_§0--container-type_inline-size',
                'grid-layout-main-gap': 'cssf--grid-layout-spacing_tpl-var_val-container-spacing_var-layout-gap--py_fn-calc_var-grid-layout-spacing_chr-slash_2',
                'layout-gap': 'cssf--gap_var-layout-gap',

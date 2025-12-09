@@ -78,6 +78,7 @@ class CSSF {
                 ta: 'text-align', td: 'text-decoration', tt: 'text-transform',
                 ti: 'text-indent', ts: 'text-shadow', to: 'text-overflow',
                 va: 'vertical-align', wm: 'writing-mode',
+                lc: 'line-clamp',
 
                 // Display & Layout
                 d: 'display', pos: 'position', t: 'top', r: 'right', b: 'bottom', l: 'left',

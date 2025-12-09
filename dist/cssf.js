@@ -391,7 +391,9 @@ class CSSF {
                 'scroll-smooth': 'scroll-behavior: smooth',
                 
                 // Misc
-                'var': 'var(§0, §1)'
+                'var': 'var(§0, §1)',
+                // outline-shadow_1px_black
+                'outline-shadow': '-§0 0 0 §1, §0 0 0 §1, 0 -§0 0 §1, 0 §0 0 §1, -§0 -§0 0 §1, §0 -§0 0 §1, -§0 §0 0 §1, §0 §0 0 §1'
             }),
             
             customFunctions: this.createMap({

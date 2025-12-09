@@ -400,7 +400,7 @@ class CSSF {
                 'var': 'var(§0, §1)',
                 // outline-shadow_1px_black
                 'outline-shadow': '-§0 0 0 §1, §0 0 0 §1, 0 -§0 0 §1, 0 §0 0 §1, -§0 -§0 0 §1, §0 -§0 0 §1, -§0 §0 0 §1, §0 §0 0 §1',
-                'hyphens': 'text-align: justify; hyphens: auto; hyphenate-limit-chars: 6 4 4; hyphenate-limit-lines: 2; hyphenate-character: "-"; word-break: normal'
+                'hyphens': 'hyphens: auto; hyphenate-limit-chars: 6 4 4; hyphenate-limit-lines: 2; hyphenate-character: "-"; word-break: normal'
             }),
             
             customFunctions: this.createMap({

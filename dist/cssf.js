@@ -402,7 +402,7 @@ class CSSF {
                 // outline-shadow_1px_black
                 'outline-shadow': '-§0 0 0 §1, §0 0 0 §1, 0 -§0 0 §1, 0 §0 0 §1, -§0 -§0 0 §1, §0 -§0 0 §1, -§0 §0 0 §1, §0 §0 0 §1',
                 'hyphens': 'hyphens: auto; hyphenate-limit-chars: 6 4 4; hyphenate-limit-lines: 2; hyphenate-character: "-"; word-break: normal',
-                'line-clamp': 'line-clamp: §0; -webkit-line-clamp: §0; -webkit-box-orient: vertical, overflow: hidden; display: -webkit-box'
+                'line-clamp': 'line-clamp: §0; -webkit-line-clamp: §0; -webkit-box-orient: vertical; overflow: hidden; display: -webkit-box'
             }),
             
             customFunctions: this.createMap({

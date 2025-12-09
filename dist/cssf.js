@@ -78,7 +78,7 @@ class CSSF {
                 ta: 'text-align', td: 'text-decoration', tt: 'text-transform',
                 ti: 'text-indent', ts: 'text-shadow', to: 'text-overflow',
                 va: 'vertical-align', wm: 'writing-mode',
-                lc: 'line-clamp',
+                lc: ['line-clamp', '-webkit-line-clamp'],
 
                 // Display & Layout
                 d: 'display', pos: 'position', t: 'top', r: 'right', b: 'bottom', l: 'left',
@@ -401,7 +401,8 @@ class CSSF {
                 'var': 'var(§0, §1)',
                 // outline-shadow_1px_black
                 'outline-shadow': '-§0 0 0 §1, §0 0 0 §1, 0 -§0 0 §1, 0 §0 0 §1, -§0 -§0 0 §1, §0 -§0 0 §1, -§0 §0 0 §1, §0 §0 0 §1',
-                'hyphens': 'hyphens: auto; hyphenate-limit-chars: 6 4 4; hyphenate-limit-lines: 2; hyphenate-character: "-"; word-break: normal'
+                'hyphens': 'hyphens: auto; hyphenate-limit-chars: 6 4 4; hyphenate-limit-lines: 2; hyphenate-character: "-"; word-break: normal',
+                'line-clamp': 'line-clamp: §0; -webkit-line-clamp: §0; -webkit-box-orient: vertical'
             }),
             
             customFunctions: this.createMap({

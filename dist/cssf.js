@@ -116,6 +116,12 @@ class CSSF {
                 brad: 'border-radius', // brad statt br (br ist border-right)
                 brtl: 'border-top-left-radius', brtr: 'border-top-right-radius',
                 brbl: 'border-bottom-left-radius', brbr: 'border-bottom-right-radius',
+                bradl: ['border-top-left-radius', 'border-bottom-left-radius'],
+                bradr: ['border-top-right-radius', 'border-bottom-right-radius'],
+                bradt: ['border-top-left-radius', 'border-top-right-radius'],
+                bradb: ['border-bottom-left-radius', 'border-bottom-right-radius'],
+                braddl: ['border-top-left-radius', 'border-bottom-right-radius'],
+                braddr: ['border-top-right-radius', 'border-bottom-left-radius'],
                 bi: 'border-image', bimgsrc: 'border-image-source', // bimgsrc statt bis
                 bisl: 'border-image-slice', biw: 'border-image-width', 
                 bio: 'border-image-outset', bir: 'border-image-repeat',

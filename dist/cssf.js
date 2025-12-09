@@ -607,7 +607,13 @@ class CSSF {
 
     processDefaultPart(part, context) {
         const result = this.extractPropertyAndValue(part);
-        context.properties.push(`${result.property}: ${result.value}`);
+        if (Array.isArray(result.property)) {
+            result.property.forEach(p => {
+                context.properties.push(`${p}: ${result.value}`);
+            });
+        } else {
+            context.properties.push(`${result.property}: ${result.value}`);
+        }
     }
 
     buildCSSRule(selector, properties, isImportant) {

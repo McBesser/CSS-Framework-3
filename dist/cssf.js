@@ -1,3 +1,4 @@
+
 if (typeof window.CSSF === 'undefined') {
 
 class CSSF {
@@ -8,7 +9,9 @@ class CSSF {
         this.styleSheetContent = {
             root: [],
             base: new Map(), // selector -> { properties: [], isImportant: true }
-            media: new Map()  // media condition -> Map(selector -> { properties: [], isImportant: true })
+            atRules: new Map(), // atRule string (media/container) -> Map(selector -> { properties: [], isImportant: true })
+            keyframes: new Map(), // name -> css string
+            fontFaces: new Set() // css strings
         };
         this.updateFrameId = null;
         this.MAX_RECURSION_DEPTH = 15;
@@ -529,14 +532,16 @@ class CSSF {
        const context = {
            selector: `.${className}`,
            properties: [],
-           mediaQuery: null,
+           atRule: null,
            rootRule: null,
-           isImportant: isImportant
+           isImportant: isImportant,
+           keyframes: null,
+           fontFace: null
        };
        
        parts.forEach(part => this.processPart(part, context, className, 0));
        
-       if (context.properties.length > 0 || context.rootRule) {
+       if (context.properties.length > 0 || context.rootRule || context.keyframes || context.fontFace) {
            return context;
        }
        return null;
@@ -549,7 +554,10 @@ class CSSF {
         }
 
         const processors = [
-            { condition: p => p.startsWith('mq'), handler: p => context.mediaQuery = this.handleMediaQuery(p) },
+            { condition: p => p.startsWith('mq'), handler: p => context.atRule = this.handleMediaQuery(p) },
+            { condition: p => p.startsWith('cq'), handler: p => context.atRule = this.handleContainerQuery(p) },
+            { condition: p => p.startsWith('kf-'), handler: p => this.processKeyframesPart(p, context) },
+            { condition: p => p.startsWith('fface-'), handler: p => this.processFontFacePart(p, context) },
             { condition: p => p.startsWith('tar-'), handler: p => context.selector = this.handleTargetSelector(p, className) },
             { condition: p => p.startsWith('val-'), handler: p => this.processValuePart(p, context) },
             { condition: p => p.startsWith('rval-'), handler: p => this.processRootValuePart(p, className, context) },
@@ -559,6 +567,152 @@ class CSSF {
 
         const processor = processors.find(proc => proc.condition(part));
         if (processor) processor.handler(part);
+    }
+
+    handleMediaQuery(mqPart) {
+        const matchNumeric = mqPart.match(/^mq(\d+)(max)?(?:-(.+))?$/);
+        if (matchNumeric) {
+            const widthClause = `(${matchNumeric[2] ? 'max' : 'min'}-width: ${matchNumeric[1]}px)`;
+            const typeClause = matchNumeric[3] ? matchNumeric[3].replace(/_/g, ' ') : '';
+            return `@media ${typeClause ? typeClause + ' and ' : ''}${widthClause}`;
+        }
+        
+        const matchString = mqPart.match(/^mq-(.+)$/);
+        if (matchString) {
+            return `@media ${matchString[1].replace(/_/g, ' ')}`;
+        }
+        return null;
+    }
+
+    handleContainerQuery(cqPart) {
+        const matchNumeric = cqPart.match(/^cq(\d+)(max)?(?:-(.+))?$/);
+        if (matchNumeric) {
+             const widthClause = `(${matchNumeric[2] ? 'max' : 'min'}-width: ${matchNumeric[1]}px)`;
+             const nameClause = matchNumeric[3] ? matchNumeric[3].replace(/_/g, ' ') : '';
+             return `@container ${nameClause ? nameClause + ' ' : ''}${widthClause}`;
+        }
+        
+        const matchString = cqPart.match(/^cq-(.+)$/);
+        if (matchString) {
+            return `@container ${matchString[1].replace(/_/g, ' ')}`;
+        }
+        return null;
+    }
+
+    processKeyframesPart(part, context) {
+        const tokens = part.split('_');
+        const name = tokens[0].substring(3);
+        
+        let frames = new Map();
+        let currentSelector = null;
+        
+        let i = 1;
+        while(i < tokens.length) {
+            const token = tokens[i];
+            
+            if (token === 'from' || token === 'to' || /^\d+p$/.test(token)) {
+                currentSelector = token.replace('p', '%');
+                if (!frames.has(currentSelector)) frames.set(currentSelector, []);
+                i++;
+                continue;
+            }
+            
+            if (currentSelector) {
+                const prop = token;
+                i++; // move past prop
+                const { value, consumed } = this.consumeValueTokens(tokens, i);
+                
+                if (value !== '') {
+                    const cssProp = this.config.aliases.get(prop) || prop;
+                    frames.get(currentSelector).push(`${cssProp}: ${value}`);
+                    i += consumed;
+                }
+            } else {
+                i++;
+            }
+        }
+        
+        let css = `@keyframes ${name} {\n`;
+        for (const [sel, props] of frames) {
+            css += `  ${sel} { ${props.join('; ')} }\n`;
+        }
+        css += `}`;
+        
+        context.keyframes = { name, css };
+    }
+
+    processFontFacePart(part, context) {
+        const tokens = part.split('_');
+        const name = tokens[0].substring(6);
+        
+        const props = [`font-family: "${name}"`];
+        
+        let i = 1;
+        while(i < tokens.length) {
+            const prop = tokens[i];
+            i++;
+            if(i >= tokens.length) break;
+
+            const { value, consumed } = this.consumeValueTokens(tokens, i);
+            const cssProp = this.config.aliases.get(prop) || prop;
+            props.push(`${cssProp}: ${value}`);
+            i += consumed;
+        }
+        
+        const css = `@font-face {\n  ${props.join(';\n  ')};\n}`;
+        context.fontFace = css;
+    }
+
+    consumeValueTokens(tokens, startIndex) {
+        if (startIndex >= tokens.length) return { value: '', consumed: 0 };
+        
+        const startToken = tokens[startIndex];
+        
+        // Check for functions
+        if (startToken.startsWith('fn-') || startToken.startsWith('cfn-')) {
+            let closeIndex = -1;
+            for (let j = startIndex + 1; j < tokens.length; j++) {
+                if (tokens[j] === 'close') {
+                    closeIndex = j;
+                    break;
+                }
+            }
+            
+            if (closeIndex !== -1) {
+                const chunk = tokens.slice(startIndex, closeIndex + 1).join('_');
+                return { value: this.processValue(chunk), consumed: closeIndex - startIndex + 1 };
+            } else {
+                // Consume remaining if no close found (fallback, though strict usage requires close)
+                const chunk = tokens.slice(startIndex).join('_');
+                return { value: this.processValue(chunk), consumed: tokens.length - startIndex };
+            }
+        }
+        
+        // Check for templates with args
+        if (startToken.startsWith('tpl-')) {
+            const tplName = startToken.substring(4);
+            const template = this.config.templates.get(tplName);
+            if (template) {
+                const matches = template.match(/§(\d+)/g);
+                let maxIndex = -1;
+                if (matches) {
+                    matches.forEach(m => {
+                        const idx = parseInt(m.substring(1));
+                        if (idx > maxIndex) maxIndex = idx;
+                    });
+                }
+                const argCount = maxIndex + 1;
+                if (argCount > 0) {
+                     const available = tokens.length - 1 - startIndex;
+                     const consumeCount = Math.min(argCount, available);
+                     const chunk = tokens.slice(startIndex, startIndex + 1 + consumeCount).join('_');
+                     return { value: this.processValue(chunk), consumed: 1 + consumeCount };
+                }
+            }
+        }
+
+        // Default single token
+        return { value: this.processValue(startToken), consumed: 1 };
     }
 
     processValuePart(part, context) {
@@ -622,11 +776,6 @@ class CSSF {
     buildCSSRule(selector, properties, isImportant) {
         const importantSuffix = isImportant ? ' !important' : '';
         return `${selector} {\r\n  ${properties.join(`${importantSuffix};\r\n  `)}${importantSuffix};\r\n}`;
-    }
-
-    handleMediaQuery(mqPart) {
-        const match = mqPart.match(/^mq(\d+)(max)?$/);
-        return match ? `@media (${match[2] ? 'max' : 'min'}-width: ${match[1]}px)` : null;
     }
 
    _isSelectorInstruction(part) {
@@ -828,81 +977,99 @@ class CSSF {
         return null;
     }
 
-   parseStandardProperty(part) {
-       const [prop, ...valueParts] = part.split('_');
-       const cssProperty = this.config.aliases.get(prop) || prop;
-       
-       const processedParts = [];
-       let i = 0;
-       
-       while (i < valueParts.length) {
-           const currentPart = valueParts[i];
-           
-           if (currentPart.startsWith('tpl-')) {
-               const tplName = currentPart.substring(4);
-               const template = this.config.templates.get(tplName);
-               if (template) {
-                   // Calculate required arguments
-                   const matches = template.match(/§(\d+)/g);
-                   let maxIndex = -1;
-                   if (matches) {
-                       matches.forEach(m => {
-                           const idx = parseInt(m.substring(1));
-                           if (idx > maxIndex) maxIndex = idx;
-                       });
-                   }
-                   const argCount = maxIndex + 1;
-                   
-                   // Consume arguments if template requires them
-                   if (argCount > 0) {
-                       const availableArgs = valueParts.length - (i + 1);
-                       const consumeCount = Math.min(argCount, availableArgs);
-                       
-                       const args = valueParts.slice(i + 1, i + 1 + consumeCount);
-                       const fullTplString = `${currentPart}_${args.join('_')}`;
-                       processedParts.push(this.processValue(fullTplString));
-                       i += consumeCount;
-                   } else {
-                       processedParts.push(this.processValue(currentPart));
-                   }
-               } else {
-                   // Template not found, process as is
-                   processedParts.push(this.processValue(currentPart));
-               }
-           } else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
-               // For functions, scan for 'close' or consume remainder if nested
-               let closeIndex = -1;
-               for (let j = i + 1; j < valueParts.length; j++) {
-                   if (valueParts[j] === 'close') {
-                       closeIndex = j;
-                       break;
-                   }
-               }
-               
-               if (closeIndex !== -1) {
-                   const args = valueParts.slice(i + 1, closeIndex + 1);
-                   const fullFnString = `${currentPart}_${args.join('_')}`;
-                   processedParts.push(this.processValue(fullFnString));
-                   i = closeIndex;
-               } else {
-                   // No close found, consume remainder
-                   const rest = valueParts.slice(i);
-                   const fullString = rest.join('_');
-                   processedParts.push(this.processValue(fullString));
-                   i = valueParts.length; 
-               }
-           } else {
-               processedParts.push(this.processValue(currentPart));
-           }
-           
-           i++;
-       }
-       
-       return {
-           property: cssProperty,
-           value: processedParts.join(' ')
-       };
-   }
+    parseStandardProperty(part) {
+        const [prop, ...valueParts] = part.split('_');
+        const cssProperty = this.config.aliases.get(prop) || prop;
+        
+        const processedParts = [];
+        let i = 0;
+        let attachNext = false; // Controls if the next token attaches to the previous one without space
+        
+        while (i < valueParts.length) {
+            const currentPart = valueParts[i];
+            let val = '';
+            let isGlue = false;
+            let consumed = 0;
+            
+            // 1. Check for chrsl- (Seamless Character / No Space)
+            if (currentPart.startsWith('chrsl-')) {
+                const charName = currentPart.substring(6);
+                val = this.config.chars.get(charName) || charName;
+                isGlue = true;
+                consumed = 0; 
+            } 
+            // 2. Check for Templates
+            else if (currentPart.startsWith('tpl-')) {
+                const tplName = currentPart.substring(4);
+                const template = this.config.templates.get(tplName);
+                if (template) {
+                    const matches = template.match(/§(\d+)/g);
+                    let maxIndex = -1;
+                    if (matches) {
+                        matches.forEach(m => {
+                            const idx = parseInt(m.substring(1));
+                            if (idx > maxIndex) maxIndex = idx;
+                        });
+                    }
+                    const argCount = maxIndex + 1;
+                    
+                    if (argCount > 0) {
+                        const availableArgs = valueParts.length - (i + 1);
+                        const consumeCount = Math.min(argCount, availableArgs);
+                        const args = valueParts.slice(i + 1, i + 1 + consumeCount);
+                        const fullTplString = `${currentPart}_${args.join('_')}`;
+                        val = this.processValue(fullTplString);
+                        consumed = consumeCount;
+                    } else {
+                        val = this.processValue(currentPart);
+                    }
+                } else {
+                    val = this.processValue(currentPart);
+                }
+            } 
+            // 3. Check for Functions
+            else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
+                let closeIndex = -1;
+                for (let j = i + 1; j < valueParts.length; j++) {
+                    if (valueParts[j] === 'close') {
+                        closeIndex = j;
+                        break;
+                    }
+                }
+                
+                if (closeIndex !== -1) {
+                    const args = valueParts.slice(i + 1, closeIndex + 1);
+                    const fullFnString = `${currentPart}_${args.join('_')}`;
+                    val = this.processValue(fullFnString);
+                    consumed = (closeIndex - i); 
+                } else {
+                    const rest = valueParts.slice(i);
+                    const fullString = rest.join('_');
+                    val = this.processValue(fullString);
+                    consumed = valueParts.length - i - 1; 
+                }
+            } 
+            // 4. Standard Value
+            else {
+                val = this.processValue(currentPart);
+            }
+            
+            // Merging Logic: If attachNext is true (previous was glue) or current is glue
+            if (processedParts.length > 0 && (attachNext || isGlue)) {
+                processedParts[processedParts.length - 1] += val;
+            } else {
+                processedParts.push(val);
+            }
+            
+            attachNext = isGlue;
+            i += 1 + consumed;
+        }
+        
+        return {
+            property: cssProperty,
+            value: processedParts.join(' ')
+        };
+    }
 
     createPropertyValue(property, processedValue) {
         return {
@@ -961,35 +1128,50 @@ class CSSF {
        if (!fnMatch) return value;
 
        const [, fnName, params] = fnMatch;
-       
        const paramParts = params.split('_');
-       const { processedParams, foundClose } = this.processFunctionParams(paramParts);
        
-       if (foundClose) {
-           const fnPart = processedParams.filter(p => !p.startsWith(' ')).join(' ');
-           const additionalParts = processedParams.filter(p => p.startsWith(' ')).join('');
-           return `${fnName}(${fnPart})${additionalParts}`;
-       }
-       
-       return `${fnName}(${processedParams.join(' ')})`;
-   }
+       let functionParams = [];
+       let afterCloseParams = [];
+       let foundClose = false;
+       let attachNext = false; // glue flag
 
-    processFunctionParams(paramParts) {
-        let processedParams = [];
-        let foundClose = false;
-        
-        paramParts.forEach(param => {
-            if (param === 'close') {
-                foundClose = true;
-            } else if (foundClose) {
-                processedParams.push(' ' + this.processValue(param));
-            } else {
-                processedParams.push(this.processFunctionParameter(param));
-            }
-        });
-        
-        return { processedParams, foundClose };
-    }
+       for (let i = 0; i < paramParts.length; i++) {
+           const part = paramParts[i];
+           
+           if (part === 'close') {
+               foundClose = true;
+               attachNext = false;
+               continue;
+           }
+
+           let val = '';
+           let isGlue = false;
+
+           if (part.startsWith('chrsl-')) {
+               const charName = part.substring(6);
+               val = this.config.chars.get(charName) || charName;
+               isGlue = true;
+           } else {
+               if (foundClose) {
+                   val = this.processValue(part);
+               } else {
+                   val = this.processFunctionParameter(part);
+               }
+           }
+
+           if (foundClose) {
+               afterCloseParams.push(' ' + val);
+           } else {
+               if (functionParams.length > 0 && !attachNext && !isGlue) {
+                   functionParams.push(' ');
+               }
+               functionParams.push(val);
+               attachNext = isGlue;
+           }
+       }
+
+       return `${fnName}(${functionParams.join('')})${afterCloseParams.join('')}`;
+   }
 
    processFunctionParameter(param) {
        const prefixHandler = Object.entries(this.prefixHandlers)
@@ -1068,16 +1250,24 @@ class CSSF {
             }
         }
     
+        if (context.keyframes) {
+            this.styleSheetContent.keyframes.set(context.keyframes.name, context.keyframes.css);
+        }
+
+        if (context.fontFace) {
+            this.styleSheetContent.fontFaces.add(context.fontFace);
+        }
+
         if (context.properties.length > 0) {
             const ruleData = {
                 properties: context.properties,
                 isImportant: context.isImportant
             };
-            if (context.mediaQuery) {
-                if (!this.styleSheetContent.media.has(context.mediaQuery)) {
-                    this.styleSheetContent.media.set(context.mediaQuery, new Map());
+            if (context.atRule) {
+                if (!this.styleSheetContent.atRules.has(context.atRule)) {
+                    this.styleSheetContent.atRules.set(context.atRule, new Map());
                 }
-                this.styleSheetContent.media.get(context.mediaQuery).set(context.selector, ruleData);
+                this.styleSheetContent.atRules.get(context.atRule).set(context.selector, ruleData);
             } else {
                 this.styleSheetContent.base.set(context.selector, ruleData);
             }
@@ -1096,22 +1286,30 @@ class CSSF {
         if (this.styleSheetContent.root.length > 0) {
             cssChunks.push(...this.styleSheetContent.root);
         }
+        
+        if (this.styleSheetContent.fontFaces.size > 0) {
+            cssChunks.push(...this.styleSheetContent.fontFaces);
+        }
+
+        if (this.styleSheetContent.keyframes.size > 0) {
+            cssChunks.push(...this.styleSheetContent.keyframes.values());
+        }
     
         for (const [selector, ruleData] of this.styleSheetContent.base.entries()) {
             cssChunks.push(this.buildCSSRule(selector, ruleData.properties, ruleData.isImportant));
         }
     
-        const sortedMediaQueries = this.sortMediaQueries(Array.from(this.styleSheetContent.media.keys()));
+        const sortedAtRules = this.sortAtRules(Array.from(this.styleSheetContent.atRules.keys()));
         
-        for (const mediaQuery of sortedMediaQueries) {
-            const rulesMap = this.styleSheetContent.media.get(mediaQuery);
+        for (const atRule of sortedAtRules) {
+            const rulesMap = this.styleSheetContent.atRules.get(atRule);
             const mediaRules = [];
             for (const [selector, ruleData] of rulesMap.entries()) {
                 mediaRules.push(this.buildCSSRule(selector, ruleData.properties, ruleData.isImportant));
             }
             if (mediaRules.length > 0) {
                 const indentedRules = mediaRules.join('\r\n').replace(/^/gm, '  ');
-                cssChunks.push(`${mediaQuery} {\r\n${indentedRules}\r\n}`);
+                cssChunks.push(`${atRule} {\r\n${indentedRules}\r\n}`);
             }
         }
         
@@ -1119,18 +1317,41 @@ class CSSF {
         this.updateFrameId = null;
     }
 
-    sortMediaQueries(mediaQueries) {
-        const extractWidth = (mq) => {
-            const match = mq.match(/\(min-width: (\d+)px\)/);
-            return match ? parseInt(match[1], 10) : Infinity;
+    sortAtRules(atRules) {
+        const getSortData = (rule) => {
+            const isMedia = rule.startsWith('@media');
+            const isContainer = rule.startsWith('@container');
+            
+            // Group 0: Media, Group 1: Container, Group 2: Others
+            let group = 2;
+            if (isMedia) group = 0;
+            else if (isContainer) group = 1;
+
+            const extractWidth = (r) => {
+                const matchMin = r.match(/\(min-width:\s*(\d+)px\)/);
+                if (matchMin) return parseInt(matchMin[1], 10);
+                
+                const matchMax = r.match(/\(max-width:\s*(\d+)px\)/);
+                if (matchMax) return parseInt(matchMax[1], 10) + 100000;
+                
+                return Infinity;
+            };
+
+            return { group, size: extractWidth(rule) };
         };
     
-        return mediaQueries.sort((a, b) => {
-            const widthA = extractWidth(a);
-            const widthB = extractWidth(b);
-            if (widthA !== widthB) {
-                return widthA - widthB;
+        return atRules.sort((a, b) => {
+            const dataA = getSortData(a);
+            const dataB = getSortData(b);
+            
+            if (dataA.group !== dataB.group) {
+                return dataA.group - dataB.group;
             }
+            
+            if (dataA.size !== dataB.size) {
+                return dataA.size - dataB.size;
+            }
+            
             return a.localeCompare(b);
         });
     }
@@ -1159,7 +1380,9 @@ class CSSF {
         this.styleSheetContent = {
             root: [],
             base: new Map(),
-            media: new Map()
+            atRules: new Map(),
+            keyframes: new Map(),
+            fontFaces: new Set()
         };
         if (this.updateFrameId) {
             cancelAnimationFrame(this.updateFrameId);

@@ -224,6 +224,11 @@
    --form-select-line-height: 1.2;
    --form-select-color: var(--color-1);
    /* --form-select-background: var(--color-9) calc(100% - 0.75rem) 0rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="%230075A9" d="M119.5 326.9L3.5 209.1c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L128 287.3l100.4-102.2c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L136.5 327c-4.7 4.6-12.3 4.6-17-.1z"/></svg>'); */
+   /*  
+      linear-gradient(45deg, transparent 50%, var(--color-1) 50%) calc(100% - var(--size-16)) 50% / var(--size-8) var(--size-8) no-repeat,
+      linear-gradient(135deg, var(--color-1) 50%, transparent 50%) calc(100% - 8px) 50% / var(--size-8) var(--size-8) no-repeat,
+      var(--color-2)
+   */
    --form-select-background: var(--color-9) calc(100% - 0.75rem) 0.65rem / 1.25rem 1.25rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class=""><path fill="%23003769" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z" /></svg>');
    --form-select-padding:  0.75rem 2.5rem 0.75rem 1rem; /* trbl */
    --form-select-border: none; 
@@ -232,6 +237,7 @@
    --form-select-width: 100%;  
    --form-select-letter-spacing: normal;
    --form-select-text-transform: none;
+   --form-select-box-shadow: none;
    --form-select-option-font-family: sans-serif;
    --form-select-option-font-style: var(--default-font-style, normal);
    --form-select-option-font-weight: normal;  
@@ -361,6 +367,7 @@ select.cssf {
    width: var(--form-select-width); 
    letter-spacing: var(--form-select-letter-spacing);
    text-transform: var(--form-select-text-transform);
+   box-shadow: var(--form-select-box-shadow);
 }
 
 .cssf form select option,

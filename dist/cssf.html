@@ -66,13 +66,101 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Initiale Aktualisierung
         updateClasses();
+
+        /* ------------------------------------------------------------ */
+        /* LIVE REFERENCE LOGIC */
+        /* ------------------------------------------------------------ */
+        
+        function initLiveReference() {
+            if (!window.cssf || !window.cssf.config) {
+                // Warten bis cssf.js initialisiert ist
+                setTimeout(initLiveReference, 100);
+                return;
+            }
+
+            const renderList = (targetId, mapData) => {
+                const container = document.getElementById(targetId);
+                if (!container) return;
+                
+                // Sortieren nach Key
+                const sortedKeys = Array.from(mapData.keys()).sort();
+                
+                let html = '';
+                sortedKeys.forEach(key => {
+                    let val = mapData.get(key);
+                    if (typeof val === 'function') val = 'Function()';
+                    if (Array.isArray(val)) val = val.join(', ');
+                    
+                    html += `<div class="ref-row">
+                        <span class="ref-key">${key}</span>
+                        <span class="ref-val">${val}</span>
+                    </div>`;
+                });
+                container.innerHTML = html;
+            };
+
+            // 1. Aliase
+            renderList('ref-list-aliases', window.cssf.config.aliases);
+
+            // 2. Templates
+            renderList('ref-list-templates', window.cssf.config.templates);
+
+            // 3. Sonderzeichen (Chars)
+            renderList('ref-list-chars', window.cssf.config.chars);
+        }
+
+        // Suchfunktion
+        const searchInput = document.getElementById('ref-search');
+        const searchResults = document.getElementById('ref-search-results');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            
+            if (!term) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            searchResults.style.display = 'grid';
+            searchResults.innerHTML = '';
+
+            const searchInMap = (map, typeLabel, cssClass) => {
+                for (const [key, value] of map.entries()) {
+                    let strVal = String(value);
+                    if (Array.isArray(value)) strVal = value.join(', ');
+                    if (typeof value === 'function') strVal = 'Function()';
+
+                    if (key.toLowerCase().includes(term) || strVal.toLowerCase().includes(term)) {
+                        const div = document.createElement('div');
+                        div.className = 'ref-row';
+                        div.innerHTML = `<span class="ref-type-badge ${cssClass}">${typeLabel}</span>
+                                         <span class="ref-key">${key}</span> 
+                                         <span class="ref-val">${strVal}</span>`;
+                        searchResults.appendChild(div);
+                    }
+                }
+            };
+
+            if (window.cssf) {
+                searchInMap(window.cssf.config.aliases, 'Alias', 'badge-alias');
+                searchInMap(window.cssf.config.templates, 'Template', 'badge-template');
+                searchInMap(window.cssf.config.chars, 'Char', 'badge-char');
+            }
+
+            if (searchResults.children.length === 0) {
+                searchResults.innerHTML = '<div style="padding:10px; color:#666; grid-column: 1/-1;">Keine Ergebnisse gefunden.</div>';
+            }
+        });
+
+        // Starten
+        initLiveReference();
 });
 
      
     </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             margin: 20px;
             background: #f5f5f5;
         }
@@ -87,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .section {
             margin-bottom: 30px;
         }
-        h1, h2 {
+        h1, h2, h3 {
             color: #333;
         }
         textarea {
@@ -133,18 +221,150 @@ document.addEventListener("DOMContentLoaded", function() {
             border-left: 4px solid #007bff;
             margin-bottom: 20px;
         }
+
+        /* Styles for Live Reference */
+        details.ref-accordion {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+        details.ref-accordion summary {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #f1f1f1;
+            user-select: none;
+            outline: none;
+        }
+        details.ref-accordion summary:hover {
+            background: #e9e9e9;
+        }
+        details.ref-accordion[open] summary {
+            border-bottom: 1px solid #ddd;
+        }
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1px;
+            background: #ddd; /* creates border lines */
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .ref-row {
+            background: white;
+            padding: 6px 10px;
+            font-size: 13px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+        .ref-row:hover {
+            background: #f0f7ff;
+        }
+        .ref-key {
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            font-weight: bold;
+            min-width: 60px;
+            flex-shrink: 0;
+        }
+        .ref-val {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            word-break: break-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ref-search-box {
+            margin: 15px 0;
+            position: relative;
+        }
+        .ref-search-box input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #ref-search-results {
+            display: none; /* Hidden by default */
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1px;
+            background: #ddd;
+            margin: 0 0 15px 0;
+            border: 2px solid #007bff;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .ref-type-badge {
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 2px 4px;
+            border-radius: 3px;
+            width: 60px;
+            text-align: center;
+            flex-shrink: 0;
+            color: white;
+        }
+        .badge-alias { background: #6c757d; }
+        .badge-template { background: #28a745; }
+        .badge-char { background: #17a2b8; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>CSSF Framework - CSS Class Generator</h1>
         
+
+        <div class="section">
+            <h2>Live Referenz (aus cssf.js)</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9em; color: #666;">
+                Durchsuchen Sie Aliase, Templates und Sonderzeichen oder klappen Sie die Listen auf.
+            </p>
+
+            <!-- 1. Akkordeon Oben: Aliases -->
+            <details class="ref-accordion">
+                <summary>Alle Property Aliase (z.B. m=margin, bg=background)</summary>
+                <div id="ref-list-aliases" class="ref-grid">
+                    <div style="padding:10px">Lade...</div>
+                </div>
+            </details>
+
+            <!-- 2. Akkordeon Unten: Templates -->
+            <details class="ref-accordion">
+                <summary>Templates (z.B. tpl-flex, tpl-grid)</summary>
+                <div id="ref-list-templates" class="ref-grid">
+                     <div style="padding:10px">Lade...</div>
+                </div>
+            </details>
+
+            <!-- 3. Akkordeon Unten: Sonderzeichen -->
+            <details class="ref-accordion">
+                <summary>Sonderzeichen (z.B. chr-slash, chr-dot)</summary>
+                <div id="ref-list-chars" class="ref-grid">
+                     <div style="padding:10px">Lade...</div>
+                </div>
+            </details>
+        </div>
+
         <div class="info">
             Geben Sie CSS-Klassen mit dem Präfix "cssf--" ein. Diese werden automatisch in CSS umgewandelt.
         </div>
-
+        
         <div class="section">
             <h2>Test Classes</h2>
+            
+            <!--  Suchfeld -->
+            <div class="ref-search-box">
+                <input type="text" id="ref-search" placeholder="🔍 Suche nach Alias, Template oder Zeichen...">
+            </div>
+            <div id="ref-search-results"></div>
+
             <textarea id="classInput" placeholder="Geben Sie hier Ihre cssf-- Klassen ein...">
 cssf--tar-pc-hover--m20
 cssf--fs_fn-calc_var-apfel-stuecke_chr-slash_2

@@ -412,7 +412,7 @@ class CSSF {
             customFunctions: this.createMap({
                 'date-now': () => new Date().toLocaleDateString('de-DE'),
                 'date-time': () => new Date().toLocaleString('de-DE'),
-                timestamp: () => Date.now().toString(),
+                timestamp: () => Date.now().toString().substr(0, 10), // Use substr to keep it short
                 random: () => Math.random().toString().substr(2, 6),
                 year: () => new Date().getFullYear().toString(),
                 month: () => (new Date().getMonth() + 1).toString(),
@@ -715,11 +715,100 @@ class CSSF {
         return { value: this.processValue(startToken), consumed: 1 };
     }
 
+    // START OF FIX: processValuePart now uses the same token-processing logic as parseStandardProperty
     processValuePart(part, context) {
         const [prop, ...valueParts] = part.split('_');
-        const value = valueParts.join('_');
-        context.properties.push(`--${prop.substring(4)}: ${this.processValue(value)}`);
+        const varName = prop.substring(4); // Extract variable name
+
+        const processedParts = [];
+        let i = 0;
+        let attachNext = false; // Controls if the next token attaches to the previous one without space
+
+        while (i < valueParts.length) {
+            const currentPart = valueParts[i];
+            let val = '';
+            let isGlue = false;
+            let consumed = 0;
+
+            // 1. Check for chrsl- (Seamless Character / No Space)
+            if (currentPart.startsWith('chrsl-')) {
+                const charName = currentPart.substring(6);
+                val = this.config.chars.get(charName) || charName;
+                isGlue = true;
+                consumed = 0;
+            }
+            // 2. Check for Templates
+            else if (currentPart.startsWith('tpl-')) {
+                const tplName = currentPart.substring(4);
+                const template = this.config.templates.get(tplName);
+                if (template) {
+                    const matches = template.match(/§(\d+)/g);
+                    let maxIndex = -1;
+                    if (matches) {
+                        matches.forEach(m => {
+                            const idx = parseInt(m.substring(1));
+                            if (idx > maxIndex) maxIndex = idx;
+                        });
+                    }
+                    const argCount = maxIndex + 1;
+
+                    if (argCount > 0) {
+                        const availableArgs = valueParts.length - (i + 1);
+                        const consumeCount = Math.min(argCount, availableArgs);
+                        const args = valueParts.slice(i + 1, i + 1 + consumeCount);
+                        const fullTplString = `${currentPart}_${args.join('_')}`;
+                        val = this.processValue(fullTplString);
+                        consumed = consumeCount;
+                    } else {
+                        val = this.processValue(currentPart);
+                    }
+                } else {
+                    val = this.processValue(currentPart);
+                }
+            }
+            // 3. Check for Functions
+            else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
+                let closeIndex = -1;
+                for (let j = i + 1; j < valueParts.length; j++) {
+                    if (valueParts[j] === 'close') {
+                        closeIndex = j;
+                        break;
+                    }
+                }
+
+                if (closeIndex !== -1) {
+                    const args = valueParts.slice(i + 1, closeIndex + 1);
+                    const fullFnString = `${currentPart}_${args.join('_')}`;
+                    val = this.processValue(fullFnString);
+                    consumed = (closeIndex - i);
+                } else {
+                    const rest = valueParts.slice(i);
+                    const fullString = rest.join('_');
+                    val = this.processValue(fullString);
+                    // Konsistent mit parseStandardProperty:
+                    consumed = valueParts.length - i - 1; 
+                }
+            }
+            // 4. Standard Value
+            else {
+                val = this.processValue(currentPart);
+            }
+
+            // Merging Logic: If attachNext is true (previous was glue) or current is glue
+            if (processedParts.length > 0 && (attachNext || isGlue)) {
+                processedParts[processedParts.length - 1] += val;
+            } else {
+                processedParts.push(val);
+            }
+
+            attachNext = isGlue;
+            i += 1 + consumed;
+        }
+
+        // Push the compiled custom property value
+        context.properties.push(`--${varName}: ${processedParts.join(' ')}`);
     }
+    // END OF FIX
 
     processRootValuePart(part, className, context) {
         const [prop, ...valueParts] = part.split('_');

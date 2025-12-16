@@ -1,4 +1,5 @@
 
+
 if (typeof window.CSSF === 'undefined') {
 
 class CSSF {
@@ -409,10 +410,10 @@ class CSSF {
                 'line-clamp': 'line-clamp: §0; -webkit-line-clamp: §0; -webkit-box-orient: vertical; overflow: hidden; display: -webkit-box'
             }),
             
-            customFunctions: this.createMap({
+       customFunctions: this.createMap({
                 'date-now': () => new Date().toLocaleDateString('de-DE'),
                 'date-time': () => new Date().toLocaleString('de-DE'),
-                timestamp: () => Date.now().toString().substr(0, 10), // Use substr to keep it short
+                timestamp: () => Date.now().toString().substr(0, 10),
                 random: () => Math.random().toString().substr(2, 6),
                 year: () => new Date().getFullYear().toString(),
                 month: () => (new Date().getMonth() + 1).toString(),
@@ -421,17 +422,12 @@ class CSSF {
                     const minFontSizePx = parseFloat(min);
                     const maxFontSizePx = parseFloat(max);
                     const maxWidthPx = parseFloat(viewport);
-                    // Assuming a common mobile viewport as the minimum width, as it's not provided.
-                    const minWidthPx = 0; // 320
-
+                    const minWidthPx = 0; 
                     if ([minFontSizePx, maxFontSizePx, maxWidthPx].some(isNaN)) {
                         return `clamp(${min}, ${max}, ${viewport})`;
                     }
-                    
                     return this._clampBuilder(minWidthPx, maxWidthPx, minFontSizePx, maxFontSizePx);
                 },
-                
-                // Additional utility functions
                 'viewport-width': () => window.innerWidth + 'px',
                 'viewport-height': () => window.innerHeight + 'px',
                 'rem-to-px': (rem) => (parseFloat(rem) * 16) + 'px',
@@ -462,7 +458,6 @@ class CSSF {
 
     init() {
         this.setupMutationObserver();
-        // Defer initial processing to prevent blocking the main thread during page load.
         if ('requestIdleCallback' in window) {
             requestIdleCallback(() => this.processElementAndChildren(document.body));
         } else {
@@ -619,7 +614,7 @@ class CSSF {
             
             if (currentSelector) {
                 const prop = token;
-                i++; // move past prop
+                i++; 
                 const { value, consumed } = this.consumeValueTokens(tokens, i);
                 
                 if (value !== '') {
@@ -665,10 +660,8 @@ class CSSF {
 
     consumeValueTokens(tokens, startIndex) {
         if (startIndex >= tokens.length) return { value: '', consumed: 0 };
-        
         const startToken = tokens[startIndex];
         
-        // Check for functions
         if (startToken.startsWith('fn-') || startToken.startsWith('cfn-')) {
             let closeIndex = -1;
             for (let j = startIndex + 1; j < tokens.length; j++) {
@@ -682,13 +675,11 @@ class CSSF {
                 const chunk = tokens.slice(startIndex, closeIndex + 1).join('_');
                 return { value: this.processValue(chunk), consumed: closeIndex - startIndex + 1 };
             } else {
-                // Consume remaining if no close found (fallback, though strict usage requires close)
                 const chunk = tokens.slice(startIndex).join('_');
                 return { value: this.processValue(chunk), consumed: tokens.length - startIndex };
             }
         }
         
-        // Check for templates with args
         if (startToken.startsWith('tpl-')) {
             const tplName = startToken.substring(4);
             const template = this.config.templates.get(tplName);
@@ -711,18 +702,18 @@ class CSSF {
             }
         }
 
-        // Default single token
         return { value: this.processValue(startToken), consumed: 1 };
     }
 
-    // START OF FIX: processValuePart now uses the same token-processing logic as parseStandardProperty
     processValuePart(part, context) {
-        const [prop, ...valueParts] = part.split('_');
-        const varName = prop.substring(4); // Extract variable name
+        const tokens = part.split('_');
+        const prop = tokens[0];
+        const valueParts = tokens.slice(1);
+        const varName = prop.substring(4); 
 
         const processedParts = [];
         let i = 0;
-        let attachNext = false; // Controls if the next token attaches to the previous one without space
+        let attachNext = false; 
 
         while (i < valueParts.length) {
             const currentPart = valueParts[i];
@@ -730,71 +721,18 @@ class CSSF {
             let isGlue = false;
             let consumed = 0;
 
-            // 1. Check for chrsl- (Seamless Character / No Space)
             if (currentPart.startsWith('chrsl-')) {
                 const charName = currentPart.substring(6);
                 val = this.config.chars.get(charName) || charName;
                 isGlue = true;
                 consumed = 0;
             }
-            // 2. Check for Templates
-            else if (currentPart.startsWith('tpl-')) {
-                const tplName = currentPart.substring(4);
-                const template = this.config.templates.get(tplName);
-                if (template) {
-                    const matches = template.match(/§(\d+)/g);
-                    let maxIndex = -1;
-                    if (matches) {
-                        matches.forEach(m => {
-                            const idx = parseInt(m.substring(1));
-                            if (idx > maxIndex) maxIndex = idx;
-                        });
-                    }
-                    const argCount = maxIndex + 1;
-
-                    if (argCount > 0) {
-                        const availableArgs = valueParts.length - (i + 1);
-                        const consumeCount = Math.min(argCount, availableArgs);
-                        const args = valueParts.slice(i + 1, i + 1 + consumeCount);
-                        const fullTplString = `${currentPart}_${args.join('_')}`;
-                        val = this.processValue(fullTplString);
-                        consumed = consumeCount;
-                    } else {
-                        val = this.processValue(currentPart);
-                    }
-                } else {
-                    val = this.processValue(currentPart);
-                }
-            }
-            // 3. Check for Functions
-            else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
-                let closeIndex = -1;
-                for (let j = i + 1; j < valueParts.length; j++) {
-                    if (valueParts[j] === 'close') {
-                        closeIndex = j;
-                        break;
-                    }
-                }
-
-                if (closeIndex !== -1) {
-                    const args = valueParts.slice(i + 1, closeIndex + 1);
-                    const fullFnString = `${currentPart}_${args.join('_')}`;
-                    val = this.processValue(fullFnString);
-                    consumed = (closeIndex - i);
-                } else {
-                    const rest = valueParts.slice(i);
-                    const fullString = rest.join('_');
-                    val = this.processValue(fullString);
-                    // Konsistent mit parseStandardProperty:
-                    consumed = valueParts.length - i - 1; 
-                }
-            }
-            // 4. Standard Value
             else {
-                val = this.processValue(currentPart);
+                const result = this.consumeValueTokens(valueParts, i);
+                val = result.value;
+                consumed = result.consumed - 1; 
             }
 
-            // Merging Logic: If attachNext is true (previous was glue) or current is glue
             if (processedParts.length > 0 && (attachNext || isGlue)) {
                 processedParts[processedParts.length - 1] += val;
             } else {
@@ -805,10 +743,8 @@ class CSSF {
             i += 1 + consumed;
         }
 
-        // Push the compiled custom property value
         context.properties.push(`--${varName}: ${processedParts.join(' ')}`);
     }
-    // END OF FIX
 
     processRootValuePart(part, className, context) {
         const [prop, ...valueParts] = part.split('_');
@@ -868,7 +804,7 @@ class CSSF {
     }
 
    _isSelectorInstruction(part) {
-       return ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all', 'tag', 'class', 'id'].includes(part);
+       return ['pc', 'pe', 'parent', 'self', 'next', 'child', 'all', 'tag', 'class', 'id'].includes(part) || part.startsWith('pc_') || part.startsWith('pe_');
    }
 
    _findNameEnd(parts, startIndex) {
@@ -897,8 +833,12 @@ class CSSF {
        for (let i = 0; i < parts.length; i++) {
            const part = parts[i];
            
-           if (part === 'pc') { // pseudo-class
-               i = this.handlePseudoClass(parts, i, pseudoClass => selector += `:${pseudoClass}`);
+           if (part === 'pc' || part.startsWith('pc_')) { 
+               let initialPseudo = null;
+               if (part.startsWith('pc_')) {
+                   initialPseudo = part.substring(3);
+               }
+               i = this.handlePseudoClass(parts, i, initialPseudo, pseudoClass => selector += `:${pseudoClass}`);
                continue;
            }
            if (part === 'pe') { // pseudo-element
@@ -943,11 +883,73 @@ class CSSF {
        return parentPrefix + selector;
    }
 
-   handlePseudoClass(parts, i, callback) {
-       if (i + 1 < parts.length) {
-           const pseudoClass = parts[++i];
-           callback(pseudoClass);
+   handlePseudoClass(parts, i, initialPseudo, callback) {
+       let pseudoClass = initialPseudo;
+       
+       if (!pseudoClass) {
+           if (i + 1 < parts.length) {
+               pseudoClass = parts[++i];
+           } else {
+               return i;
+           }
        }
+
+       // Lookahead for complex pseudo-classes (nth-child, etc.)
+       while (i + 1 < parts.length) {
+           const next = parts[i+1];
+           
+           if (next === 'child') {
+               if (/^(first|last|only|nth|nth-last)$/.test(pseudoClass)) {
+                   pseudoClass += '-child';
+                   i++;
+                   continue;
+               }
+           }
+           
+           if (next === 'last') {
+               if (pseudoClass === 'nth') {
+                   pseudoClass += '-last';
+                   i++;
+                   continue;
+               }
+           }
+           
+           if (next === 'of') {
+               if (i + 2 < parts.length && parts[i+2] === 'type') {
+                   if (/^(first|last|only|nth|nth-last)$/.test(pseudoClass)) {
+                       pseudoClass += '-of-type';
+                       i += 2;
+                       continue;
+                   }
+               }
+           }
+           
+           break;
+       }
+
+       // Handle arguments (open ... close)
+       if (i + 1 < parts.length && parts[i+1] === 'open') {
+           i++; // consume open
+           let args = [];
+           while (i + 1 < parts.length) {
+               const argPart = parts[++i];
+               if (argPart === 'close') break;
+               
+               if (argPart.startsWith('chr-')) {
+                   const charName = argPart.substring(4);
+                   args.push(this.config.chars.get(charName) || charName);
+               } else if (argPart === 'plus') {
+                    args.push('+');
+               } else if (argPart === 'minus') {
+                    args.push('-');
+               } else {
+                   args.push(argPart);
+               }
+           }
+           pseudoClass += `(${args.join('')})`;
+       }
+
+       callback(pseudoClass);
        return i;
    }
 
@@ -1072,7 +1074,7 @@ class CSSF {
         
         const processedParts = [];
         let i = 0;
-        let attachNext = false; // Controls if the next token attaches to the previous one without space
+        let attachNext = false; 
         
         while (i < valueParts.length) {
             const currentPart = valueParts[i];
@@ -1080,14 +1082,12 @@ class CSSF {
             let isGlue = false;
             let consumed = 0;
             
-            // 1. Check for chrsl- (Seamless Character / No Space)
             if (currentPart.startsWith('chrsl-')) {
                 const charName = currentPart.substring(6);
                 val = this.config.chars.get(charName) || charName;
                 isGlue = true;
                 consumed = 0; 
             } 
-            // 2. Check for Templates
             else if (currentPart.startsWith('tpl-')) {
                 const tplName = currentPart.substring(4);
                 const template = this.config.templates.get(tplName);
@@ -1116,7 +1116,6 @@ class CSSF {
                     val = this.processValue(currentPart);
                 }
             } 
-            // 3. Check for Functions
             else if (currentPart.startsWith('fn-') || currentPart.startsWith('cfn-')) {
                 let closeIndex = -1;
                 for (let j = i + 1; j < valueParts.length; j++) {
@@ -1138,12 +1137,10 @@ class CSSF {
                     consumed = valueParts.length - i - 1; 
                 }
             } 
-            // 4. Standard Value
             else {
                 val = this.processValue(currentPart);
             }
             
-            // Merging Logic: If attachNext is true (previous was glue) or current is glue
             if (processedParts.length > 0 && (attachNext || isGlue)) {
                 processedParts[processedParts.length - 1] += val;
             } else {
@@ -1222,7 +1219,7 @@ class CSSF {
        let functionParams = [];
        let afterCloseParams = [];
        let foundClose = false;
-       let attachNext = false; // glue flag
+       let attachNext = false; 
 
        for (let i = 0; i < paramParts.length; i++) {
            const part = paramParts[i];

@@ -1,3 +1,4 @@
+/*
 :root {
    --hr-margin: var(--default-text-margin, 0);
    --hr-border-bottom: 1px solid black;
@@ -112,7 +113,7 @@
    --blockquote-letter-spacing: unset;
    --blockquote-color: inherit;
 
-   --blockquote-before-content: ""; /* open-quote */
+   --blockquote-before-content: ""; / open-quote /
    --blockquote-before-width: auto;
    --blockquote-before-height: auto;
    --blockquote-before-top: auto;
@@ -129,7 +130,7 @@
    --blockquote-before-color: var(--color-1, #000);
    --blockquote-before-z-index: unset;
 
-   --blockquote-after-content: ""; /* close-quote */
+   --blockquote-after-content: ""; / close-quote /
    --blockquote-after-width: auto;
    --blockquote-after-height: auto;
    --blockquote-after-top: auto;
@@ -358,164 +359,163 @@
    --table-cell-border-top-left-radius: 0;
    --table-cell-border-top-right-radius: 0;
 }
-
-
+*/
 /* ********************************************************** */
 /* ********************************************************** */
 /* ********************************************************** */
 .cssf hr,
 hr.cssf {
    border: 0;
-   margin: var(--hr-margin);
-   border-bottom: var(--hr-border-bottom)
+   margin: var(--hr-margin, 0); /* Fallback von :root */
+   border-bottom: var(--hr-border-bottom, 1px solid black) /* Fallback von :root */
 }
 .cssf p,
 p.cssf {
-   margin: var(--p-margin);
-   font-family: var(--p-font-family);
-   font-style: var(--p-font-style);
-   font-variant: var(--p-font-variant);
-   font-weight: var(--p-font-weight);
-   color: var(--p-color);
-   font-size: var(--p-font-size);
-   line-height: var(--p-line-height);
-   text-align: var(--p-text-align);
-   letter-spacing: var(--p-letter-spacing);
+   margin: var(--p-margin, 0);
+   font-family: var(--p-font-family, sans-serif);
+   font-style: var(--p-font-style, normal);
+   font-variant: var(--p-font-variant, normal);
+   font-weight: var(--p-font-weight, normal);
+   color: var(--p-color, var(--color-3));
+   font-size: var(--p-font-size, var(--size-16));
+   line-height: var(--p-line-height, 1.5);
+   text-align: var(--p-text-align, unset);
+   letter-spacing: var(--p-letter-spacing, normal);
 }
 .cssf h1,
 h1.cssf {
-   font-family: var(--h1-font-family);
-   font-style: var(--h1-font-style);
-   font-weight: var(--h1-font-weight);
-   color: var(--h1-color);
-   margin: var(--h1-margin);
-   font-size: var(--h1-font-size);
-   line-height: var(--h1-line-height);
-   letter-spacing: var(--h1-letter-spacing);
-   text-transform: var(--h1-text-transform);
-   text-align: var(--h1-text-align);
+   font-family: var(--h1-font-family, sans-serif);
+   font-style: var(--h1-font-style, normal);
+   font-weight: var(--h1-font-weight, bold);
+   color: var(--h1-color, var(--color-4));
+   margin: var(--h1-margin, 0);
+   font-size: var(--h1-font-size, var(--size-32));
+   line-height: var(--h1-line-height, 1.2);
+   letter-spacing: var(--h1-letter-spacing, normal);
+   text-transform: var(--h1-text-transform, none);
+   text-align: var(--h1-text-align, unset);
 }
 .cssf h2,
 h2.cssf {
-   font-family: var(--h2-font-family);
-   font-style: var(--h2-font-style);
-   font-weight: var(--h2-font-weight);
-   color: var(--h2-color);
-   margin: var(--h2-margin);
-   font-size: var(--h2-font-size);
-   line-height: var(--h2-line-height);
-   letter-spacing: var(--h2-letter-spacing);
-   text-transform: var(--h2-text-transform);
-   text-align: var(--h2-text-align);
+   font-family: var(--h2-font-family, sans-serif);
+   font-style: var(--h2-font-style, normal);
+   font-weight: var(--h2-font-weight, bold);
+   color: var(--h2-color, var(--color-4));
+   margin: var(--h2-margin, 0);
+   font-size: var(--h2-font-size, var(--size-24));
+   line-height: var(--h2-line-height, 1.2);
+   letter-spacing: var(--h2-letter-spacing, normal);
+   text-transform: var(--h2-text-transform, none);
+   text-align: var(--h2-text-align, unset);
 }
 .cssf h3,
 h3.cssf {
-   font-family: var(--h3-font-family);
-   font-style: var(--h3-font-style);
-   font-weight: var(--h3-font-weight);
-   color: var(--h3-color);
-   margin: var(--h3-margin);
-   font-size: var(--h3-font-size);
-   line-height: var(--h3-line-height);
-   letter-spacing: var(--h3-letter-spacing);
-   text-transform: var(--h3-text-transform);
-   text-align: var(--h3-text-align);
+   font-family: var(--h3-font-family, sans-serif);
+   font-style: var(--h3-font-style, normal);
+   font-weight: var(--h3-font-weight, bold);
+   color: var(--h3-color, var(--color-4));
+   margin: var(--h3-margin, 0);
+   font-size: var(--h3-font-size, var(--size-20));
+   line-height: var(--h3-line-height, 1.2);
+   letter-spacing: var(--h3-letter-spacing, normal);
+   text-transform: var(--h3-text-transform, none);
+   text-align: var(--h3-text-align, unset);
 }
 .cssf h4,
 h4.cssf {
-   font-family: var(--h4-font-family);
-   font-style: var(--h4-font-style);
-   font-weight: var(--h4-font-weight);
-   color: var(--h4-color);
-   margin: var(--h4-margin);
-   font-size: var(--h4-font-size);
-   line-height: var(--h4-line-height);
-   letter-spacing: var(--h4-letter-spacing);
-   text-transform: var(--h4-text-transform);
-   text-align: var(--h4-text-align);
+   font-family: var(--h4-font-family, sans-serif);
+   font-style: var(--h4-font-style, normal);
+   font-weight: var(--h4-font-weight, bold);
+   color: var(--h4-color, var(--color-4));
+   margin: var(--h4-margin, 0);
+   font-size: var(--h4-font-size, var(--size-18));
+   line-height: var(--h4-line-height, 1.2);
+   letter-spacing: var(--h4-letter-spacing, normal);
+   text-transform: var(--h4-text-transform, none);
+   text-align: var(--h4-text-align, unset);
 }
 .cssf h5,
 h5.cssf {
-   font-family: var(--h5-font-family);
-   font-style: var(--h5-font-style);
-   font-weight: var(--h5-font-weight);
-   color: var(--h5-color);
-   margin: var(--h5-margin);
-   font-size: var(--h5-font-size);
-   line-height: var(--h5-line-height);
-   letter-spacing: var(--h5-letter-spacing);
-   text-transform: var(--h5-text-transform);
-   text-align: var(--h5-text-align);
+   font-family: var(--h5-font-family, sans-serif);
+   font-style: var(--h5-font-style, normal);
+   font-weight: var(--h5-font-weight, bold);
+   color: var(--h5-color, var(--color-4));
+   margin: var(--h5-margin, 0);
+   font-size: var(--h5-font-size, var(--size-16));
+   line-height: var(--h5-line-height, 1.2);
+   letter-spacing: var(--h5-letter-spacing, normal);
+   text-transform: var(--h5-text-transform, none);
+   text-align: var(--h5-text-align, unset);
 }
 .cssf h6,
 h6.cssf {
-   font-family: var(--h6-font-family);
-   font-style: var(--h6-font-style);
-   font-weight: var(--h6-font-weight);
-   color: var(--h6-color);
-   margin: var(--h6-margin);
-   font-size: var(--h6-font-size);
-   line-height: var(--h6-line-height);
-   letter-spacing: var(--h6-letter-spacing);
-   text-transform: var(--h6-text-transform);
-   text-align: var(--h6-text-align);
+   font-family: var(--h6-font-family, sans-serif);
+   font-style: var(--h6-font-style, normal);
+   font-weight: var(--h6-font-weight, bold);
+   color: var(--h6-color, var(--color-4));
+   margin: var(--h6-margin, 0);
+   font-size: var(--h6-font-size, var(--size-14));
+   line-height: var(--h6-line-height, 1.2);
+   letter-spacing: var(--h6-letter-spacing, normal);
+   text-transform: var(--h6-text-transform, none);
+   text-align: var(--h6-text-align, unset);
 }
 .cssf strong,
 strong.cssf { 
-   font-family: var(--strong-font-family);
-   font-style: var(--strong-font-style);
-   font-weight: var(--strong-font-weight);
-   font-size: var(--strong-font-size); 
-   line-height: var(--strong-line-height); 
-   color: var(--strong-color);
+   font-family: var(--strong-font-family, sans-serif);
+   font-style: var(--strong-font-style, normal);
+   font-weight: var(--strong-font-weight, bold);
+   font-size: var(--strong-font-size, inherit); 
+   line-height: var(--strong-line-height, inherit); 
+   color: var(--strong-color, inherit);
 }
 .cssf em,
 em.cssf {
-   font-family: var(--em-font-family);
-   font-style: var(--em-font-style);
-   font-weight: var(--em-font-weight);
-   font-size: var(--em-font-size); 
-   line-height: var(--em-line-height); 
-   color: var(--em-color);
+   font-family: var(--em-font-family, sans-serif);
+   font-style: var(--em-font-style, italic);
+   font-weight: var(--em-font-weight, normal);
+   font-size: var(--em-font-size, inherit); 
+   line-height: var(--em-line-height, inherit); 
+   color: var(--em-color, inherit);
 }
 .cssf em strong,
 .cssf strong em,
 em.cssf strong,
 strong.cssf em {
-   font-family: var(--strong-font-family);
-   font-style: var(--em-font-style);
-   font-weight: var(--strong-font-weight);
-   font-size: var(--strong-font-size); 
-   line-height: var(--strong-line-height); 
-   color: var(--strong-color);
+   font-family: var(--strong-font-family, sans-serif);
+   font-style: var(--em-font-style, italic);
+   font-weight: var(--strong-font-weight, bold);
+   font-size: var(--strong-font-size, inherit); 
+   line-height: var(--strong-line-height, inherit); 
+   color: var(--strong-color, inherit);
 }
 .cssf u,
 u.cssf {
-   display: var(--u-display);
-   text-decoration: var(--u-text-decoration);
-   background: var(--u-background);
-   text-underline-position: var(--u-text-underline-position);
-   text-decoration-thickness: var(--u-text-decoration-thickness);
+   display: var(--u-display, inline);
+   text-decoration: var(--u-text-decoration, underline);
+   background: var(--u-background, none);
+   text-underline-position: var(--u-text-underline-position, under);
+   text-decoration-thickness: var(--u-text-decoration-thickness, var(--size-2, 2px));
 }
 .cssf blockquote,
 blockquote.cssf {
-   position: var(--blockquote-position);
-   margin: var(--blockquote-margin);
-   padding: var(--blockquote-padding);
-   background: var(--blockquote-background);
+   position: var(--blockquote-position, relative);
+   margin: var(--blockquote-margin, 0);
+   padding: var(--blockquote-padding, 0);
+   background: var(--blockquote-background, none);
 }
 .cssf blockquote,
 .cssf blockquote p,
 blockquote.cssf,
 blockquote.cssf p {
-   font-family: var(--blockquote-font-family);
-   font-style: var(--blockquote-font-style);
-   font-weight: var(--blockquote-font-weight);
-   font-size: var(--blockquote-font-size); 
-   line-height: var(--blockquote-line-height);    
-   text-align: var(--blockquote-text-align);
-   letter-spacing: var(--blockquote-letter-spacing);
-   color: var(--blockquote-color);
+   font-family: var(--blockquote-font-family, sans-serif);
+   font-style: var(--blockquote-font-style, normal);
+   font-weight: var(--blockquote-font-weight, normal);
+   font-size: var(--blockquote-font-size, inherit); 
+   line-height: var(--blockquote-line-height, inherit);    
+   text-align: var(--blockquote-text-align, left);
+   letter-spacing: var(--blockquote-letter-spacing, unset);
+   color: var(--blockquote-color, inherit);
 }
 .cssf blockquote::before,
 blockquote.cssf::before {
@@ -525,22 +525,22 @@ blockquote.cssf::before {
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
    line-height: 1;
-   content: var(--blockquote-before-content);
-   width: var(--blockquote-before-width);
-   height: var(--blockquote-before-height);
-   top: var(--blockquote-before-top);
-   right: var(--blockquote-before-right);
-   bottom: var(--blockquote-before-bottom);
-   left: var(--blockquote-before-left);
-   transform: var(--blockquote-before-transform);
-   background: var(--blockquote-before-background);
-   font-family: var(--blockquote-before-font-family);
-   font-style: var(--blockquote-before-font-style);
-   font-weight: var(--blockquote-before-font-weight);
-   font-variant: var(--blockquote-before-font-variant);
-   font-size: var(--blockquote-before-font-size);
-   color: var(--blockquote-before-color);
-   z-index: var(--blockquote-before-z-index);
+   content: var(--blockquote-before-content, "");
+   width: var(--blockquote-before-width, auto);
+   height: var(--blockquote-before-height, auto);
+   top: var(--blockquote-before-top, auto);
+   right: var(--blockquote-before-right, auto);
+   bottom: var(--blockquote-before-bottom, auto);
+   left: var(--blockquote-before-left, auto);
+   transform: var(--blockquote-before-transform, none);
+   background: var(--blockquote-before-background, none);
+   font-family: var(--blockquote-before-font-family, inherit);
+   font-style: var(--blockquote-before-font-style, inherit);
+   font-weight: var(--blockquote-before-font-weight, inherit);
+   font-variant: var(--blockquote-before-font-variant, inherit);
+   font-size: var(--blockquote-before-font-size, inherit);
+   color: var(--blockquote-before-color, var(--color-1, #000));
+   z-index: var(--blockquote-before-z-index, unset);
 }
 .cssf blockquote::after,
 blockquote.cssf::after {
@@ -550,114 +550,112 @@ blockquote.cssf::after {
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
    line-height: 1;
-   content: var(--blockquote-after-content);
-   width: var(--blockquote-after-width);
-   height: var(--blockquote-after-height);
-   top: var(--blockquote-after-top);
-   right: var(--blockquote-after-right);
-   bottom: var(--blockquote-after-bottom);
-   left: var(--blockquote-after-left);
-   transform: var(--blockquote-after-transform);
-   background: var(--blockquote-after-background);
-   font-family: var(--blockquote-after-font-family);
-   font-style: var(--blockquote-after-font-style);
-   font-weight: var(--blockquote-after-font-weight);
-   font-variant: var(--blockquote-after-font-variant);
-   font-size: var(--blockquote-after-font-size);
-   color: var(--blockquote-after-color);
-   z-index: var(--blockquote-after-z-index);
+   content: var(--blockquote-after-content, "");
+   width: var(--blockquote-after-width, auto);
+   height: var(--blockquote-after-height, auto);
+   top: var(--blockquote-after-top, auto);
+   right: var(--blockquote-after-right, auto);
+   bottom: var(--blockquote-after-bottom, auto);
+   left: var(--blockquote-after-left, auto);
+   transform: var(--blockquote-after-transform, none);
+   background: var(--blockquote-after-background, none);
+   font-family: var(--blockquote-after-font-family, inherit);
+   font-style: var(--blockquote-after-font-style, inherit);
+   font-weight: var(--blockquote-after-font-weight, inherit);
+   font-variant: var(--blockquote-after-font-variant, inherit);
+   font-size: var(--blockquote-after-font-size, inherit);
+   color: var(--blockquote-after-color, var(--color-1, #000));
+   z-index: var(--blockquote-after-z-index, unset);
 }
 .cssf blockquote cite,
 .cssf blockquote div:last-child,
 blockquote.cssf cite,
 blockquote.cssf div:last-child {
-   margin: var(--blockquote-cite-margin);
-   padding: var(--blockquote-cite-padding);
-   font-family: var(--blockquote-cite-font-family);
-   font-style: var(--blockquote-cite-font-style);
-   font-weight: var(--blockquote-cite-font-weight);
-   font-variant: var(--blockquote-cite-font-variant);
-   font-size: var(--blockquote-cite-font-size);
-   line-height: var(--blockquote-cite-line-height);
-   text-align: var(--blockquote-cite-text-align);
-   letter-spacing: var(--blockquote-cite-letter-spacing);
-   color: var(--blockquote-cite-color);
+   margin: var(--blockquote-cite-margin, 0 0 0 0);
+   padding: var(--blockquote-cite-padding, 0 0 0 0);
+   font-family: var(--blockquote-cite-font-family, sans-serif);
+   font-style: var(--blockquote-cite-font-style, normal);
+   font-weight: var(--blockquote-cite-font-weight, normal);
+   font-variant: var(--blockquote-cite-font-variant, normal);
+   font-size: var(--blockquote-cite-font-size, 1em);
+   line-height: var(--blockquote-cite-line-height, 1.2);
+   text-align: var(--blockquote-cite-text-align, right);
+   letter-spacing: var(--blockquote-cite-letter-spacing, unset);
+   color: var(--blockquote-cite-color, var(--color-7));
 }
 .cssf ul,
-ul.cssf { 
+ul.cssf {  
    list-style: none;
-   margin: var(--ul-margin);
-   padding: var(--ul-padding);
+   margin: var(--ul-margin, 0);
+   padding: var(--ul-padding, 0);
 }
 .cssf ul li,
 ul.cssf li {
    position: relative;
-   margin: var(--ul-li-margin);
-   margin-left: var(--ul-li-margin-left);
-   padding: var(--ul-li-padding);
-   padding-left: var(--ul-li-padding-left);
-   font-family: var(--ul-li-font-family);
-   font-style: var(--ul-li-font-style);
-   font-variant: var(--ul-li-font-variant);
-   font-weight: var(--ul-li-font-weight);
-   color: var(--ul-li-color);
-   font-size: var(--ul-li-font-size);
-   line-height: var(--ul-li-line-height);
-   letter-spacing: var(--ul-li-letter-spacing);
+   margin: var(--ul-li-margin, 0);
+   margin-left: var(--ul-li-margin-left, var(--size-16, 16px));
+   padding: var(--ul-li-padding, 0);
+   padding-left: var(--ul-li-padding-left, var(--size-8, 8px));
+   font-family: var(--ul-li-font-family, var(--p-font-family));
+   font-style: var(--ul-li-font-style, var(--p-font-style));
+   font-variant: var(--ul-li-font-variant, var(--p-font-variant));
+   font-weight: var(--ul-li-font-weight, var(--p-font-weight));
+   color: var(--ul-li-color, var(--p-color));
+   font-size: var(--ul-li-font-size, var(--p-font-size));
+   line-height: var(--ul-li-line-height, var(--p-line-height));
+   letter-spacing: var(--ul-li-letter-spacing, var(--p-letter-spacing));
 }
 .cssf ul li::marker,
 ul.cssf li::marker {  
-   display: list-item; 
+   display: list-item;  
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
-   content: var(--ul-li-marker-content);
-   color: var(--ul-li-marker-color);
-   font-family: var(--ul-li-marker-font-family);
-   font-style: var(--ul-li-marker-font-style);
-   font-weight: var(--ul-li-marker-font-weight); 
-   font-variant: var(--ul-li-marker-font-variant);
-   font-size: var(--ul-li-marker-font-size);
-   line-height: var(--ul-li-marker-line-height);
-} 
+   content: var(--ul-li-marker-content, "▶");
+   color: var(--ul-li-marker-color, var(--ul-li-color));
+   font-family: var(--ul-li-marker-font-family, inherit);
+   font-style: var(--ul-li-marker-font-style, inherit);
+   font-weight: var(--ul-li-marker-font-weight, inherit);  
+   font-variant: var(--ul-li-marker-font-variant, inherit);
+   font-size: var(--ul-li-marker-font-size, 1em);
+   line-height: var(--ul-li-marker-line-height, 1.2);
+}  
 .cssf ol,
 ol.cssf {
-   margin: var(--ol-margin);
-   padding: var(--ol-padding);
-   list-style: var(--ol-list-style);
+   margin: var(--ol-margin, 0);
+   padding: var(--ol-padding, 0);
+   list-style: var(--ol-list-style, decimal);
 }
 .cssf ol li,
 ol.cssf li {
    position: relative;
-   margin: var(--ol-li-margin);
-   margin-left: var(--ol-li-margin-left);
-   padding: var(--ol-li-padding);
-   padding-left: var(--ol-li-padding-left);
-   font-family: var(--ol-li-font-family);
-   font-style: var(--ol-li-font-style);
-   font-weight: var(--ol-li-font-weight);
-   font-variant: var(--ol-li-font-variant);
-   color: var(--ol-li-color);
-   font-size: var(--ol-li-font-size);
-   line-height: var(--ol-li-line-height);
-   letter-spacing: var(--ol-li-letter-spacing);
+   margin: var(--ol-li-margin, 0);
+   margin-left: var(--ol-li-margin-left, var(--size-16, 16px));
+   padding: var(--ol-li-padding, 0);
+   padding-left: var(--ol-li-padding-left, var(--size-8, 8px));    
+   font-family: var(--ol-li-font-family, var(--p-font-family));
+   font-style: var(--ol-li-font-style, var(--p-font-style));
+   font-weight: var(--ol-li-font-weight, var(--p-font-weight));
+   font-variant: var(--ol-li-font-variant, var(--p-font-variant));
+   color: var(--ol-li-color, var(--p-color));
+   font-size: var(--ol-li-font-size, var(--p-font-size));
+   line-height: var(--ol-li-line-height, var(--p-line-height));
+   letter-spacing: var(--ol-li-letter-spacing, var(--p-letter-spacing));
 }
 .cssf ol li::marker,
 ol.cssf li::marker {  
-   display: list-item; 
+   display: list-item;  
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
    text-rendering: auto;
-   color: var(--ol-li-marker-color);
-   font-family: var(--ol-li-marker-font-family);
-   font-style: var(--ol-li-marker-font-style);
-   font-variant: var(--ol-li-marker-font-variant);
-   font-size: var(--ol-li-marker-font-size);
-   line-height: var(--ol-li-marker-line-height);
-   font-weight: var(--ol-li-marker-font-weight); 
-} 
-
-
+   color: var(--ol-li-marker-color, var(--ol-li-color));
+   font-family: var(--ol-li-marker-font-family, inherit);
+   font-style: var(--ol-li-marker-font-style, inherit);
+   font-variant: var(--ol-li-marker-font-variant, inherit);
+   font-size: var(--ol-li-marker-font-size, 1em);
+   line-height: var(--ol-li-marker-line-height, 1.2);
+   font-weight: var(--ol-li-marker-font-weight, inherit);  
+}  
 
 
 /* ********************************************************** */
@@ -666,61 +664,62 @@ ol.cssf li::marker {
 .cssf a,
 a.cssf {
    z-index: 1;
-   display: var(--a-display);
-   width: var(--a-width);
-   height: var(--a-height);
-   min-height: var(--a-min-height);
-   justify-content: var(--a-justify-content);
-   align-items: var(--a-align-items);
-   align-content: var(--a-align-content);
-   font-family: var(--a-font-family);
-   font-style: var(--a-font-style);
-   font-weight: var(--a-font-weight);
-   font-size: var(--a-font-size);
-   line-height: var(--a-line-height);
-   color: var(--a-color);
-   text-decoration: var(--a-text-decoration);
-   background: var(--a-background);
-   border: var(--a-border);
-   border-radius: var(--a-border-radius);
-   border-bottom: var(--a-border-bottom);
-   text-underline-position: var(--a-text-underline-position);
-   text-decoration-thickness: var(--a-text-decoration-thickness);
-   padding: var(--a-padding);
-   margin: var(--a-margin);
-   transition: var(--a-transition);
-   transform: var(--a-transform);
-   text-transform: var(--a-text-transform);
-   letter-spacing: var(--a-letter-spacing);
-   vertical-align: var(--a-vertical-align);
+   transform-origin: 50% 50%;
+   display: var(--a-display, inline-block);
+   width: var(--a-width, unset);
+   height: var(--a-height, unset);
+   min-height: var(--a-min-height, unset);
+   justify-content: var(--a-justify-content, unset);
+   align-items: var(--a-align-items, unset);
+   align-content: var(--a-align-content, unset);
+   font-family: var(--a-font-family, sans-serif);
+   font-style: var(--a-font-style, normal);
+   font-weight: var(--a-font-weight, normal);
+   font-size: var(--a-font-size, inherit);
+   line-height: var(--a-line-height, inherit);
+   color: var(--a-color, var(--color-5));
+   text-decoration: var(--a-text-decoration, underline);
+   background: var(--a-background, none);
+   border: var(--a-border, none);
+   border-radius: var(--a-border-radius, 0);
+   border-bottom: var(--a-border-bottom, none);
+   text-underline-position: var(--a-text-underline-position, under);
+   text-decoration-thickness: var(--a-text-decoration-thickness, auto);
+   padding: var(--a-padding, 0);
+   margin: var(--a-margin, 0);
+   transition: var(--a-transition, 1s ease);
+   transform: var(--a-transform, none);
+   text-transform: var(--a-text-transform, none);
+   letter-spacing: var(--a-letter-spacing, normal);
+   vertical-align: var(--a-vertical-align, top);
 }
 
 .cssf a:hover,
 a.cssf:hover {
-   text-decoration: var(--a-hover-text-decoration);
-   text-underline-position: var(--a-hover-text-underline-position);
-   text-decoration-thickness: var(--a-hover-text-decoration-thickness);
-   color: var(--a-hover-color);
-   background: var(--a-hover-background);
-   border: var(--a-hover-border);
-   border-radius: var(--a-hover-border-radius);
-   border-bottom: var(--a-hover-border-bottom);
-   text-transform: var(--a-hover-text-transform);
-   transform: var(--a-hover-transform);
+   text-decoration: var(--a-hover-text-decoration, underline);
+   text-underline-position: var(--a-hover-text-underline-position, under);
+   text-decoration-thickness: var(--a-hover-text-decoration-thickness, auto);
+   color: var(--a-hover-color, var(--color-6));
+   background: var(--a-hover-background, none);
+   border: var(--a-hover-border, none);
+   border-radius: var(--a-hover-border-radius, 0);
+   border-bottom: var(--a-hover-border-bottom, none);
+   text-transform: var(--a-hover-text-transform, none);
+   transform: var(--a-hover-transform, none);
 }
 
 .cssf a:focus,
 a.cssf:focus {
-   text-decoration: var(--a-focus-text-decoration);
-   text-underline-position: var(--a-focus-text-underline-position);
-   text-decoration-thickness: var(--a-focus-text-decoration-thickness);
-   color: var(--a-focus-color);
-   background: var(--a-focus-background);
-   border: var(--a-focus-border);
-   border-radius: var(--a-focus-border-radius);
-   border-bottom: var(--a-focus-border-bottom);
-   transform: var(--a-focus-transform);
-   text-transform: var(--a-focus-text-transform);
+   text-decoration: var(--a-focus-text-decoration, var(--a-hover-text-decoration));
+   text-underline-position: var(--a-focus-text-underline-position, var(--a-hover-text-underline-position));
+   text-decoration-thickness: var(--a-focus-text-decoration-thickness, var(--a-hover-text-decoration-thickness));
+   color: var(--a-focus-color, var(--a-hover-color));
+   background: var(--a-focus-background, var(--a-hover-background));
+   border: var(--a-focus-border, var(--a-hover-border));
+   border-radius: var(--a-focus-border-radius, var(--a-hover-border-radius));
+   border-bottom: var(--a-focus-border-bottom, var(--a-hover-border-bottom));
+   transform: var(--a-focus-transform, var(--a-hover-transform));
+   text-transform: var(--a-focus-text-transform, var(--a-hover-text-transform));
 }
 
 .cssf a[href^="http://"],
@@ -742,21 +741,21 @@ a.cssf[href^="tel:"] {
 a.cssf[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"]):not([href^="/"])::before,
 .cssf a[target="_blank"][href^="//"]::before,
 a.cssf[target="_blank"][href^="//"]::before {
-   content: var(--a-target-blank-before-content);   
-   font-family: var(--a-target-blank-before-font-family);
-   font-style: var(--a-target-blank-before-font-style);
-   font-weight: var(--a-target-blank-before-font-weight);
-   font-variant: var(--a-target-blank-before-font-variant);
+   content: var(--a-target-blank-before-content, "");    
+   font-family: var(--a-target-blank-before-font-family, sans-serif);
+   font-style: var(--a-target-blank-before-font-style, normal);
+   font-weight: var(--a-target-blank-before-font-weight, normal);
+   font-variant: var(--a-target-blank-before-font-variant, normal);
 }
 .cssf a[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"])::after,
 a.cssf[target="_blank"]:not([href^="tel:"]):not([href^="mailto:"])::after,
 .cssf a[target="_blank"][href^="//"]::after,
 a.cssf[target="_blank"][href^="//"]::after {
-   content: var(--a-target-blank-after-content);
-   font-family: var(--a-target-blank-after-font-family);
-   font-style: var(--a-target-blank-after-font-style);
-   font-weight: var(--a-target-blank-after-font-weight);
-   font-variant: var(--a-target-blank-after-font-variant);
+   content: var(--a-target-blank-after-content, "");
+   font-family: var(--a-target-blank-after-font-family, sans-serif);
+   font-style: var(--a-target-blank-after-font-style, normal);
+   font-weight: var(--a-target-blank-after-font-weight, normal);
+   font-variant: var(--a-target-blank-after-font-variant, normal);
 }
 /*
 .cssf a[href$=".pdf"],
@@ -773,7 +772,7 @@ a.cssf[target="_blank"][href^="//"]::after {
 .cssf a[href$=".png"],
 .cssf a[href$=".gif"],
 .cssf a[href$=".svg"] {
-    padding: var(--a-href-file);
+   padding: var(--a-href-file);
 }
 */
 .cssf a[href$=".pdf"]::before,
@@ -809,71 +808,71 @@ a.cssf[href$=".svg"]::before {
    text-rendering: auto;
    line-height: 1;
    display: inline-block;
-   font-family: var(--a-file-before-font-family);
-   font-style: var(--a-file-before-font-style);
-   font-weight: var(--a-file-before-font-weight);
-   font-variant: var(--a-file-before-font-variant);
-   border: var(--a-file-before-border);
-   border-radius: var(--a-file-before-border-radius);
-   background: var(--a-file-before-background);
-   padding: var(--a-file-before-padding);
-   margin: var(--a-file-before-margin);
+   font-family: var(--a-file-before-font-family, sans-serif);
+   font-style: var(--a-file-before-font-style, normal);
+   font-weight: var(--a-file-before-font-weight, normal);
+   font-variant: var(--a-file-before-font-variant, normal);
+   border: var(--a-file-before-border, none);
+   border-radius: var(--a-file-before-border-radius, 0);
+   background: var(--a-file-before-background, none);
+   padding: var(--a-file-before-padding, 0);
+   margin: var(--a-file-before-margin, 0);
 }
 .cssf a[href$=".pdf"]::before,
 a.cssf[href$=".pdf"]::before {
-   content: var(--a-file-pdf-before-content);
+   content: var(--a-file-pdf-before-content, "PDF");
 }
 .cssf a[href$=".doc"]::before,
 a.cssf[href$=".doc"]::before{
-   content: var(--a-file-doc-before-content);
+   content: var(--a-file-doc-before-content, "DOC");
 }
 .cssf a[href$=".docx"]::before,
 a.cssf[href$=".docx"]::before {
-   content: var(--a-file-docx-before-content);
+   content: var(--a-file-docx-before-content, "DOCX");
 }
 .cssf a[href$=".xls"]::before,
 a.cssf[href$=".xls"]::before {
-   content: var(--a-file-xls-before-content);
+   content: var(--a-file-xls-before-content, "XLS");
 }
 .cssf a[href$=".xlsx"]::before,
 a.cssf[href$=".xlsx"]::before {
-   content: var(--a-file-xlsx-before-content);
+   content: var(--a-file-xlsx-before-content, "XLSX");
 }
 .cssf a[href$=".ppt"]::before,
 a.cssf[href$=".ppt"]::before {
-   content: var(--a-file-ppt-before-content);
+   content: var(--a-file-ppt-before-content, "PPT");
 }
 .cssf a[href$=".pptx"]::before,
 a.cssf[href$=".pptx"]::before {
-   content: var(--a-file-pptx-before-content);
+   content: var(--a-file-pptx-before-content, "PPTX");
 }
 .cssf a[href$=".zip"]::before,
 a.cssf[href$=".zip"]::before {
-   content: var(--a-file-zip-before-content);
+   content: var(--a-file-zip-before-content, "ZIP");
 }
 .cssf a[href$=".rar"]::before,
 a.cssf[href$=".rar"]::before {
-   content: var(--a-file-rar-before-content);
+   content: var(--a-file-rar-before-content, "RAR");
 }
 .cssf a[href$=".jpg"]::before,
 a.cssf[href$=".jpg"]::before {
-   content: var(--a-file-jpg-before-content);
+   content: var(--a-file-jpg-before-content, "JPG");
 }
 .cssf a[href$=".jpeg"]::before,
 a.cssf[href$=".jpeg"]::before {
-   content: var(--a-file-jpeg-before-content);
+   content: var(--a-file-jpeg-before-content, "JPEG");
 }
 .cssf a[href$=".png"]::before,
 a.cssf[href$=".png"]::before {
-   content: var(--a-file-png-before-content);
+   content: var(--a-file-png-before-content, "PNG");
 }
 .cssf a[href$=".gif"]::before,
 a.cssf[href$=".gif"]::before {
-   content: var(--a-file-gif-before-content);
+   content: var(--a-file-gif-before-content, "GIF");
 }
 .cssf a[href$=".svg"]::before,
 a.cssf[href$=".svg"]::before {
-   content: var(--a-file-svg-before-content);
+   content: var(--a-file-svg-before-content, "SVG");
 }
 
 .cssf a[href$=".pdf"]::after,
@@ -909,71 +908,71 @@ a.cssf[href$=".svg"]::after {
    text-rendering: auto;
    line-height: 1;
    display: inline-block;
-   font-family: var(--a-file-after-font-family);
-   font-style: var(--a-file-after-font-style);
-   font-weight: var(--a-file-after-font-weight);
-   font-variant: var(--a-file-after-font-variant);
-   border: var(--a-file-after-border);
-   border-radius: var(--a-file-after-border-radius);
-   background: var(--a-file-after-background);
-   padding: var(--a-file-after-padding);
-   margin: var(--a-file-after-margin);
+   font-family: var(--a-file-after-font-family, sans-serif);
+   font-style: var(--a-file-after-font-style, normal);
+   font-weight: var(--a-file-after-font-weight, normal);
+   font-variant: var(--a-file-after-font-variant, normal);
+   border: var(--a-file-after-border, none);
+   border-radius: var(--a-file-after-border-radius, 0);
+   background: var(--a-file-after-background, none);
+   padding: var(--a-file-after-padding, 0);
+   margin: var(--a-file-after-margin, 0);
 }
 .cssf a[href$=".pdf"]::after,
 a.cssf[href$=".pdf"]::after {
-   content: var(--a-file-pdf-after-content);
+   content: var(--a-file-pdf-after-content, "");
 }
 .cssf a[href$=".doc"]::after,
 a.cssf[href$=".doc"]::after{
-   content: var(--a-file-doc-after-content);
+   content: var(--a-file-doc-after-content, "");
 }
 .cssf a[href$=".docx"]::after,
 a.cssf[href$=".docx"]::after {
-   content: var(--a-file-docx-after-content);
+   content: var(--a-file-docx-after-content, "");
 }
 .cssf a[href$=".xls"]::after,
 a.cssf[href$=".xls"]::after {
-   content: var(--a-file-xls-after-content);
+   content: var(--a-file-xls-after-content, "");
 }
 .cssf a[href$=".xlsx"]::after,
 a.cssf[href$=".xlsx"]::after {
-   content: var(--a-file-xlsx-after-content);
+   content: var(--a-file-xlsx-after-content, "");
 }
 .cssf a[href$=".ppt"]::after,
 a.cssf[href$=".ppt"]::after {
-   content: var(--a-file-ppt-after-content);
+   content: var(--a-file-ppt-after-content, "");
 }
 .cssf a[href$=".pptx"]::after,
 a.cssf[href$=".pptx"]::after {
-   content: var(--a-file-pptx-after-content);
+   content: var(--a-file-pptx-after-content, "");
 }
 .cssf a[href$=".zip"]::after,
 a.cssf[href$=".zip"]::after {
-   content: var(--a-file-zip-after-content);
+   content: var(--a-file-zip-after-content, "");
 }
 .cssf a[href$=".rar"]::after,
 a.cssf[href$=".rar"]::after {
-   content: var(--a-file-rar-after-content);
+   content: var(--a-file-rar-after-content, "");
 }
 .cssf a[href$=".jpg"]::after,
 a.cssf[href$=".jpg"]::after {
-   content: var(--a-file-jpg-after-content);
+   content: var(--a-file-jpg-after-content, "");
 }
 .cssf a[href$=".jpeg"]::after,
 a.cssf[href$=".jpeg"]::after {
-   content: var(--a-file-jpeg-after-content);
+   content: var(--a-file-jpeg-after-content, "");
 }
 .cssf a[href$=".png"]::after,
 a.cssf[href$=".png"]::after {
-   content: var(--a-file-png-after-content);
+   content: var(--a-file-png-after-content, "");
 }
 .cssf a[href$=".gif"]::after,
 a.cssf[href$=".gif"]::after {
-   content: var(--a-file-gif-after-content);
+   content: var(--a-file-gif-after-content, "");
 }
 .cssf a[href$=".svg"]::after,
 a.cssf[href$=".svg"]::after {
-   content: var(--a-file-svg-after-content);
+   content: var(--a-file-svg-after-content, "");
 }
 
 /* ********************************************************** */
@@ -981,107 +980,107 @@ a.cssf[href$=".svg"]::after {
 
 .cssf table,
 table.cssf {
-   margin: var(--table-margin);
-   background: var(--table-background);
-   border: var(--table-border);
+   background: var(--table-background, none);
+   margin: var(--table-margin, var(--default-text-margin, 0));
+   border: var(--table-border, none);
 }
 .cssf table thead,
 table.cssf thead {
-   background: var(--table-thead-background);
+   background: var(--table-thead-background, none);
 }
 .cssf table tbody,
 table.cssf tbody {
-   background: var(--table-tbody-background);
+   background: var(--table-tbody-background, none);
 }
 .cssf table tfoot,
 table.cssf tfoot {
-   background: var(--table-tfoot-background);
+   background: var(--table-tfoot-background, none);
 }
 .cssf table tr:nth(odd),
 table.cssf tr:nth(odd) {
-   background: var(--table-tr-odd-background);
+   background: var(--table-tr-odd-background, none);
 }
 .cssf table tr:nth(even),
 table.cssf tr:nth(even) {
-   background: var(--table-tr-even-background);
+   background: var(--table-tr-even-background, none);
 }
 .cssf table th,
 table.cssf th {
-   background: var(--table-th-background);
-   font-family: var(--table-th-font-family);
-   font-style: var(--table-th-font-style);
-   font-weight: var(--table-th-font-weight);
-   font-variant: var(--table-th-font-variant);
-   font-size: var(--table-th-font-size);
-   line-height: var(--table-th-line-height);
-   color: var(--table-th-color);
-   vertical-align: var(--table-th-vertical-align); 
-   text-align: var(--table-th-text-align); 
+   background: var(--table-th-background, none);
+   font-family: var(--table-th-font-family, sans-serif);
+   font-style: var(--table-th-font-style, normal);
+   font-weight: var(--table-th-font-weight, bold);
+   font-variant: var(--table-th-font-variant, normal);
+   font-size: var(--table-th-font-size, var(--size-16, 16px));
+   line-height: var(--table-th-line-height, 1.2);
+   color: var(--table-th-color, var(--color-1, #000));
+   vertical-align: var(--table-th-vertical-align, top);
+   text-align: var(--table-th-text-align, left);
 }
 .cssf table td,
 table.cssf td {
-   background: var(--table-td-background);
-   font-family: var(--table-td-font-family);
-   font-style: var(--table-td-font-style);
-   font-weight: var(--table-td-font-weight);
-   font-variant: var(--table-td-font-variant);
-   font-size: var(--table-td-font-size);
-   line-height: var(--table-td-line-height);
-   color: var(--table-td-color);
-   vertical-align: var(--table-td-vertical-align);
-   text-align: var(--table-td-text-align);
+   background: var(--table-td-background, none);
+   font-family: var(--table-td-font-family, sans-serif);
+   font-style: var(--table-td-font-style, normal);
+   font-weight: var(--table-td-font-weight, normal);
+   font-variant: var(--table-td-font-variant, normal);
+   font-size: var(--table-td-font-size, var(--size-16));
+   line-height: var(--table-td-line-height, 1.2);
+   color: var(--table-td-color, var(--color-1));
+   vertical-align: var(--table-td-vertical-align, top);
+   text-align: var(--table-td-text-align, left);
 }
   
 .cssf table,
 table.cssf {  
-   border-spacing: var(--table-border-spacing, 0); 
    border-collapse: separate;
-   border-radius: var(--table-border-radius);
+   border-radius: var(--table-border-radius, 0);
+   border-spacing: var(--table-border-spacing, 0);
 }
 .cssf table th,
 .cssf table td,
 table.cssf th,
 table.cssf td {  
-   padding: var(--table-cell-padding);
-   border-bottom: var(--table-cell-border-bottom); 
-   border-right: var(--table-cell-border-right); 
+   padding: var(--table-cell-padding, var(--size-8, 8px));
+   border-bottom: var(--table-cell-border-bottom, var(--size-1, 1px) solid var(--color-1, #000)); 
+   border-right: var(--table-cell-border-right, var(--size-1, 1px) solid var(--color-1, #000)); 
 }
 .cssf table th,
 table.cssf th { 
-   background: var(--table-th-background); 
-   color: var(--table-th-color); 
+   background: var(--table-th-background, none); 
+   color: var(--table-th-color, var(--color-1, #000)); 
 }
 .cssf table tr:last-child td:first-child,
 table.cssf tr:last-child td:first-child {
-    border-bottom-left-radius: var(--table-cell-border-bottom-left-radius);
+    border-bottom-left-radius: var(--table-cell-border-bottom-left-radius, 0);
 }
 .cssf table tr:last-child td:last-child,
 table.cssf tr:last-child td:last-child {
-    border-bottom-right-radius: var(--table-cell-border-bottom-right-radius);
+    border-bottom-right-radius: var(--table-cell-border-bottom-right-radius, 0);
 }
 .cssf table tr th:first-child,
 .cssf table tr td:first-child,
 table.cssf tr th:first-child,
 table.cssf tr td:first-child {
-   border-left: var(--table-cell-border-left);
+   border-left: var(--table-cell-border-left, var(--size-1, 1px) solid var(--color-1, #000));
 }
 .cssf table tr:first-child th,
 .cssf table tr:first-child td,
 table.cssf tr:first-child th,
 table.cssf tr:first-child td {
-   border-top: var(--table-cell-border-top);
+   border-top: var(--table-cell-border-top, var(--size-1, 1px) solid var(--color-1, #000));
 }
 .cssf table tr:first-child th:first-child,
 .cssf table tr:first-child td:first-child,
 table.cssf tr:first-child th:first-child,
 table.cssf tr:first-child td:first-child {
-    border-top-left-radius: var(--table-cell-border-top-left-radius)
+    border-top-left-radius: var(--table-cell-border-top-left-radius, 0)
 }
 .cssf table tr:first-child th:last-child,
 .cssf table tr:first-child td:last-child,
 table.cssf tr:first-child th:last-child,
 table.cssf tr:first-child td:last-child {
-    border-top-right-radius: var(--table-cell-border-top-right-radius)
+    border-top-right-radius: var(--table-cell-border-top-right-radius, 0)
 }   
 
 /* ************************************************************************ */

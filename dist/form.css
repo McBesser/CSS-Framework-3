@@ -1,13 +1,15 @@
+
 /* 
  * form 
 */
+/*
 :root { 
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-placeholder-color: #666;
    --form-placeholder-opacity: 0.7;
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-fieldset-margin: 0rem;
    --form-fieldset-padding: 0rem;
@@ -24,7 +26,7 @@
    --form-fieldset-legend-margin: 0rem 0rem var(--size-3, 0.1875rem) 0rem;      
    --form-fieldset-legend-padding: 0rem var(--size-20, 1.25rem);      
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
          
    --form-label-font-family: var(--font-family-1, sans-serif);
    --form-label-font-style: var(--default-font-style, normal);
@@ -36,7 +38,7 @@
    --form-label-margin: 0rem 0rem 0rem 0rem;
    --form-label-padding: 0rem 0rem 0rem 0rem;
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-button-font-family: var(--font-family-1, sans-serif);
    --form-button-font-style: var(--default-font-style, normal);
@@ -78,7 +80,7 @@
    --form-button-hover-outline: var(--size-0, 0rem) solid var(--color-x, transparent);   
    --form-button-hover-transition:  var(--form-button-transition);  
    --form-button-hover-box-shadow:  var(--form-button-box-shadow); 
-   --form-button-hover-transform: var(--form-button-box-shadow);      
+   --form-button-hover-transform: var(--form-button-transform);      
    
    --form-button-focus-font-family: var(--form-button-hover-font-family);
    --form-button-focus-font-style: var(--form-button-hover-font-style);
@@ -99,7 +101,7 @@
    --form-button-focus-outline: var(--form-button-hover-outline);
    --form-button-focus-transition:  var(--form-button-hover-transition);  
    --form-button-focus-box-shadow:  var(--form-button-hover-box-shadow); 
-   --form-button-focus-transform: var(--form-button-hover-box-shadow); 
+   --form-button-focus-transform: var(--form-button-hover-transform); 
    
    --form-button-active-font-family: var(--form-button-hover-font-family);
    --form-button-active-font-style: var(--form-button-hover-font-style);
@@ -120,9 +122,9 @@
    --form-button-active-outline: var(--form-button-hover-outline);
    --form-button-active-transition:  var(--form-button-hover-transition);  
    --form-button-active-box-shadow:  var(--form-button-hover-box-shadow);
-   --form-button-active-transform: var(--form-button-hover-box-shadow);   
+   --form-button-active-transform: var(--form-button-hover-transform);   
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-input-text-font-family: var(--font-family-1, sans-serif);
    --form-input-text-font-style: var(--default-font-style, normal);
@@ -169,40 +171,40 @@
    --form-input-text-focus-outline: var(--form-input-text-outline);
    --form-input-text-focus-box-shadow: var(--form-input-text-box-shadow);
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-input-checkbox-background: transparent;
    --form-input-checkbox-border: var(--size-1) solid var(--color-3);
    --form-input-checkbox-border-radius: 0%;
-   --form-input-checkbox-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* trbl *//* = radio *//* calc(spacing + size) */
-   --form-input-checkbox-width: 1.5rem; /* = radio *//* size */
-   --form-input-checkbox-height: 1.5rem; /* = radio *//* size */
-   --form-input-checkbox-left: calc(0.5rem * -1 + 1.5rem * -1); /* = radio *//* calc((var(spacing) * -1 + var(size) * -1)) */
-   --form-input-checkbox-transform: translateY(-0%); /* translateY(-50%) */
-   --form-input-checkbox-top: var(--size-2); /* 50% */
+   --form-input-checkbox-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); / trbl // = radio *//* calc(spacing + size) /
+   --form-input-checkbox-width: 1.5rem; / = radio // size /
+   --form-input-checkbox-height: 1.5rem; / = radio // size /
+   --form-input-checkbox-left: calc(0.5rem * -1 + 1.5rem * -1); / = radio // calc((var(spacing) * -1 + var(size) * -1)) /
+   --form-input-checkbox-transform: translateY(-0%); /* translateY(-50%) /
+   --form-input-checkbox-top: var(--size-2); / 50% /
    --form-input-checkbox-content: '\00a0';
-   --form-input-checkbox-checked-left: var(--size--24); /* -1.75rem */
+   --form-input-checkbox-checked-left: var(--size--24); / -1.75rem /
    --form-input-checkbox-checked-top: var(--form-input-checkbox-top);
    --form-input-checkbox-checked-color: var(--color-2); 
    --form-input-checkbox-checked-background: var(--color-4);
    --form-input-checkbox-checked-font-family: 'Font Awesome 5 Pro';
    --form-input-checkbox-checked-font-weight: 400;
    --form-input-checkbox-checked-font-size: 0.725rem;
-   --form-input-checkbox-checked-content: '\f00d'; /* cross; check = \f00c */ 
+   --form-input-checkbox-checked-content: '\f00d'; / cross; check = \f00c / 
    --form-input-checkbox-focus-color: yellow;
    --form-input-checkbox-focus-border-color: yellow; 
 
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-input-radio-background: var(--form-input-checkbox-background);
    --form-input-radio-border: var(--form-input-checkbox-border);
    --form-input-radio-border-radius: 100%;
-   --form-input-radio-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); /* calc(spacing + size) */
+   --form-input-radio-margin: 0rem 0rem 0rem calc(0.5rem + 1.5rem); / calc(spacing + size) /
    --form-input-radio-width: 1.5rem;
    --form-input-radio-height: 1.5rem;
-   --form-input-radio-left: calc(0.5rem * -1 + 1.5rem * -1); /* calc((var(spacing) * -1 + var(size) * -1)) */
-   --form-input-radio-transform: translateY(-0%); /* translateY(-50%) */
-   --form-input-radio-top: var(--size-2); /* 50% */
+   --form-input-radio-left: calc(0.5rem * -1 + 1.5rem * -1); / calc((var(spacing) * -1 + var(size) * -1)) /
+   --form-input-radio-transform: translateY(-0%); / translateY(-50%) /
+   --form-input-radio-top: var(--size-2); / 50% /
    --form-input-radio-content: '\00a0';
    --form-input-radio-checked-left: -1.585rem;
    --form-input-radio-checked-top: var(--form-input-radio-top);
@@ -215,7 +217,7 @@
    --form-input-radio-focus-color: yellow;
    --form-input-radio-focus-border-color: yellow; 
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
    
    --form-select-font-family: var(--font-family-1, sans-serif);
    --form-select-font-style: var(--default-font-style, normal);
@@ -223,14 +225,14 @@
    --form-select-font-size: var(--size-16), 1rem;
    --form-select-line-height: 1.2;
    --form-select-color: var(--color-1);
-   /* --form-select-background: var(--color-9) calc(100% - 0.75rem) 0rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="%230075A9" d="M119.5 326.9L3.5 209.1c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L128 287.3l100.4-102.2c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L136.5 327c-4.7 4.6-12.3 4.6-17-.1z"/></svg>'); */
-   /*  
+   / --form-select-background: var(--color-9) calc(100% - 0.75rem) 0rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="%230075A9" d="M119.5 326.9L3.5 209.1c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L128 287.3l100.4-102.2c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L136.5 327c-4.7 4.6-12.3 4.6-17-.1z"/></svg>'); /
+   /  
       linear-gradient(45deg, transparent 50%, var(--color-1) 50%) calc(100% - var(--size-16)) 50% / var(--size-8) var(--size-8) no-repeat,
       linear-gradient(135deg, var(--color-1) 50%, transparent 50%) calc(100% - 8px) 50% / var(--size-8) var(--size-8) no-repeat,
       var(--color-2)
-   */
+   /
    --form-select-background: var(--color-9) calc(100% - 0.75rem) 0.65rem / 1.25rem 1.25rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class=""><path fill="%23003769" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z" /></svg>');
-   --form-select-padding:  0.75rem 2.5rem 0.75rem 1rem; /* trbl */
+   --form-select-padding:  0.75rem 2.5rem 0.75rem 1rem; / trbl /
    --form-select-border: none; 
    --form-select-border-bottom: 0rem solid transparent; 
    --form-select-border-radius: var(--size-8); 
@@ -249,9 +251,9 @@
    --form-select-option-background: transparent;
    --form-select-option-disabled-color: var(--color-2);
    
-   /* ***************************************************************************************** */
-   /* ***************************************************************************************** */
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
+   / ***************************************************************************************** /
+   / ***************************************************************************************** /
    
    --form-input-file-width: 100%;  
 
@@ -276,31 +278,31 @@
    --form-input-file-button-background: var(--color-3);
    --form-input-file-button-border: none;
    --form-input-file-button-border-bottom: none;  
-   /* ***************************************************************************************** */
-   /* ***************************************************************************************** */
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
+   / ***************************************************************************************** /
+   / ***************************************************************************************** /
    
    
-   /* ***************************************************************************************** */
+   / ***************************************************************************************** /
 }
-
+*/
 /* ***************************************************************************************** */
 
 /* Edge */   
 .cssf ::-webkit-input-placeholder,
 .cssf::-webkit-input-placeholder { 
-   color: var(--form-placeholder-color) !important;
-   opacity: var(--form-placeholder-opacity) !important;
+   color: var(--form-placeholder-color, #666) !important;
+   opacity: var(--form-placeholder-opacity, 0.7) !important;
 }
 /* Internet Explorer 10-11 */
 .cssf :-ms-input-placeholder { 
-   color: var(--form-placeholder-color) !important;
-   opacity: var(--form-placeholder-opacity) !important;
+   color: var(--form-placeholder-color, #666) !important;
+   opacity: var(--form-placeholder-opacity, 0.7) !important;
 }
 
 .cssf ::placeholder {
-   color: var(--form-placeholder-color) !important;
-   opacity: var(--form-placeholder-opacity) !important; /* ff */
+   color: var(--form-placeholder-color, #666) !important;
+   opacity: var(--form-placeholder-opacity, 0.7) !important; /* ff */
 }
 
 /* ***************************************************************************************** */
@@ -308,23 +310,23 @@
 
 .cssf form fieldset,
 fieldset.cssf {
-   margin: var(--form-fieldset-margin) !important;
-   padding: var(--form-fieldset-padding) !important;
-   border: var(--form-fieldset-border) !important;
-   border-radius: var(--form-fieldset-border-redius) !important;
+   margin: var(--form-fieldset-margin, 0rem) !important;
+   padding: var(--form-fieldset-padding, 0rem) !important;
+   border: var(--form-fieldset-border, var(--size-1, 0.0625rem) solid black) !important;
+   border-radius: var(--form-fieldset-border-radius, 0rem) !important;
 }
 .cssf form fieldset legend,
 fieldset.cssf legend {
-   font-family: var(--form-fieldset-legend-font-family) !important;
-   font-style: var(--form-fieldset-legend-font-style) !important;
-   font-weight: var(--form-fieldset-legend-font-weight) !important;
-   color: var(--form-fieldset-legend-color) !important;      
-   background: var(--form-fieldset-legend-background) !important;      
-   font-size: var(--form-fieldset-legend-font-size) !important;
-   line-height: var(--form-fieldset-legend-line-height) !important;
-   display: var(--form-fieldset-legend-display) !important;
-   margin: var(--form-fieldset-legend-margin) !important;
-   padding: var(--form-fieldset-legend-padding) !important;
+   font-family: var(--form-fieldset-legend-font-family, var(--font-family-1, sans-serif)) !important;
+   font-style: var(--form-fieldset-legend-font-style, var(--default-font-style, normal)) !important;
+   font-weight: var(--form-fieldset-legend-font-weight, var(--font-weight-bold, 700)) !important;
+   color: var(--form-fieldset-legend-color, var(--color-2, #fff)) !important;      
+   background: var(--form-fieldset-legend-background, none) !important;      
+   font-size: var(--form-fieldset-legend-font-size, var(--size-20, 1.25rem)) !important;
+   line-height: var(--form-fieldset-legend-line-height, var(--size-24, 1.5rem)) !important;
+   display: var(--form-fieldset-legend-display, block) !important;
+   margin: var(--form-fieldset-legend-margin, 0rem 0rem var(--size-3, 0.1875rem) 0rem) !important;
+   padding: var(--form-fieldset-legend-padding, 0rem var(--size-20, 1.25rem)) !important;
 }
 
 /* ***************************************************************************************** */
@@ -332,14 +334,14 @@ fieldset.cssf legend {
 
 .cssf form label,
 label.cssf {
-   font-family: var(--form-label-font-family) !important;
-   font-style: var(--form-label-font-style) !important;
-   font-weight: var(--form-label-font-weight) !important;
-   color: var(--form-label-color) !important;      
-   font-size: var(--form-label-font-size) !important;
-   line-height: var(--form-label-line-height) !important;
-   display: var(--form-label-display) !important;
-   margin: var(--form-label-margin) !important;
+   font-family: var(--form-label-font-family, var(--font-family-1, sans-serif)) !important;
+   font-style: var(--form-label-font-style, var(--default-font-style, normal)) !important;
+   font-weight: var(--form-label-font-weight, var(--font-weight-bold, 700)) !important;
+   color: var(--form-label-color, var(--color-2, #fff)) !important;      
+   font-size: var(--form-label-font-size, var(--size-20, 1.25rem)) !important;
+   line-height: var(--form-label-line-height, var(--size-24, 1.5rem)) !important;
+   display: var(--form-label-display, block) !important;
+   margin: var(--form-label-margin, 0rem 0rem 0rem 0rem) !important;
 }
 
 /* ***************************************************************************************** */
@@ -353,39 +355,39 @@ select.cssf {
 
    cursor: pointer;
    
-   font-family: var(--form-select-font-family);
-   font-style: var(--form-select-font-style);
-   font-weight: var(--form-select-font-weight);
-   font-size: var(--form-select-font-size);
-   line-height: var(--form-select-line-height);
-   color: var(--form-select-color);
-   background: var(--form-select-background);
-   padding: var(--form-select-padding);
-   border: var(--form-select-border);
-   border-bottom: var(--form-select-border-bottom);
-   border-radius: var(--form-select-border-radius);
-   width: var(--form-select-width); 
-   letter-spacing: var(--form-select-letter-spacing);
-   text-transform: var(--form-select-text-transform);
-   box-shadow: var(--form-select-box-shadow);
+   font-family: var(--form-select-font-family, var(--font-family-1, sans-serif));
+   font-style: var(--form-select-font-style, var(--default-font-style, normal));
+   font-weight: var(--form-select-font-weight, normal);
+   font-size: var(--form-select-font-size, var(--size-16), 1rem);
+   line-height: var(--form-select-line-height, 1.2);
+   color: var(--form-select-color, var(--color-1));
+   background: var(--form-select-background, var(--color-9) calc(100% - 0.75rem) 0.65rem / 1.25rem 1.25rem no-repeat url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class=""><path fill="%23003769" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z" /></svg>'));
+   padding: var(--form-select-padding, 0.75rem 2.5rem 0.75rem 1rem);
+   border: var(--form-select-border, none);
+   border-bottom: var(--form-select-border-bottom, 0rem solid transparent);
+   border-radius: var(--form-select-border-radius, var(--size-8));
+   width: var(--form-select-width, 100%); 
+   letter-spacing: var(--form-select-letter-spacing, normal);
+   text-transform: var(--form-select-text-transform, none);
+   box-shadow: var(--form-select-box-shadow, none);
 }
 
 .cssf form select option,
 select.cssf option {
-   font-family: var(--form-select-option-font-family);
-   font-style: var(--form-select-option-font-style);
-   font-weight: var(--form-select-option-font-weight); 
-   letter-spacing: var(--form-select-option-letter-spacing);
-   text-transform: var(--form-select-option-text-transform);
-   font-size: var(--form-select-option-font-size);
-   line-height: var(--form-select-option-line-height);
-   color: var(--form-select-option-color);
-   background: var(--form-select-option-background);
+   font-family: var(--form-select-option-font-family, sans-serif);
+   font-style: var(--form-select-option-font-style, var(--default-font-style, normal));
+   font-weight: var(--form-select-option-font-weight, normal); 
+   letter-spacing: var(--form-select-option-letter-spacing, normal);
+   text-transform: var(--form-select-option-text-transform, none);
+   font-size: var(--form-select-option-font-size, var(--size-15));
+   line-height: var(--form-select-option-line-height, var(--size-25));
+   color: var(--form-select-option-color, var(--form-select-color));
+   background: var(--form-select-option-background, transparent);
    
 }
 .cssf form select option:disabled,
 select.cssf option:disabled {
-   color: var(--form-select-option-disabled-color);
+   color: var(--form-select-option-disabled-color, var(--color-2));
 }
 
 /* ***************************************************************************************** */
@@ -414,26 +416,26 @@ button.cssf,
    max-width: 100% !important;    
    text-wrap: auto !important;  
    
-   font-family: var(--form-button-font-family) !important;
-   font-style: var(--form-button-font-style) !important;
-   font-weight: var(--form-button-font-weight) !important;
-   color: var(--form-button-color) !important;
-   background: var(--form-button-background) !important;
-   font-size: var(--form-button-font-size) !important;
-   line-height: var(--form-button-line-height) !important;
-   padding: var(--form-button-padding) !important;
-   margin: var(--form-button-margin) !important;
-   border: var(--form-button-border) !important;
-   border-radius: var(--form-button-border-radius) !important;
-   text-transform: var(--form-button-text-transform) !important;
-   text-align: var(--form-button-text-align) !important;
-   letter-spacing: var(--form-button-letter-spacing) !important;
-   width: var(--form-button-width) !important; 
-   clip-path: var(--form-button-clip-path) !important;  
-   outline: var(--form-button-outline) !important;    
-   transition: var(--form-button-transition) !important;
-   box-shadow: var(--form-button-box-shadow) !important;    
-   transform: var(--form-button-transform) !important;    
+   font-family: var(--form-button-font-family, var(--font-family-1, sans-serif)) !important;
+   font-style: var(--form-button-font-style, var(--default-font-style, normal)) !important;
+   font-weight: var(--form-button-font-weight, var(--font-weight-bold, 700)) !important;
+   color: var(--form-button-color, var(--color-2, #fff)) !important;
+   background: var(--form-button-background, var(--color-1, #000)) !important;
+   font-size: var(--form-button-font-size, var(--size-16, 1rem)) !important;
+   line-height: var(--form-button-line-height, var(--size-20, 1.25rem)) !important;
+   padding: var(--form-button-padding, var(--size-10, 0.625rem) var(--size-20, 1.25rem)) !important;
+   margin: var(--form-button-margin, var(--size-0, 0rem)) !important;
+   border: var(--form-button-border, var(--size-0, 0rem)) !important;
+   border-radius: var(--form-button-border-radius, var(--form-button-line-height)) !important;
+   text-transform: var(--form-button-text-transform, var(--default-text-transform, none)) !important;
+   text-align: var(--form-button-text-align, center) !important;
+   letter-spacing: var(--form-button-letter-spacing, var(--size-1, 1px)) !important;
+   width: var(--form-button-width, auto) !important; 
+   clip-path: var(--form-button-clip-path, var(--default-clip-path, none)) !important;  
+   outline: var(--form-button-outline, var(--size-0, 0rem) solid var(--color-x, transparent)) !important;    
+   transition: var(--form-button-transition, none) !important;
+   box-shadow: var(--form-button-box-shadow, none) !important;    
+   transform: var(--form-button-transform, none) !important;    
 }
 .cssf form input[type="submit"]:hover,
 input[type="submit"].cssf:hover,
@@ -449,26 +451,26 @@ button.cssf:hover,
 .btn.cssf:hover,
 .cssf .button:hover,
 .cssf .btn:hover {
-   font-family: var(--form-button-hover-font-family) !important;
-   font-style: var(--form-button-hover-font-style) !important;
-   font-weight: var(--form-button-hover-font-weight) !important;
-   color: var(--form-button-hover-color) !important;
-   background: var(--form-button-hover-background) !important;
-   font-size: var(--form-button-hover-font-size) !important;
-   line-height: var(--form-button-hover-line-height) !important;
-   padding: var(--form-button-hover-padding) !important;
-   margin: var(--form-button-hover-margin) !important;
-   border: var(--form-button-hover-border) !important;
-   border-radius: var(--form-button-hover-border-radius) !important;
-   text-transform: var(--form-button-hover-text-transform) !important;
-   text-align: var(--form-button-hover-text-align) !important;
-   letter-spacing: var(--form-button-hover-letter-spacing) !important;
-   width: var(--form-button-hover-width) !important;
-   clip-path: var(--form-button-hover-clip-path) !important; 
-   outline: var(--form-button-hover-outline) !important; 
-   transition: var(--form-button-hover-transition) !important;
-   box-shadow: var(--form-button-hover-box-shadow) !important; 
-   transform: var(--form-button-hover-transform) !important; 
+   font-family: var(--form-button-hover-font-family, var(--form-button-font-family)) !important;
+   font-style: var(--form-button-hover-font-style, var(--form-button-font-style)) !important;
+   font-weight: var(--form-button-hover-font-weight, var(--form-button-font-weight)) !important;
+   color: var(--form-button-hover-color, var(--color-1, #000)) !important;
+   background: var(--form-button-hover-background, var(--color-2, #fff)) !important;
+   font-size: var(--form-button-hover-font-size, var(--form-button-font-size)) !important;
+   line-height: var(--form-button-hover-line-height, var(--form-button-line-height)) !important;
+   padding: var(--form-button-hover-padding, var(--form-button-padding)) !important;
+   margin: var(--form-button-hover-margin, var(--form-button-margin)) !important;
+   border: var(--form-button-hover-border, var(--form-button-border)) !important;
+   border-radius: var(--form-button-hover-border-radius, var(--form-button-border-radius)) !important;
+   text-transform: var(--form-button-hover-text-transform, var(--form-button-text-transform)) !important;
+   text-align: var(--form-button-hover-text-align, var(--form-button-text-align)) !important;
+   letter-spacing: var(--form-button-hover-letter-spacing, var(--form-button-letter-spacing)) !important;
+   width: var(--form-button-hover-width, var(--form-button-width)) !important;
+   clip-path: var(--form-button-hover-clip-path, var(--form-button-clip-path)) !important; 
+   outline: var(--form-button-hover-outline, var(--size-0, 0rem) solid var(--color-x, transparent)) !important; 
+   transition: var(--form-button-hover-transition, var(--form-button-transition)) !important;
+   box-shadow: var(--form-button-hover-box-shadow, var(--form-button-box-shadow)) !important; 
+   transform: var(--form-button-hover-transform, var(--form-button-transform)) !important; 
 }
 .cssf form input[type="submit"]:focus,
 input[type="submit"].cssf:focus,
@@ -484,26 +486,26 @@ button.cssf:focus,
 .btn.cssf:focus,
 .cssf .button:focus,
 .cssf .btn:focus {
-   font-family: var(--form-button-focus-font-family) !important;
-   font-style: var(--form-button-focus-font-style) !important;
-   font-weight: var(--form-button-focus-font-weight) !important;
-   color: var(--form-button-focus-color) !important;
-   background: var(--form-button-focus-background) !important;
-   font-size: var(--form-button-focus-font-size) !important;
-   line-height: var(--form-button-focus-line-height) !important;
-   padding: var(--form-button-focus-padding) !important;
-   margin: var(--form-button-focus-margin) !important;
-   border: var(--form-button-focus-border) !important;
-   border-radius: var(--form-button-focus-border-radius) !important;
-   text-transform: var(--form-button-focus-text-transform) !important;
-   text-align: var(--form-button-focus-text-align) !important;
-   letter-spacing: var(--form-button-focus-letter-spacing) !important;
-   width: var(--form-button-focus-width) !important;
-   clip-path: var(--form-button-focus-clip-path) !important; 
-   outline: var(--form-button-focus-outline) !important; 
-   transition: var(--form-button-focus-transition) !important;
-   box-shadow: var(--form-button-focus-box-shadow) !important;
-   transform: var(--form-button-focus-transform) !important;   
+   font-family: var(--form-button-focus-font-family, var(--form-button-hover-font-family)) !important;
+   font-style: var(--form-button-focus-font-style, var(--form-button-hover-font-style)) !important;
+   font-weight: var(--form-button-focus-font-weight, var(--form-button-hover-font-weight)) !important;
+   color: var(--form-button-focus-color, var(--form-button-hover-color)) !important;
+   background: var(--form-button-focus-background, var(--form-button-hover-background)) !important;
+   font-size: var(--form-button-focus-font-size, var(--form-button-hover-font-size)) !important;
+   line-height: var(--form-button-focus-line-height, var(--form-button-hover-line-height)) !important;
+   padding: var(--form-button-focus-padding, var(--form-button-hover-padding)) !important;
+   margin: var(--form-button-focus-margin, var(--form-button-hover-margin)) !important;
+   border: var(--form-button-focus-border, var(--form-button-hover-border)) !important;
+   border-radius: var(--form-button-focus-border-radius, var(--form-button-hover-border-radius)) !important;
+   text-transform: var(--form-button-focus-text-transform, var(--form-button-hover-text-transform)) !important;
+   text-align: var(--form-button-focus-text-align, var(--form-button-text-align)) !important;
+   letter-spacing: var(--form-button-focus-letter-spacing, var(--form-button-hover-letter-spacing)) !important;
+   width: var(--form-button-focus-width, var(--form-button-hover-width)) !important;
+   clip-path: var(--form-button-focus-clip-path, var(--form-button-hover-clip-path)) !important; 
+   outline: var(--form-button-focus-outline, var(--form-button-hover-outline)) !important; 
+   transition: var(--form-button-focus-transition, var(--form-button-hover-transition)) !important;
+   box-shadow: var(--form-button-focus-box-shadow, var(--form-button-hover-box-shadow)) !important;
+   transform: var(--form-button-focus-transform, var(--form-button-hover-transform)) !important;   
 }
 .cssf form input[type="submit"]:active,
 input[type="submit"].cssf:active,
@@ -519,26 +521,26 @@ button.cssf:active,
 .btn.cssf:active,
 .cssf .button:active,
 .cssf .btn:active {
-   font-family: var(--form-button-active-font-family) !important;
-   font-style: var(--form-button-active-font-style) !important;
-   font-weight: var(--form-button-active-font-weight) !important;
-   color: var(--form-button-active-color) !important;
-   background: var(--form-button-active-background) !important;
-   font-size: var(--form-button-active-font-size) !important;
-   line-height: var(--form-button-active-line-height) !important;
-   padding: var(--form-button-active-padding) !important;
-   margin: var(--form-button-active-margin) !important;
-   border: var(--form-button-active-border) !important;
-   border-radius: var(--form-button-active-border-radius) !important;
-   text-transform: var(--form-button-active-text-transform) !important;
-   text-align: var(--form-button-active-text-align) !important;
-   letter-spacing: var(--form-button-active-letter-spacing) !important;
-   width: var(--form-button-active-width) !important;
-   clip-path: var(--form-button-active-clip-path) !important; 
-   outline: var(--form-button-active-outline) !important; 
-   transition: var(--form-button-active-transition) !important;
-   box-shadow: var(--form-button-active-box-shadow) !important; 
-   transform: var(--form-button-active-transform) !important;  
+   font-family: var(--form-button-active-font-family, var(--form-button-hover-font-family)) !important;
+   font-style: var(--form-button-active-font-style, var(--form-button-hover-font-style)) !important;
+   font-weight: var(--form-button-active-font-weight, var(--form-button-hover-font-weight)) !important;
+   color: var(--form-button-active-color, var(--form-button-hover-color)) !important;
+   background: var(--form-button-active-background, var(--form-button-hover-background)) !important;
+   font-size: var(--form-button-active-font-size, var(--form-button-hover-font-size)) !important;
+   line-height: var(--form-button-active-line-height, var(--form-button-hover-line-height)) !important;
+   padding: var(--form-button-active-padding, var(--form-button-hover-padding)) !important;
+   margin: var(--form-button-active-margin, var(--form-button-hover-margin)) !important;
+   border: var(--form-button-active-border, var(--form-button-hover-border)) !important;
+   border-radius: var(--form-button-active-border-radius, var(--form-button-hover-border-radius)) !important;
+   text-transform: var(--form-button-active-text-transform, var(--form-button-hover-text-transform)) !important;
+   text-align: var(--form-button-active-text-align, var(--form-button-text-align)) !important;
+   letter-spacing: var(--form-button-active-letter-spacing, var(--form-button-hover-letter-spacing)) !important;
+   width: var(--form-button-active-width, var(--form-button-hover-width)) !important;
+   clip-path: var(--form-button-active-clip-path, var(--form-button-hover-clip-path)) !important; 
+   outline: var(--form-button-active-outline, var(--form-button-hover-outline)) !important; 
+   transition: var(--form-button-active-transition, var(--form-button-hover-transition)) !important;
+   box-shadow: var(--form-button-active-box-shadow, var(--form-button-hover-box-shadow)) !important; 
+   transform: var(--form-button-active-transform, var(--form-button-hover-transform)) !important;  
 }
 /* ***************************************************************************************** */
 
@@ -570,20 +572,20 @@ textarea.cssf {
    margin: 0rem !important;
    max-width: 100% !important;      
    
-   font-family: var(--form-input-text-font-family) !important;
-   font-style: var(--form-input-text-font-style) !important;
-   font-weight: var(--form-input-text-font-weight) !important;
-   font-size: var(--form-input-text-font-size) !important;
-   line-height: var(--form-input-text-line-height) !important;
-   color: var(--form-input-text-color) !important;
-   background: var(--form-input-text-background) !important;
-   padding: var(--form-input-text-padding) !important;
-   border: var(--form-input-text-border) !important;
-   border-bottom: var(--form-input-text-border-bottom) !important;
-   border-radius: var(--form-input-text-border-radius) !important;
-   width: var(--form-input-text-width) !important;
-   outline: var(--form-input-text-outline) !important;
-   box-shadow: var(--form-input-text-box-shadow) !important;
+   font-family: var(--form-input-text-font-family, var(--font-family-1, sans-serif)) !important;
+   font-style: var(--form-input-text-font-style, var(--default-font-style, normal)) !important;
+   font-weight: var(--form-input-text-font-weight, var(--font-weight-regular, 400)) !important;
+   font-size: var(--form-input-text-font-size, var(--size-16, 1rem)) !important;
+   line-height: var(--form-input-text-line-height, var(--size-20, 1.25rem)) !important;
+   color: var(--form-input-text-color, var(--color-1, #000)) !important;
+   background: var(--form-input-text-background, var(--color-2, #fff)) !important;
+   padding: var(--form-input-text-padding, var(--size-10, 0.625rem) var(--size-20, 1.25rem)) !important;
+   border: var(--form-input-text-border, 0rem solid var(--color-x, transparent)) !important;
+   border-bottom: var(--form-input-text-border-bottom, 0rem solid var(--color-1, #000)) !important;
+   border-radius: var(--form-input-text-border-radius, 0rem) !important;
+   width: var(--form-input-text-width, 100%) !important;
+   outline: var(--form-input-text-outline, var(--size-0, 0rem) solid var(--color-x, transparent)) !important;
+   box-shadow: var(--form-input-text-box-shadow, none) !important;
 }
 .cssf form input[type="date"],
 input[type="date"].cssf,
@@ -605,20 +607,20 @@ input[type="tel"].cssf:hover,
 input[type="password"].cssf:hover,
 .cssf form textarea:hover,
 textarea.cssf:hover {
-   font-family: var(--form-input-text-hover-font-family) !important;
-   font-style: var(--form-input-text-hover-font-style) !important;
-   font-weight: var(--form-input-text-hover-font-weight) !important;
-   font-size: var(--form-input-text-hover-font-size) !important;
-   line-height: var(--form-input-text-hover-line-height) !important;
-   color: var(--form-input-text-hover-color) !important;
-   background: var(--form-input-text-hover-background) !important;
-   padding: var(--form-input-text-hover-padding) !important;
-   border: var(--form-input-text-hover-border) !important;
-   border-bottom: var(--form-input-text-hover-border-bottom) !important;
-   border-radius: var(--form-input-text-hover-border-radius) !important;
-   width: var(--form-input-text-hover-width) !important;
-   outline: var(--form-input-text-hover-outline) !important;
-   box-shadow: var(--form-input-text-hover-box-shadow) !important;
+   font-family: var(--form-input-text-hover-font-family, var(--form-input-text-font-family)) !important;
+   font-style: var(--form-input-text-hover-font-style, var(--form-input-text-font-style)) !important;
+   font-weight: var(--form-input-text-hover-font-weight, var(--form-input-text-font-weight)) !important;
+   font-size: var(--form-input-text-hover-font-size, var(--form-input-text-font-size)) !important;
+   line-height: var(--form-input-text-hover-line-height, var(--form-input-text-line-height)) !important;
+   color: var(--form-input-text-hover-color, var(--form-input-text-color)) !important;
+   background: var(--form-input-text-hover-background, var(--form-input-text-background)) !important;
+   padding: var(--form-input-text-hover-padding, var(--form-input-text-padding)) !important;
+   border: var(--form-input-text-hover-border, var(--form-input-text-border)) !important;
+   border-bottom: var(--form-input-text-hover-border-bottom, var(--form-input-text-border-bottom)) !important;
+   border-radius: var(--form-input-text-hover-border-radius, var(--form-input-text-border-radius)) !important;
+   width: var(--form-input-text-hover-width, var(--form-input-text-width)) !important;
+   outline: var(--form-input-text-hover-outline, var(--form-input-text-outline)) !important;
+   box-shadow: var(--form-input-text-hover-box-shadow, var(--form-input-text-box-shadow)) !important;
 }
 .cssf form input[type="text"]:focus,
 input[type="text"].cssf:focus,
@@ -632,20 +634,20 @@ input[type="tel"].cssf:focus,
 input[type="password"].cssf:focus,
 .cssf form textarea:focus,
 textarea.cssf:focus {
-   font-family: var(--form-input-text-focus-font-family) !important;
-   font-style: var(--form-input-text-focus-font-style) !important;
-   font-weight: var(--form-input-text-focus-font-weight) !important;
-   font-size: var(--form-input-text-focus-font-size) !important;
-   line-height: var(--form-input-text-focus-line-height) !important;
-   color: var(--form-input-text-focus-color) !important;
-   background: var(--form-input-text-focus-background) !important;
-   padding: var(--form-input-text-focus-padding) !important;
-   border: var(--form-input-text-focus-border) !important;
-   border-bottom: var(--form-input-text-focus-border-bottom) !important;
-   border-radius: var(--form-input-text-focus-border-radius) !important;
-   width: var(--form-input-text-focus-width) !important;
-   outline: var(--form-input-text-focus-outline) !important;
-   box-shadow: var(--form-input-text-focus-box-shadow) !important;
+   font-family: var(--form-input-text-focus-font-family, var(--form-input-text-font-family)) !important;
+   font-style: var(--form-input-text-focus-font-style, var(--form-input-text-font-style)) !important;
+   font-weight: var(--form-input-text-focus-font-weight, var(--form-input-text-font-weight)) !important;
+   font-size: var(--form-input-text-focus-font-size, var(--form-input-text-font-size)) !important;
+   line-height: var(--form-input-text-focus-line-height, var(--form-input-text-line-height)) !important;
+   color: var(--form-input-text-focus-color, var(--form-input-text-color)) !important;
+   background: var(--form-input-text-focus-background, var(--form-input-text-background)) !important;
+   padding: var(--form-input-text-focus-padding, var(--form-input-text-padding)) !important;
+   border: var(--form-input-text-focus-border, var(--form-input-text-border)) !important;
+   border-bottom: var(--form-input-text-focus-border-bottom, var(--form-input-text-border-bottom)) !important;
+   border-radius: var(--form-input-text-focus-border-radius, var(--form-input-text-border-radius)) !important;
+   width: var(--form-input-text-focus-width, var(--form-input-text-width)) !important;
+   outline: var(--form-input-text-focus-outline, var(--form-input-text-outline)) !important;
+   box-shadow: var(--form-input-text-focus-box-shadow, var(--form-input-text-box-shadow)) !important;
 }
 .cssf form input[type="number"],
 input[type="number"].cssf,
@@ -671,7 +673,7 @@ input[type='checkbox'].cssf:checked {
 }
 .cssf form input[type='checkbox'] + label,
 input[type='checkbox'].cssf + label {
-   margin: var(--form-input-checkbox-margin) !important;
+   margin: var(--form-input-checkbox-margin, 0rem 0rem 0rem calc(0.5rem + 1.5rem)) !important;
    display: inline-block;
    cursor: pointer;
    position: relative;
@@ -681,33 +683,33 @@ input[type='checkbox'].cssf + label {
 input[type='checkbox'].cssf + label:before { 
    content:'\00a0';
    display: inline-block;
-   background: var(--form-input-checkbox-background);
-   transform: var(--form-input-checkbox-transform);
-   border: var(--form-input-checkbox-border);
-   border-radius: var(--form-input-checkbox-border-radius);
+   background: var(--form-input-checkbox-background, transparent);
+   transform: var(--form-input-checkbox-transform, translateY(-0%));
+   border: var(--form-input-checkbox-border, var(--size-1) solid var(--color-3));
+   border-radius: var(--form-input-checkbox-border-radius, 0%);
    position: absolute;
-   top: var(--form-input-checkbox-top);
-   width: var(--form-input-checkbox-width);
-   height: var(--form-input-checkbox-height);
-   left: var(--form-input-checkbox-left);
+   top: var(--form-input-checkbox-top, var(--size-2));
+   width: var(--form-input-checkbox-width, 1.5rem);
+   height: var(--form-input-checkbox-height, 1.5rem);
+   left: var(--form-input-checkbox-left, calc(0.5rem * -1 + 1.5rem * -1));
 }
 .cssf form input[type='checkbox']:checked + label:before,
 input[type='checkbox'].cssf:checked + label:before { 
-   background: var(--form-input-checkbox-checked-background);
+   background: var(--form-input-checkbox-checked-background, var(--color-4));
 }
 .cssf form input[type='checkbox']:checked + label:after,
 input[type='checkbox'].cssf:checked + label:after,
 .cssf form input[type='checkbox'] + label:after,
 input[type='checkbox'].cssf + label:after {
-   font-family: var(--form-input-checkbox-checked-font-family);
+   font-family: var(--form-input-checkbox-checked-font-family, 'Font Awesome 5 Pro');
    font-style: normal;
-   font-weight: var(--form-input-checkbox-checked-font-weight);
-   color: var(--form-input-checkbox-checked-color);
+   font-weight: var(--form-input-checkbox-checked-font-weight, 400);
+   color: var(--form-input-checkbox-checked-color, var(--color-2));
    margin-right: 0.5rem;
    position: absolute;
-   top: var(--form-input-checkbox-checked-top);
-   transform: var(--form-input-checkbox-transform);
-   left: var(--form-input-checkbox-checked-left);
+   top: var(--form-input-checkbox-checked-top, var(--form-input-checkbox-top));
+   transform: var(--form-input-checkbox-transform, translateY(-0%));
+   left: var(--form-input-checkbox-checked-left, var(--size--24));
 }
 .cssf form input[type='checkbox'] + label:after,
 input[type='checkbox'].cssf + label:after {
@@ -715,13 +717,13 @@ input[type='checkbox'].cssf + label:after {
 }
 .cssf form input[type='checkbox']:checked + label:after,
 input[type='checkbox'].cssf:checked + label:after {
-   content: var(--form-input-checkbox-checked-content);  
-   left: var(--form-input-checkbox-checked-left);
+   content: var(--form-input-checkbox-checked-content, '\f00d');  
+   left: var(--form-input-checkbox-checked-left, var(--size--24));
 }
 .cssf form input[type='checkbox'] + label:focus:before,
 input[type='checkbox'].cssf + label:focus:before {
    color: var(--form-input-checkbox-focus-font-color);
-   border-color: var(--form-input-checkbox-focus-border-color);
+   border-color: var(--form-input-checkbox-focus-border-color, yellow);
 }  
 
 /* ***************************************************************************************** */
@@ -739,7 +741,7 @@ input[type='radio'].cssf:checked {
 }
 .cssf form input[type='radio'] + label,
 input[type='radio'].cssf + label {
-   margin: var(--form-input-radio-margin) !important;
+   margin: var(--form-input-radio-margin, 0rem 0rem 0rem calc(0.5rem + 1.5rem)) !important;
    display: inline-block;
    cursor: pointer;
    position: relative;
@@ -749,59 +751,59 @@ input[type='radio'].cssf + label {
 input[type='radio'].cssf + label:before { 
    content:'\00a0';
    display: inline-block;
-   background: var(--form-input-radio-background);
-   transform: var(--form-input-radio-transform);
-   border: var(--form-input-radio-border);
-   border-radius: var(--form-input-radio-border-radius);
+   background: var(--form-input-radio-background, var(--form-input-checkbox-background));
+   transform: var(--form-input-radio-transform, translateY(-0%));
+   border: var(--form-input-radio-border, var(--form-input-checkbox-border));
+   border-radius: var(--form-input-radio-border-radius, 100%);
    position: absolute;
-   top: var(--form-input-radio-top);
-   width: var(--form-input-radio-width);
-   height: var(--form-input-radio-height);
-   left: var(--form-input-radio-left);
+   top: var(--form-input-radio-top, var(--size-2));
+   width: var(--form-input-radio-width, 1.5rem);
+   height: var(--form-input-radio-height, 1.5rem);
+   left: var(--form-input-radio-left, calc(0.5rem * -1 + 1.5rem * -1));
 }
 .cssf form input[type='radio']:checked + label:before,
 input[type='radio'].cssf:checked + label:before { 
-   background: var(--form-input-radio-checked-background);
+   background: var(--form-input-radio-checked-background, var(--color-4));
 }
 .cssf form input[type='radio'] + label:before,
 input[type='radio'].cssf + label:before { 
-   background: var(--form-input-radio-background);
-   border: var(--form-input-radio-border);
+   background: var(--form-input-radio-background, var(--form-input-checkbox-background));
+   border: var(--form-input-radio-border, var(--form-input-checkbox-border));
 }
 .cssf form input[type='radio']:checked + label:after,
 input[type='radio'].cssf:checked + label:after,
 .cssf form input[type='radio'] + label:after,
 input[type='radio'].cssf + label:after {
-   font-family: var(--form-input-radio-checked-font-family);
+   font-family: var(--form-input-radio-checked-font-family, 'Font Awesome 5 Pro');
    font-style: normal;
-   font-weight: var(--form-input-radio-checked-font-weight);
-   color: var(--form-input-radio-checked-color);
+   font-weight: var(--form-input-radio-checked-font-weight, 400);
+   color: var(--form-input-radio-checked-color, var(--form-input-checkbox-checked-color));
    margin-right: 0.5rem;
    position: absolute;
-   top: var(--form-input-radio-checked-top);
-   transform: var(--form-input-radio-transform);
-   left: var(--form-input-radio-checked-left);
+   top: var(--form-input-radio-checked-top, var(--form-input-radio-top));
+   transform: var(--form-input-radio-transform, translateY(-0%));
+   left: var(--form-input-radio-checked-left, -1.585rem);
 }
 .cssf form input[type='radio']:checked + label:after,
 input[type='radio'].cssf:checked + label:after,
 .cssf form input[type='radio'] + label:after,
 input[type='radio'].cssf + label:after {
-   color: var(--form-input-radio-checked-color);
+   color: var(--form-input-radio-checked-color, var(--form-input-checkbox-checked-color));
 }
 .cssf form input[type='radio'] + label:after,
 input[type='radio'].cssf + label:after {
-   content: var(--form-input-radio-content);
+   content: var(--form-input-radio-content, '\00a0');
 }
 .cssf form input[type='radio']:checked + label:after,
 input[type='radio'].cssf:checked + label:after {
-   content: var(--form-input-radio-checked-content);
-   left: var(--form-input-radio-checked-left);
-   font-size: var(--form-input-radio-checked-font-size);
+   content: var(--form-input-radio-checked-content, '\f111');
+   left: var(--form-input-radio-checked-left, -1.585rem);
+   font-size: var(--form-input-radio-checked-font-size, 0.725rem);
 }
 .cssf form input[type='radio'] + label:focus:before,
 input[type='radio'].cssf + label:focus:before {
    color: var(--form-input-radio-focus-font-color);
-   border-color: var(--form-input-radio-focus-border-color);
+   border-color: var(--form-input-radio-focus-border-color, yellow);
 }  
 
 /* ***************************************************************************************** */
